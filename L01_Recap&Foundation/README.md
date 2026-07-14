@@ -2,191 +2,191 @@
 <a href="https://www.youtube.com/watch?v=BRTOlPdyPYU"><img src="Material/steve-jobs-learn-to-program.jpg">
 <small>Quelle: <a href="https://www.challengecharterschool.net/wp-content/uploads/2017/07/Steve-Jobs.jpg">https://www.challengecharterschool.net/wp-content/uploads/2017/07/Steve-Jobs.jpg</a></small>
 
-## Einleitung
-In diesem Kapitel festigst Du einige schon einige bekannte und elementare Inhalte und lernst wahrscheinlich einige weitere dazu. Ein tiefes Verständnis dieser und ein sicherer Umgang mit diesen ist Voraussetzung für die nachfolgenden Kapitel. Außerdem wirst Du die Aktivitätsdiagramme der "Unified Modelling Language" (UML2.5) kennen lernen, mit deren Hilfe Du im weiteren Verlauf der Veranstaltung Algorithmen beschreiben und konzipieren wirst. Darüber hinaus lernst Du mit Verfolgungstabellen (Trace Tables) und dem browserinternen Debugger umzugehen, welche wichtige Werkzeuge für die Fehlersuche während der Implementation deiner konzipierten Anwendungen sind.  
+## Introduction
+In this chapter, you will solidify some fundamental and familiar concepts and likely learn a few new ones as well. A deep understanding of these, and the ability to use them confidently, is a prerequisite for the subsequent chapters. You will also be introduced to the activity diagrams of the "Unified Modeling Language" (UML 2.5), which you will use later in the course to describe and design algorithms. Furthermore, you will learn to use trace tables and the browser's built-in debugger—important tools for troubleshooting during the implementation of the applications you have designed.
 
-## Fehler
-> "Aargh! Mein Programm läuft nicht mehr, dabei habe ich gar nichts gemacht!"  
+## Errors
+> "Aargh! My Program is no longer running, even though i didn´t so anything!"  
 
-Das kennen wir alle, Du bist nicht allein. Beachte folgende Regeln:
+We all know that feeling, you are not alone. Pay attention to the following rules:
 1. don't panic!
-1. der Computer ist eher unkreativ und folgt nur deinen Anweisungen. Wahrscheinlich ist mit ihm oder anderer Sofware, wie dem Browser, alles in Ordnung und er kann dir helfen, den Fehler zu finden. Dabei ist er unermüdlich und wird dir nichts übel nehmen.
-1. sammle Informationen zu dem Problem. Ziehe nicht wild an allen Hebeln sondern untersuche das Verhalten. Nutze dazu die zahlreichen Hilfestellungen die der Rechner dir anzeigen kann. Wende die [Lösungstrategien](#l%C3%B6sungsstrategien) an!
-2. wenn Du das Problem nach 15 Minuten nicht gelöst hast, ruf das Dozenti oder die Tutoris! Sonst verlierst Du zu viel Zeit... falls niemand im Raum ist, schreibe einen Issue. Poste dabei die gesammelten Infos und Links auf dein Programm, sowohl auf Pages zum Probieren als auch zum Code. Wichtig: Du musst dir darüber im Klaren sein, was Du genau vorhattest. Halte dein Konzept parat!
+1. the computer is rather uncreative and simply follows your instructions. There is likely nothing wrong with it or with other software, such as the browser, and it can help you locate the error. It is tireless in this regard and won't hold anything against you.
+1.  Gather information about the problem—don't just randomly change things. Instead, examine the behavior. Make use of the numerous helpful features the computer can display for you. Apply the [Lösungstrategien](#l%C3%B6sungsstrategien) solution strategies!
+2. If you haven't solved the problem after 15 minutes, call the lecturer or a tutor! otherwise you will lose too much time… if there is no one in the room, write a issue. post the gathered information and links to your program, both on "Pages" for trying things out and on the code. Important: You need to be clear about exactly what you were planning to do. Have your concept ready!
 
->**Hinweis:** TypeScript spielt gerade bei der Fehlervermeidung eine seiner großen Stärken aus, indem es viele Fehler zur Entwicklungszeit anzeigt. JavaScript hat hier fast nichts zu bieten, die Fehler zeigen sich erst im Betrieb... besonders gerne beim Nutzeri!
+>**Note:** One of TypeScript’s major strengths is error prevention, by flagging many errors at development time. JavaScript has almost nothing to offer here; the errors only show up during operation—especially at the user's end!
 
-### Fehlertypen
-Du hast nun schon ganz unterschiedliche Fehler kennen gelernt. Die korrekte Benennung dieser hilft anderen dabei, dir zu helfen. Ein wichtiges Unterscheidungskriterium ist dabei der Zeitpunkt, zu dem der Fehler auftritt.
+### Error types
+You have now encountered a wide variety of errors. Naming them correctly helps others help you. An important criterion for distinction is the point in time at which the error occurs.
 #### Runtime Error
-Tritt zur Laufzeit auf. Das ist ein hässlicher Fehlertyp, da er unter Umständen lange Zeit unentdeckt bleibt oder nur unter bestimmten Bedingungen reproduzierbar ist. Laufzeitfehler werden in der Browserkonsole angezeigt und müssen unbedingt beachtet werden, auch wenn das Programm weiterlaufen sollte.
+Occurs at runtime. This is a nasty type of error, as it may go undetected for a long time or be reproducible only under certain conditions. Runtime errors are displayed in the browser console and must be addressed, even if the program continues to run.
 #### Compiletime Error
-Tritt auf, wenn das TypeScript-Programm in ein JavaScript-Programm übersetzt wird. Von diesen Fehlern wirst Du zunächst weitestgehend verschont bleiben, sofern Du dein Projekt ordentlich anlegst. Dieser Fehlertyp wird in der Konsole des Compilers, in der Regel also im VSCode-Terminal angezeigt. 
+Occurs when the TypeScript program is compiled into a JavaScript program. You will largely be spared these errors, at least initially—provided you set up your project properly. This error type will be shown in the compilers console, usually in the VSCode-terminal. 
 #### Designtime Error
-Das sind Fehler, die bereits angezeigt werden während Du den Code schreibst und zwar direkt im Code selbst. In VSCode werden hierzu rote Wellenlinien im Text und rote Kästchen am Rand angezeigt. Außerdem wird in der Console der "Problem"-Tab gefüllt. So kannst Du sofort reagieren und schnell experimentieren um den Fehler zu beheben. Außerdem werden beim Zeigen mit der Maus Fehlerbeschreibungen angezeigt und per QuickFix sogar Lösungen vorgeschlagen.
+These are errors that are flagged while you are writing the code—specifically, right within the code itself. In VSCode red wavy lines in the text and red boxes in the margin are displayed for this. the "problem"-tab in the console will get filled with those. This allows you to react immediately and experiment quickly to fix the error. In addition, error descriptions are displayed when hovering the mouse, and solutions are even suggested via QuickFix.
 #### Logical Error
-Logikfehler sind nicht auf eine falsche Programmierung zurückzuführen, sondern auf schlechte Konzeption. Diese Fehler kann der Computer meistens gar nicht aufzeigen, da er nicht weiß, was Du eigentlich vorhattest. Solange das Programm ausführbar ist und keiner der anderen Fehlertypen auftritt, wird er es ausführen und davon ausgehen, dass er tut was Du dir vorgestellt hast. Hier hilft nur nachdenken, aber es gibt einige Hilfsmittel, die man dabei einsetzen kann!  
+Logical errors are not attributable to incorrect programming, but rather to poor design. The computer usually cannot even point out these errors, because it doesn't know what you actually intended to do. As long as the program is executable and none of the other error types occur, it will execute it and assume that it is doing what you intended. The only thing that helps here is thinking it through, but there are some tools you can use!
 
-### Lösungsstrategien
-1. Schließe die "Klassiker" aus, an denen wir alle hängen bleiben, die da z.B. sind 
-   - nicht kompiliert
-   - Script nicht in der HTML-Datei verlinkt oder eine TypeScript- statt einer JavaScript-Datei verlinkt
-   - Klammern beim Funktionsaufruf vergessen oder bei der Funktionsreferenz geschrieben
-   - falsche Datei getestet oder im falschen Ordner oder eine Kopie
-1. Lies bei Design- und Compiletime Errors aufmerksam die Hinweise, die TypeScript dir gibt, meist steht dort schon eine akkurate Beschreibung des Problems. Frag' nach, wenn Du sie nicht verstehst.
-1. Nutze den [Debugger](#debugger). Setze einen Breakpoint an die Stelle im Programm an welcher der Fehler auftritt und starte es neu. Schaue dir die Werte der Variablen an, kurz bevor der Fehler auftritt. Hilft vor allem bei Runtime Errors.
-1. Aus- und Entkommentieren: Wandle nacheinander einzelne Zeilen in Kommentare um (Windows: Strg+#, Mac: ⌘+K ⌘+U) und schaue wie sich das Programmverhalten verändert. Oder wandle ganze Blöcke von Code in einen Kommentar und entkommentiere nacheinander einzelne Zeilen wieder zu Code. Schau, wann der Fehler auftritt oder verschwindet.
-1. Lasse dir an verschiedenen Stellen Ausgaben mit sinnvollen Inhalten erzeugen per `console.log(...)`. Anhand der Folge der Ausgaben kannst Du den Programmverlauf und ggf. bestimmte Speicherzustände erkennen.
-1. Verfolge den Programmablauf mit dem Debugger, damit kommst Du auch den hartnäckigsten Fehlern auf die Schliche. Nutze Step-In, -Over und -Out.
-1. Nutze die **Gummientenmethode** bei logischen Problemen, die auch von Profis verwendet wird. Kein Witz! Platziere eine Gummiente, zur Not tut es auch ein Stofftier oder ein WG-Mitbewohneri, in deiner Nähe und schaue zusammen mit ihr auf deinen Code. Erkläre ihr im Detail, wie der Code funktioniert. Die Wahrscheinlichkeit ist groß, dass ihr dabei gemeinsam den logischen Fehler findet. Gummienten sind sehr schlau!
+### Solution Strategies
+1. Rule out the "classics" we all get hung up on—such as... 
+   - not compiled
+   - Script not linked in the HTML file, or a TypeScript file linked instead of a JavaScript file.
+   - Parentheses forgotten in a function call or included in a function reference
+   - Tested the wrong file, or one in the wrong folder, or a copy
+1. When dealing with design-time and compile-time errors, pay close attention to the hints TypeScript provides; they often contain an accurate description of the problem. Ask if you don't understand them.
+1. Use the [Debugger](#debugger). Set a Breakpoint at the spot the error occurs in your program and reload it. Check the values ​​of the variables just before the error occurs. Helps primarily with runtime errors.
+1. Commenting out and uncommenting: Convert individual lines into comments one after the other (Windows: Strg+#, Mac: ⌘+K ⌘+U) and observe how the program behavior changes. Or turn entire blocks of code into a comment and uncomment individual lines one by one to turn them back into code. See when the error appears or disappears.
+1. Generate useful Output at various points using `console.log(...)`. Based on the sequence of outputs, you can identify the program execution flow and, if applicable, specific memory states.
+1. Trace the program execution with the debugger, This allows you to track down even the most stubborn bugs. Use Step-In, Step-Over, and Step-Out.
+1. Use the **Gummientenmethode** for logic problems—also used by professionals. Not a Joke! Place a rubber duck nearby, a stuffed animal or a roommate will do, have them nearby and look at your code together. Explain to them in detail, how your code works. There is a good chance that you will find the logical error together. Rubber ducks are very smart!
 
-### Präventive Maßnahmen
-Du kannst schon beim Coden dafür sorgen, dass gar nicht erst Fehler auftreten oder dass Du die Ursachen schnell findest.
-- Halte dich strikt an die Coding Guidelines, siehe [Booklet](../X01_Appendix/)
-- Teste häufig! Mache immer nur kleine Änderungen und lasse das Programm wieder laufen. Damit weißt Du, dass der Fehler gerade erst implementiert wurde.
-- Lasse dabei immer die Browserkonsole offen. Wie bei einer Krankheit erscheinen manche Fehler nicht gravierend und das Programm läuft zunächst weiter. Sie müssen aber behandelt werden!
-- Bevor Du eine Funktion implementierst, implementiere den Aufruf und einen Rumpf aus Platzhalter-Code, der vielleicht nur aus einer Konsolenausgabe besteht. Dann weißt Du, dass die übergeordnete Struktur schon passt und kannst Details implementieren. 
-- Mache häufige Commits in Git mit sinnvollen Messages und pushe sie auf dein Remote-Repository (ui...Denglisch!). Du kannst nämlich später vorangegangene Versionen wieder aufrufen und testen und alle Veränderungen nachvollziehen. So kann man genau feststellen, wann ein Fehler implementiert wurde und die Ursache schnell eingrenzen.
+### Preventive Measures
+You can ensure while coding that errors don't occur in the first place, or that you can quickly find their causes.
+- Adhere strictly to the coding guidelines, see the [Booklet](../X01_Appendix/)
+- Test a lot! Make only small changes at a time and run the program again. That way, you know that the error was just recently introduced.
+- Always have the browser console open for that. As with an illness, some errors do not appear serious, and the program initially continues to run. However, they must be treated!
+- Before implementing a function, implement the call and a stub consisting of placeholder code—perhaps just a console output. Then you know the overall structure is good and can implement the details. 
+- Make frequent commits in Git with meaningful messages and push them to your remote repository. You can actually go back and test previous versions later, and trace all the changes. This makes it possible to determine exactly when an error was introduced and quickly narrow down the cause.
 
-> **Achtung:** Passe niemals dein Konzept deinen Coding-Skills an. Erweitere stattdessen deine Fähigkeiten und setze dein Konzept um. Wenn Du Zweifel hast: Frage!
+> **Attention:** Never adapt your concept to your coding skills. Instead, expand your skills and implement your concept. If you have doubts: ask!
 
-## Einblick
-Ein Computer kann, sehr vereinfacht ausgedrückt, eigentlich nicht viel mehr, als Information aus einem Speicher auszulesen, sie mit einer anderen Information zu verknüpfen, beispielsweise mit Hilfe einer mathematischen Operation, und das Ergebnis wieder im Speicher abzulegen. Der Code
+## Insight
+To put it very simply, a computer cannot actually do much more than read information from memory, combine it with other information—for instance, by means of a mathematical operation—and store the result back in memory. The code
 ```typescript
 v = v + 1;
 ```
-schaut an der Stelle im Speicher, die mit `v` bezeichnet ist nach dem dort hinterlegten Wert, addiert den literal angegebenen Wert `1` dazu und speichert das Ergebnis wiederum an die Stelle `v` zurück.  
+looks up the value stored at the memory location designated by `v` , adds the literal value `1` to it, and stores the result back at location `v`.
 
->**Achtung:** bei Verwendung des Zuweisungsoperators `=` wird zuerst der Ausdruck auf der rechten Seite ausgewertet und das Ergebnis der linken Seite zugewiesen.  
+>**Attention:** when using the assignment operator `=` the expression on the right-hand side is evaluated first, and the result is assigned to the left-hand side.  
 
-## Variablen
-Die mit `v` bezeichnete Speicherstelle kann also unterschiedliche Werte halten, ihr Wert ist variabel. Vereinfachend spricht man meist schlicht von der "Variablen `v`".  
-Damit das obige Programm laufen kann, muss also diese Variable überhaupt erst existieren.
+## Variables
+The memory location designated by `v` can therefore hold different values, its value is variable. To simplify matters, one usually speaks simply of the “variable `v`". For the program above to run, this variable must therefore exist in the first place.
 
-- [x] Öffne einen Browsertab, bzw. eine beliebige Seite (z.B. hs-furtwangen.de), und darin die Konsole. Tippe die obige Programmzeile ein und drücke die Enter-Taste, Du solltest so einen 'ReferenceError' provozieren können.  
+- [x] Open a browser tab—or any webpage (e.g., hs-furtwangen.de)—and open the console within it. Tap in the line of code shown above and press the Enter key, you should be able to trigger a ‘ReferenceError’ this way.  
 
-Eine Variable wird mit Hilfe des Schlüsselworts `let` angelegt. Diesen Vorgang nennt man **Deklaration**.
+A variable is created using the keyword `let`. This process is called **Declaration**.
 ```typescript
 let v;
 ```
 
-- [x] Tippe in die Browserkonsole `let v;`. Was passiert jetzt? Mit Hilfe der Pfeiltasten kannst Du nun die zuvor getippte Zeile wieder hervorholen und erneut ausführen lassen. Was ist das Ergebnis?  
+- [x] Write into the browser console `let v;`. What happens now? Using the arrow keys, you can now recall the line you typed earlier and execute it again. What is the result?
 
-NaN bedeutet "Not a Number", das Ergebnis ist also keine Zahl. Das liegt daran, das `v` zwar existiert, aber den Wert `undefined` hatte. Das Ergebnis von `undefined + 1` ist sicher keine Zahl sondern `NaN`.  
-Was bislang noch fehlt ist die **Definition** von `v` so dass diese Variable einen Wert besitzt, bevor damit gerechnet wird. Das erreicht man einfach mit dem Zuweisungsoperator und einem literalen Wert.  
+NaN means "Not a Number", so the result is not a number. This is because `v` exists, but had the value `undefined`. The result of `undefined + 1` is certainly not a number but `NaN`.  
+What is still missing is the **Definition** of `v` so that this variable has a value before it is used in a calculation. This is easily achieved using the assignment operator and a literal value.
 
->**Achtung:** 
-> Ganz wichtig: `=` bedeutet nicht, wie Du es aus Mathe kennst "ist gleich", sondern es ist die Anweisung, die rechte Seite auszuwerten und das Ergebnis der linken Seite zuzuweisen. Daher der Name "Zuweisungsoperator". 
+>**Attention:** 
+> Very important: `=` does not mean "is equal to" as you know it from math; instead, it is an instruction to evaluate the right-hand side and assign the result to the left-hand side. Hence the name "assignment operator".
 
-- [x] Tippe `v = 1` in die Browserkonsole und lasse dann die Programmzeile erneut ausführen. Was geschieht nun?  
+- [x] Write `v = 1` into the browser console and let the program line run again. what happens now?  
 
-Das vollständige Programm inklusive einer Zeile für die Ausgabe in der Konsole sieht nun also folgendermaßen aus:
+The complete program, including a line for console output, therefore looks like this:
 ```typescript
 let v = 1;
 v = v + 1;
 console.log(v);
 ```  
 
-- [x] Erstelle das Programm mit TypeScript in VSCode und teste es im Browser.
+- [x] Create the program using TypeScript in VS Code and test it in the browser.
 
->**Achtung:** 
-> - Du weißt nun, was Deklaration und was Definition bedeutet und kennst den Unterschied.
-> - Deklaration und Definition können in eine Zeile geschrieben werden.
-> - Neben `let` wird auch, und wurde vor allem früher, das Schlüsselwort `var` verwendet, dass aber eine etwas andere Wirkung hat. Wir verwenden konsequent `let`! 
-> - Daneben gibt es noch `const`, wobei die Definition zusammen mit der Deklaration geschehen muss. Damit kannst Du angeben, dass der Wert der Veriablen danach nicht mehr verändert werden darf, sie ist also eine Konstante. Beim Versuch sie zu verändern wird durch eine Fehlermeldung darauf aufmerksam gemacht.  
+>**Attention:** 
+> - You now know what declaration and definition mean, and you understand the difference between them.
+> - Declaration and definition can be written on a single line.
+> - In addition to `let` the keyword `var` is also used—and was used especially in the past—though it behaves somewhat differently. We consistently use `let`! 
+> - There is also `const`, where the definition must take place alongside the declaration. This allows you to specify that the variable's value cannot be changed subsequently—making it a constant. Any attempt to modify it will trigger an error message.
 
-- [x] Probiere das Programm vorübergehend mit `const` statt `let` und schau was passiert.
+- [x] Try the program temporarily using `const` instead of `let` and see what happens.
 
-## Datentypen
-Die heute gebräuchlichen Computer speichern Informationen als lange Serien von Bits, kleinste Informationseinheiten, die nur zwei Zustände aufweisen können: an und aus. Damit werden aber ganz unterschiedliche Typen von Informationen kodiert: Zahlen, Texte, Bilder, Musik, Videos usw.  
-Damit der Rechner nun aber die Informationen korrekt verarbeiten kann, muss bekannt sein, welchen Typ eine Bitfolge darstellen soll.  
+## Data types
+Computers in use today store information as long sequences of bits—the smallest units of information, which can have only two states: on and off. Yet, these sequences are used to encode widely varying types of information: numbers, text, images, music, video, and so on. 
 
-- [x] Zeige mit dem Mauscursor in VSCode auf `v` in dem zuvor eingegebenen Programm. Was erscheint im Tooltip?
+For the computer to process this information correctly, however, it must know what type of data a given bit sequence represents.
 
-Typescript erkennt aus dem Zusammenhang, dass `v` vom Typ `number` sein soll. Diese Erkennung nennt man "inference".  
+- [x] Hover your mouse cursor over `v` in the program you entered earlier. What appears in the tooltip?
 
-- [x] Setze die `1` bei der ersten Definition von `v` in Anführungszeichen. Welcher Typ wird nun angezeigt? Was wird ausgegeben, wenn das Programm nun läuft?
+TypeScript infers from the context that `v` should be of type `number`. This process is called “inference”.
 
-Typescript hat erkannt, dass `v` nun eine Zeichenkette darstellen soll, auch wenn nur ein Zeichen, die Ziffer 1, darin enthalten ist. Damit hat sich aber auch die Programmlogik geändert, denn der Additionsoperator `+` ist für Zeichenketten ganz anders definiert als für Zahlen.
+- [x] Put the `1` in quotation marks in the initial definition of `v`. What type is displayed now? What is the output when the program runs?
 
-- [x] Definiere `v` mit dem Schlüsselwort `true`. Welcher Typ wird nun angezeigt? Was ist nun zusätzlich zu sehen? Und was geschieht, wenn Du das Programm laufen lässt? (sofern es überhaupt kompiliert wurde...prüfe  hierzu das entstandene js-File, es sollte identisch sein)
+TypeScript has recognized that `v` is now intended to represent a string, even though it contains only a single character—the digit 1. However, this has also changed the program logic, because the addition operator `+` is defined quite differently for strings than it is for numbers.
 
->**Achtung:** Du erkennst, dass Datentypen essentiell wichtig sind und die ganze Logik eines Programms verändern! JavaScript geht allerdings sehr lax damit um und ändert, wenn man nicht sehr aufpasst, durchaus auch Datentypen während des Programmlaufs, weshalb hier viele Fehler passieren. TypeScript schafft Abhilfe...
+- [x] Define `v` using the keyword `true`. Which type is displayed now? What else is visible? And what happens when you run the program? (assuming it compiled at all… check the resulting JS file, it should be identical)
 
-So angenehm es auch ist, dass TypeScript die Typen aus dem Kontext inferieren kann und in der Folge auf Typfehler aufmerksam macht: noch besser ist es, sich bereits bei der Konzeption Gedanken um die gewünschten Datentypen zu machen und diese festzulegen!  
-Daher ist in diesem Kurs die **explizite Annotation** der Typen vorgeschrieben. Das bedeutet, dass bei der Deklaration der geforderte Typ durch Doppelpunkt getrennt hinter den Variablenbezeichner geschrieben werden muss. Eine vollständige Deklaration und Definition mit Typannotation folgt also diesem Muster:  
+>**Attention:** You realize that data types are crucial and can alter the entire logic of a program! However, JavaScript handles them quite loosely; unless you are very careful, it can actually change data types while the program is running—which is why so many errors occur. TypeScript provides a solution…
+
+As convenient as it is that TypeScript can infer types from the context and subsequently flag type errors: it is even better to consider the desired data types—and define them—right at the design stage!  
+ Therefore, **explicit annotation** of the types is mandatory in this course. This means that, during declaration, the required type must be written after the variable identifier, separated by a colon. A complete declaration and definition with type annotation therefore follows this pattern:
 `let/const name: type = value;`
 
-## Primitive Datentypen
-In Programmiersprachen gibt es oft eine große Zahl von fundamentalen Datentypen, mit denen man sich gut auskennen muss. Bei TS/JS ist dies sehr vereinfacht und von Bedeutung für uns sind nur die drei primitiven Typen 
+## Primitive Data Types
+Programming languages ​often feature a large number of fundamental data types that one needs to be familiar with. In TS/JS, this is greatly simplified, and the only ones relevant to us are the three primitive types
 - `number`,
-- `string` und 
+- `string` and 
 - `boolean`  
 
-- [x] Annotiere `v` in der Deklaration als `number`. Wie verändert sich nun die Anzeige des Codes?
+- [x] Annotate `v` in the declaration as `number`. How does the code display change now?
 
-Eine andere Zuweisung als die eines Zahlenwertes ist nun gar nicht mehr erlaubt, Du wirst schon darauf hingewiesen, während Du das Programm noch schreibst. 
+Assigning anything other than a numerical value is no longer permitted at all; you are alerted to this while you are still writing the program. 
 
-- [x] Setze nun statt `true` wieder die Zahl `1` ein, aber verändere den Addenden in Zeile 2 zu einer Zeichenkette, so dass das Programm nun wie untenstehend aussieht.  
+- [x] Now replace `true` with the number `1` again, but change the addend in line 2 to a string, so that the program now looks like the one below.  
 
 ```typescript
 let v: number = 1;
 v = v + "1";
 console.log(v);
 ```
-`v` ist vom Typ `number` und es soll das Ergebnis der Addition einer Zeichenkette und einer Zahl (dem aktuellen Wert von `v`) zugewiesen werden.
-- [x] Warum funktioniert das nicht, und warum hat so etwas ähnliches vorhin funktioniert, als `v` mit `"1"` definiert wurde?
+`v` is of the type `number` and it should be assigned the result of adding a string and a number (the current value of `v`).
+- [x]  Why doesn't this work, and why did something similar work earlier when `v` was defined as `"1"`?
 
-## Komplexe Datentypen
-Neben den einfachen Datentypen wie `number`, `boolean` und `string` gibt es noch komplexe Datentypen. Diese kannst Du dir einfach vorstellen als Sammlungen von Informationen. Diese Informationen können von primitiven Typ, aber auch selbst wieder von komplexen Typ sein. Im zweiten Fall hast Du dann eine Sammlung von Sammlungen. Das kannst Du beliebig tief verschachteln.  
-Man kann dabei unterscheiden zwischen homogenen Datenstrukturen, bei denen die darin verwalteten Informationseinheiten alle vom gleichen Typ sind, und heterogenen, bei denen unterschiedliche Datentypen verwaltet werden. Eine weitere Unterscheidung wird getroffen aufgrund unterschiedlicher Art der Adressierung der Informationen. Diese kann über einen Index erfolgen, also eine Zahl, welche die Position der Information in einer Reihe angibt, oder einen Schlüssel, der mit der Information assoziiert ist und den Zugang darstellt. Meist ist dieser Schlüssel vom Typ `string`, es sind aber auch andere Typen möglich. Schließlich ist es noch möglich zwischen vordefinierten Schlüsseln und solchen, die zur Laufzeit des Programms erzeugt werden zu unterscheiden.
+## Complex Data Types
+In addition to simple data types such as `number`, `boolean` and `string` there are also complex data types. You can simply think of these as collections of information. This information can be of a primitive type, but can also itself be of a complex type. In the second case, you have a collection of collections. You can nest this to any depth.  
+A distinction can be made between homogeneous data structures, in which the managed information units are all of the same type, and heterogeneous ones, in which different data types are managed. A further distinction is made based on the different ways in which information is addressed. This can be done via an index—that is, a number indicating the position of the information within a sequence—or via a key that is associated with the information and serves as the means of access. Typically, this key is of type `string`, though other types are also possible. Finally, a distinction can be made between predefined keys and those generated at runtime.
 ### Array
-Ein Array ist eine Datenstruktur, in der die enthaltenen Informationen, dann Elemente genannt, mit Indizes adressiert werden. In JavaScript sind Arrays grundsätzlich heterogen. Ein Array kann mit den Anweisungen `[ ]` oder `new Array()` erzeugt werden. In die Klammern kann bereits bei der Erzeugung eine Liste von Elementen, durch Komma getrennt, angegeben sein.  
+An array is a data structure in which the contained information—referred to as elements—is addressed using indices. In JavaScript, arrays are inherently heterogeneous. An array can be created using the `[ ]` or `new Array()` A comma-separated list of elements can be specified within the brackets at the time of creation.
 
-- [x] Schreibe in die Konsole `let a = [7, true, "Hallo"]`. Lasse dir `a` ausgeben und versuche mit der Syntax `a[index]` auf einzelne Elemente zuzugreifen, wobei Du `index` mit einer Zahl ersetzt. Was geschieht, wenn Du hier eine Zahl kleiner als 0 oder größer als 2 benutzt?
-- [x] Gib ein `a[4] = [101, 102]`. Was siehst Du nun, wenn Du dir das Array ausgeben lässt, was bei a[3] und a[4]?  
+- [x] Write `let a = [7, true, "Hello"]` into the console. Display `a` and try to access individual elements using the syntax `a[index]` replacing `index` with a number. What happens if you use a number less than 0 or greater than 2?
+- [x] Enter `a[4] = [101, 102]`. What do you see now when you output the array—specifically at a[3] and a[4]?
 
-Es lässt sich also alles Mögliche an beliebige Stellen in das Array 'reinwerfen', sogar andere Arrays (dann hast Du die oben erwähnte Sammlung von Sammlungen). Mit TypeScript kann immerhin der Bereich der Typen der Elemente bis zur Homogenität eingeschränkt werden, wodurch eine wichtige Fehlerquelle reduziert wird. 
+So, you can throw all sorts of things into the array at any position—even other arrays (resulting in the aforementioned collection of collections). With TypeScript, however, the range of element types can be restricted to ensure homogeneity, thereby reducing a significant source of errors.
 ```typescript
 let a: number[] = [7, true, "Hallo"];
 ```
-Im obigen Beispiel wird sofort ein Fehler angezeigt, da die Werte auf Position 1 und 2 nicht vom Typ `number` sind. Nur die 7 auf Position 0 ist akzeptabel.
+In the example above, an error is displayed immediately because the values ​​at positions 1 and 2 are not of type `number`. Only the 7 at position 0 is acceptable.
 
-### Assoziatives Array
-Bei einem assoziativen Array werden die Elemente mit sogenannten Schlüsseln verknüpft. Ein solches assoziatives Array wird in der Regel mit Hilfe geschweifter Klammern erzeugt, wobei innerhalb der Klammern bereits Schlüssel-Werte-Paare angegeben werden können. Die Assoziation wird durch den Doppelpunkt `:` dargestellt.  
+### Associative Array
+In an associative array, elements are linked to so-called keys. Such an associative array is typically created using curly braces, with key-value pairs able to be specified directly within the braces. The association is represented by the colon `:`.
 
-- [x] Schreibe in die Konsole `let s = {"zahl": 7, "wahr": true, text: "Hallo"}`. Lasse dir `s` ausgeben und versuche mit der Klammersyntax `s["key"]` und der Punktsyntax `s.key` auf einzelne Elemente zuzugreifen, wobei Du `key` mit der Zeichenkette ersetzt, die den Schlüssel darstellt. Was geschieht, wenn Du hier einen unbekannten Schlüssel benutzt?
-- [x] Gib ein `s[4] = [101, 102]`. Was siehst Du nun, wenn Du dir das Array ausgeben lässt? Welche Bedeutung hat die Ziffer 4 jetzt und wie kommst Du gezielt an die Information, die damit assoziiert wurde?  
+- [x] Now write  `let s = {"zahl": 7, "wahr": true, text: "Hallo"}`into the console. Output  `s` and try to access individual elements using bracket syntax `s["key"]` and dot syntax `s.key` , where you replace `key` with the string representing the key. What happens if you use an unknown key here?
+- [x] Enter `s[4] = [101, 102]`. What do you see now when you display the array? What is the significance of the number 4 now, and how do you specifically access the information associated with it?
 
-### Typdefinitionen und Aliasse
-In TypeScript ist es möglich, neue Datentypen zu definieren. Damit kannst Du Variablen deklarieren, die mehrere Datentypen aufnehmen können, ohne gleich ganz auf explizite Typisierung verzichten und den Datentyp `any` verwenden zu müssen, der dich auf Javascript-Niveau herunterziehen würde. `prompt(...)` beispielsweise liefert ein Ergebnis vom Typ `string` zurück... oder `null`, wenn der Dialog abgebrochen wird. Um das Ergebnis einer Variablen zuweisen zu können, sollte diese also von einem Typ sein, der beides kombiniert. Dies ist ein sogenannter Union-Type und er wird kodiert, indem Du einfach die zu kombinierenden Typen mit dem Operator | verkettest. Im Beispiel kann das so aussehen:
+### Type definitions and aliases
+In TypeScript, it is possible to define new data types. This allows you to declare variables that can hold multiple data types without having to completely abandon explicit typing and resort to the `any` type, which would drag you down to the level of JavaScript. `prompt(...)` for example, returns a result of type `string` or `null`if the dialog is cancelled. To assign the result to a variable, the variable should therefore be of a type that combines both. This is a so-called union type, and it is coded by simply combining the types using the operator | . In the example, it can look like this:
 ```typescript
 let input: string | null = prompt("Enter a number between 1 and 10", "5");
 ```
-> **Hinweis:** Wenn Du den Mauszeiger in VSCode auf einem Funktionsnamen parkst, wird die Signatur und damit auch der Typ des Rückgabewerts angezeigt. Den kannst Du einfach kopieren und nutzen.
+> **Notice:** If you hover the mouse cursor over a function name in VSCode, the signature—and thus the return type—is displayed. You can simply copy and use it.
  
-Damit solche komplexeren Typen nicht den Lesefluss behindern, sollten Aliasse verwendet werden. Für das obige Beispiel könnte ein Alias so definiert werden:
+To prevent such complex types from disrupting the flow of reading, aliases should be used. For the example above, an alias could be defined as follows:
 ```typescript
 type Input = string | null;
 let input: Input = prompt("Enter a number between 1 and 10", "5");
 ```
-Der neue Typ `Input` kann jetzt auch an anderen Stellen im Programm einfach genutzt werden, statt die Kombination zu wiederholen.
+The new `Input` type can now also be easily used elsewhere in the program, instead of repeating the combination.
 
-Besonders hilfreich sind Typdefinitionen bei der Strukturierung komplexer Daten. Denn es können nicht nur die Typen der Element heterogen, bei assoziativen Arrays beispielsweise können auch die Schlüssel beliebig gewählt werden. Das ermöglicht große Flexibilität, aber auch Fehler, die schwer zu finden sind. Durch Typdefinitionen lassen sich Schlüssel vordefinieren und die Datentypen für Werte und Schlüssel einschränken.  
+Type definitions are particularly helpful when structuring complex data. This is because not only can the element types be heterogeneous, but—in the case of associative arrays, for example—the keys themselves can be chosen arbitrarily. This allows for great flexibility, but also for errors that are difficult to detect. Type definitions make it possible to predefine keys and restrict the data types for values ​​and keys. 
 
-Im folgenden Beispiel sind die Schlüssel vordefiniert und die zugeordneten Werte müssen von bestimmten Typen sein.
+In the following example, the keys are predefined and the associated values ​​must be of specific types.
 ```typescript
 type VectorWithMeaning = {x: number, y: number, meaning: string};
-let vector: VectorWithMeaning = {x: 12.4, y: -7.2, meaning: "Ortsvektor"};
+let vector: VectorWithMeaning = {x: 12.4, y: -7.2, meaning: "Position Vector"};
 ```    
-Im nächsten Beispiel sind die Schlüssel dagegen frei wählbar, sind aber auf den Typ `string` beschränkt, und das Array ist auf Wahrheitswerte homogenisiert.
+In the next example, however, the keys can be chosen freely but are restricted to the type `string`, and the array is homogenized to boolean values.
 ```typescript
 type MapStringToBoolean = {[key: string]: boolean};
 let a: MapStringToBoolean = {"wert1": true, "wert2": false};
 ```  
-Mit Hilfe dieser Definition können viele Fehler schon zur Designzeit ausgeschlossen werden und VSCode kann ggf.  bereits die richtigen Schlüssel zur Auswahl anbieten.
+With the help of this definition, many errors can be ruled out already at design time, and VS Code can, where applicable, already offer the correct keys for selection.
 
-Beide Varianten lassen sich auch kombinieren. Das folgende Beispiel zeigt einen Aufbau, mit dem man die Notenspiegel vieler Studentis verwalten könnte und einen ersten Datensatz dafür.
+Both variants can also be combined. The following example shows a structure that could be used to manage the grade records of many students, along with an initial dataset for it.
 ```typescript
 type Student = {name: string, matrikel: number,
     grades: {[module: string]: number}
@@ -196,23 +196,24 @@ let students: Student[] = [];
 students.push({name: "Big Brain", matrikel: 123456, grades: {"Code1": 1.3, "Code2": 1.0}});
 ```    
 
->**Hinweis:** Mit Hilfe von `type` kannst Du also eigene komplexe Datentypen erschaffen. 
+>**Notice:** With the help of `type`, you can create your own complex data types.
 
-- [x] Implementiere die Beispiele und experimentiere damit. 
-- [x] Schau dir den kompilierten JavaScript-Code an und was von deinen Typen übrig bleibt. Überlege was dies mit dem Unterschied von JavaScript und TypeScript zu tun hat.
+- [x] Implement the examples and experiment with them.
+- [x] Take a look at the compiled JavaScript code and what remains of your types. Consider what this has to do with the difference between JavaScript and TypeScript.
 
-## Funktion
-Eine Funktion ist ein Stückchen Code innerhalb eines Programms, das ein eigenes kleines Programm darstellt, einen eigenen Namen hat, eingehende Daten verarbeiten und ausgehende Daten erzeugen kann. Eine solche Funktion kann dann von anderen Programmteilen genutzt werden, indem der Name zusammen mit den zu verarbeitenden Daten aufgerufen wird. Liefert die Funktion Daten zurück, können sie zum Beispiel einfach mit Hilfe des Zuweisungsoperators `=` einer Variablen zugewiesen werden und stehen damit zur Weiterverarbeitung zur Verfügung.  
-Eine Funktion definierst Du mit Hilfe des Schlüsselwortes `function` gefolgt von einem frei wählbaren Namen und einer Liste von Parametern in einer Klammer. Das Ganze ist die sogenannte Signatur. Dann folgt der Funktionskörper, in dem der eigentliche Code steht, in geschweiften Klammern. Soll die Funktion einen Wert zurückliefern, wird dieser nach dem Schlüsselwort `return` angegeben.
+## Function
+A function is a piece of code within a program that constitutes a small program in its own right; it has its own name and can process input data and generate output data. Such a function can then be used by other parts of the program by calling its name along with the data to be processed. If the function returns data, it can, for example, simply be assigned to a variable using the assignment operator `=` and is thus available for further processing.  
+You define a function using the keyword `function` , followed by a name of your choice and a list of parameters in parentheses. Together, this constitutes the so-called signature. Then follows the function body, containing the actual code, enclosed in curly braces. If the function is to return a value, it is specified after the keyword `return`.
 
-- [x] Schreibe in die Konsole  
+- [x] Write  
 `function isDivisible(dividend, divisor) {return (dividend % divisor == 0)}`
-- [x] Schreibe nun `isDivisible(4, 3)`, welches Ergebnis wird angezeigt?
-- [x] Schreibe nun `isDivisible(4, 2)`, welches Ergebnis erhältst Du jetzt?
-- [x] Experimentiere mit anderen Zahlen
-- [x] Erkläre, wie die Funktion `isDivisible` arbeitet. Nutze hierzu das Kapitel "Operatoren" im [Booklet](../X01_Appendix)
+  into the console.
+- [x] Now write `isDivisible(4, 3)`, what result is displayed?
+- [x] Now write `isDivisible(4, 2)`, what result do you get now?
+- [x] Experiment with other numbers.
+- [x] Explain how the function `isDivisible` works. To do this, use the “Operators” chapter in the [Booklet](../X01_Appendix)
 
-Diese JavaScript-Funktion ist sehr unsicher, sie liefert zum Beispiel auch ein Ergebnis, wenn Du `isDivisible(false, true)` aufrufst, was aber keinen Sinn ergibt. Ordentlich, nach unseren Stilregeln und etwas ausführlicher in TypeScript geschrieben, sieht die Funktion so aus:  
+This JavaScript function is very error-prone, for instance, it returns a result even if you call `isDivisible(false, true)` which makes no sense. Written properly, following our style guidelines and in somewhat greater detail using TypeScript, the function looks like this:
 
 ```typescript
   function isDivisible(_dividend: number, _divisor: number): boolean {
@@ -220,28 +221,28 @@ Diese JavaScript-Funktion ist sehr unsicher, sie liefert zum Beispiel auch ein E
     return result;
   }
 ```  
-Hier hat jeder der Parameter eine Typnotation erhalten, TypeScript wird sich also beschweren, wenn die Funktion mit Werten von anderem Typ als `number` aufgerufen werden soll. Außerdem wird auch festgelegt, dass die Funktion einen Wahrheitswert zurück liefern soll, dazu wurde die Signatur um die Annotation `boolean` erweitert.
+Here, each of the parameters has been assigned a type annotation, so TypeScript will complain if the function is called with values ​​of a type other than `number`. It is also specified that the function should return a Boolean value for this purpose, the signature has been extended with the annotation`boolean`.
 
-> **Hinweis:** In anderen Programmiersprachen ist üblich, dass die Signatur als Ganzes eine Funktion identifiziert. Es kann also innerhalb eines Programms zwei Funktionen gleichen Namens geben, die ganz anderen Code beinhalten, solange sie sich durch ihre Parameterlisten unterscheiden. In JavaScript/TypeScript ist das nicht so. Hier ist nur der Name entscheidend, er muss also eindeutig sein.
+> **Notice:** In other programming languages, it is common for the signature as a whole to identify a function. Thus, a program can contain two functions with the same name that include completely different code, provided they differ in their parameter lists. In JavaScript/TypeScript, that is not the case. Here, only the name matters, so it must be unique.
 
-> **Achtung:** Die Anweisung `return` führt dazu, dass die Funktion an dieser Stelle verlassen wird. Meist steht daher das `return` am Ende einer Funktion. Man kann sich diese Mechanik aber auch zu Nutze machen, um unter bestimmten Bedingungen z.B. mit Hilfe einer if-Anweisung eine Funktion frühzeitig zu verlassen ("early out"). Das kann auch eine Funktion ohne Rückgabewerte sein, dann steht das `return` alleine.
+> **Attention:** The `return` statement causes the function to be exited at that point. Therefore, the `return` statement is usually placed at the end of a function. However, you can also take advantage of this mechanism to exit a function early—for example, using an `if` statement under certain conditions (“early out”). It can also be a function with no return values, in that case, the `return` stands alone.
 
-- [x] Verschaffe dir einen Überblick über das Booklet, jetzt insbesondere über das Kapitel "Coding Style". Bei der Bearbeitung der Aufgaben ist dieser Stil bindend. Vieles wird sich dir jetzt noch nicht erschließen, später solltest Du aber immer wieder hier nachschlagen.
+- [x] Familiarize yourself with the booklet, paying particular attention to the "Coding Style" chapter. This style is mandatory when working on the assignments. Much of it may not make sense to you right now, but you should refer back to it frequently later on.
 
-## Objekt
-Ein Objekt ist ein assoziatives Array, dem Funktionen anhaften. Diese Funktionen können die Elemente des Arrays verändern, ohne dass ihnen Informationen zu dem Objekt mitgegeben werden müssen, denn sie sind ja ein Teil davon und haben Zugriff darauf. Um diese Funktionen von den üblichen zu unterscheiden werden sie Methoden genannt. Ein Objekt verfügt also über Methoden, mit der es sich, oder auch seine Umwelt, verändern kann. In den nächsten Lektionen wirst Du vordefinierte Objekte lediglich nutzen und erzeugen, später wirst Du lernen, wie Du ganz neue Objektstrukturen definieren kannst.  
-> **FunFact:** Tatsächlich ist alles in JavaScript im Kern vom Typ Objekt. Selbst die primitiven Datentypen gaukeln nur ihre Primitivität vor, wodurch sie sich einsetzen lassen wie in 'klassischen' Programmiersprachen. 
+## Object
+An object is an associative array with functions attached to it. These functions can modify the elements of the array without needing to be passed information about the object, since they are part of it and have access to it. To distinguish these functions from ordinary ones, they are called methods. An object therefore possesses methods with which it can alter itself or its environment. In the next few lessons, you will simply use and create predefined objects, later, you will learn how to define entirely new object structures.  
+> **FunFact:** In fact, at its core, everything in JavaScript is of the object type. Even the primitive data types merely simulate their primitivity, allowing them to be used just as they are in ‘classic’ programming languages. 
 
-## Werte vs. Referenzen
-Ein wichtiger Unterschied zwischen primitiven und komplexen Datentypen ist die Art und Weise, wie Variablen mit ihren Werten verknüpft sind.  
+## Values ​vs. References
+An important difference between primitive and complex data types is the way variables are linked to their values. 
 
-- [x] Deklariere zwei Variablen primitiven Typs (z.B. `v1`und `v2`). Definiere die erste und weise dann der zweiten den Wert der ersten zu (`v2 = v1`). Verändere dann den Wert der ersten und lasse beide ausgeben. Was stellst Du fest?
-- [x] Deklariere nun zwei Variablen komplexen Typs. Definiere die erste mit mehreren Elementen und nutze dann den Zuweisungsoperator genau wie oben (`v2 = v1`). Verändere ein Element der ersten Variable. Lasse beide Variablen ausgeben. Was stellst Du hier fest?  
+- [x] Declare two variables of a primitive type (e.g. `v1`and `v2`). Define the first one and then assign the value of the first to the second (`v2 = v1`). Then change the value of the first and output both. What do you notice?
+- [x] Now declare two variables of a complex type. Define the first variable with multiple elements and then use the assignment operator just as shown above (`v2 = v1`). Change an element of the first variable. Output both variables. What do you notice? 
 
-> - **Achtung:** Nicht zu beachten, dass komplexe Datentypen als Referenzen adressiert werden, mehrere Variablen also auf den gleichen Datenbestand verweisen können, ist eine häufige Fehlerquelle. Diese Referenzierung selbst aber ist kein Problem oder ein Fehler, sondern eine wichtige Grundlage für die Anwendungsentwicklung.
+> - **Attention:** Failing to take into account that complex data types are addressed as references—meaning multiple variables can point to the same set of data—is a common source of errors. However, this referencing mechanism itself is neither a problem nor an error, rather, it is a crucial foundation for application development.
 
 ## Trace Table
-Mit Hilfe einer Verfolgungstabelle kann man den Zustand eines Programms zu jeder Zeit während des Laufs ermitteln und festhalten. Solche Tabellen von Hand zu erstellen ist eine gute Übung um den Programmlauf zu verstehen. Daher exerzieren wir dies im folgenden Video gemeinsam durch. Den Code dazu findest Du hier: [Cows.ts](../X00_Code/L01_Recap&Foundation/Cows/Cows.ts)
+A trace table allows you to determine and record the state of a program at any point during its execution. Creating such tables by hand is a great exercise for understanding how a program runs. We will therefore walk through this process together in the following video. You can find the corresponding code here: [Cows.ts](../X00_Code/L01_Recap&Foundation/Cows/Cows.ts)
 
 
 <div align="center">
@@ -252,11 +253,11 @@ Mit Hilfe einer Verfolgungstabelle kann man den Zustand eines Programms zu jeder
 </div>
 
 ## Debugger
-Natürlich gibt es technische Hilfsmittel etwas ähnliches wie eine Verfolgungstabelle automatisch zu erzeugen. Hierzu verwendest Du den Debugger, also den "Entlauser".  
+Of course, there are technical tools available to automatically generate something similar to a trace table. To do this, you use the debugger (the “bug remover”) 
 
->**FunFact:** Der Begriff "Bug" für einen Programmfehler wurde übrigens von der berühmten Computerpionierin Grace Hopper geprägt, die in den 1950 Jahren tatsächlich eine in einem Relais verstorbene Motte für eine Fehlfunktion ihres Großcomputers verantwortlich machen konnte.
+>**FunFact:** The term "bug" for a programming error was coined by the famous computer pioneer Grace Hopper, who in the 1950s was actually able to attribute a malfunction in her mainframe computer to a moth that had died inside a relay.
 
-Mit dem Debugger kannst Du auf die Jagd nach Fehlern gehen. Da wir das Programm untersuchen, während es im Browser läuft, ist es sehr praktisch, dass der Browser einen solchen Debugger integriert hat. Unser kleines Programm weist derzeit keine Fehler auf, aber wir schauen trotzdem einmal, ob unsere Verfolgungstabelle mit den Ergebnissen des Debuggers übereinstimmt.  
+You can use the debugger to hunt for errors. Since we are examining the program while it is running in the browser, it is very convenient that the browser has such a debugger built-in. Our little program doesn't currently have any errors, but we’ll take a look anyway to see if our trace table matches the debugger's results.
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_TVLCUNKX"><img src="../X01_Appendix/Img/L01_V2_Bild.JPG" width="25%"/></a>
@@ -264,12 +265,12 @@ Mit dem Debugger kannst Du auf die Jagd nach Fehlern gehen. Da wir das Programm 
 <a href="http://hdl.handle.net/10900.3/OER_TVLCUNKX"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L01 Foundation: Debugger</a>
 </div>
 
-## Aktivitätsdiagramm
-Hier wird nun noch das Cows-Programm in ein Aktivitätsdiagramm überführt und dabei die wichtigsten Knoten und Kanten erklärt.  
+## Activity Diagram
+Here, the Cows program is converted into an activity diagram, with the most important nodes and edges explained along the way.  
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_GWJDCZNL"><img src="../X01_Appendix/Img/L01_V3_Bild.JPG" width="25%"/></a>
   <a href="Material/Cows_ActivityDiagram.jpg"><img src="Material/Cows_ActivityDiagram.jpg" width="25%"/></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_GWJDCZNL"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L01 Foundation: Aktivitätsdiagramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_GWJDCZNL"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L01 Foundation: Activity diagram</a>
 </div>
