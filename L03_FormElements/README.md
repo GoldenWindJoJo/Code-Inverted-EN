@@ -2,98 +2,104 @@
 <img src="Material/PassierscheinA38.png">
 <small>Quelle: <a href="https://mueli77.com/2016/12/11/asterix-review-special-45-12-pruefungen-fuer-asterix/">https://mueli77.com/2016/12/11/asterix-review-special-45-12-pruefungen-fuer-asterix/</a></small>
 
-Interaktion war von Anfang an ein Kernpunkt von HTML. Das World-Wide-Web basiert auf der Idee, wissenschaftliche Dokumente durch interaktive Verweise, den Links, miteinander zu verknüpfen. Der Fokus wurde erst sehr viel später auf Katzenvideos gelegt.
+Interaction has been a core aspect of HTML from the very beginning. The World Wide Web is based on the idea of linking scientific documents with interactive references, the links. The focus was only much later shifted to cat videos.
 
-> Fun-Fact: Tim Berners Lee ([Github-Profil](https://github.com/timbl)) entwickelte Anfang der 1990er Jahre HTML, HTTP, URL, den ersten Webserver und den ersten Browser. Einen Eindruck davon, wie sich das damals anfühlte, erhält man hier auf interaktive Weise: [WWW](http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html)  
+> Fun fact: Tim Berners Lee ([GitHub profile](https://github.com/timbl)) developed HTML, HTTP, URLs, the first web server and the first browser in the early 1990s. You can get an impression of what it felt like back then in an interactive way here: [WWW](http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html)
 
-Sehr früh wurden aber auch schon HTML-Elemente unterschiedlichen Typs entwickelt, die es einem Nutzeri ermöglichen, Informationen einzugeben. Damit werden auch heute noch Formulare gestaltet. Die Elemente reagieren automatisch auf die Interaktion des Nutzeris und geben eine optische Rückmeldung, ohne dass eine weitergehende Programmierung erforderlich ist. Für die Grundfunktionalität genügt reines HTML.  
-In diesem Kapitel lernst Du die wichtigsten Elemente kennen, erfährst, wie Du sie nutzen kannst und welche Informationen sie liefern. Ähnliche Elemente findet man auch in anderen Entwicklungsumgebungen zur Gestaltung von User-Interfaces.  
+Very early on, HTML elements of different types were also developed that allow a user to enter information. These are still used today to build forms. The elements automatically react to user interaction and provide visual feedback without any additional programming. For basic functionality, plain HTML is sufficient.
 
-> - [x] Bringe den Code [L03_FormElements/Overview](https://github.com/JirkaDellOro/Code-Inverted/tree/master/X00_Code/L03_FormElements/Overview) aus dem Anhang bei dir lokal zum Laufen. In dieser Lektion wirst Du seine Funktionalität nach und nach freischalten und untersuchen. Zunächst erscheint nur die Überschrift "Form-Elements".
+In this chapter you will get to know the most important elements, learn how to use them and what information they provide. Similar elements can also be found in other development environments for designing user interfaces. 
 
-## Texteingabe
-Die wichtigste Eingabemöglichkeit ist die von Text. Mit dem Keyboard-Event könnte man zwar beim Tippen jeden Buchstaben abfangen und damit eine Zeichenkette zusammen setzen, es geht aber sehr viel einfacher. Das generische `input`-Element bringt in seiner Urform als Textfeld schon diese Grundfunktionalität, kann aber noch viel mehr.  
-> Beispiel: <input type="text" placeholder="Gib hier etwas ein" required/>
-### Platzhalter
-Dem Attribut `placeholder` kann ein Wert zugewiesen werden, der dem Nutzeri beispielsweise als Eingabeaufforderung dienen kann. Sobald das Nutzeri die Eingabe beginnt, verschwindet der Platzhalter automatisch und wird wieder angezeigt, wenn das Feld geleert wird.
-### Passworteingabe
-Der Wert "password" für das Attribut `type` bewirkt, dass die Eingabe nicht angezeigt wird und auch nicht kopiert werden kann. 
-### Prüfung
-Zum Beispiel wird durch die Angabe von "email" oder "url" als Wert für das Attribut `type` schon eine einfache Prüfung der eingegebenen Zeichenkette vorgenommen um gröbste Eingabefehler zu erkennen und die Ungültigkeit anzuzeigen. Wird das 'wertlose' Attribut `required` angegeben, wird zudem angezeigt, dass die Eingabe zwingend erforderlich ist. Die Darstellung kann per CSS und den Pseudo-Selektoren `:invalid`, `:valid` und `:required` angepasst werden.  
-Eine deutlich komplexere Überprüfung kann mit Hilfe von regulären Ausdrücken erfolgen, was allerdings einige Expertise erfordert. Hierzu wird im Attribut `pattern` der zu verwendende reguläre Ausdruck festgelegt. Im Beispiel werden genau 3 Ziffern eingefordert.
+> - [x] Get the code [L03_FormElements/Overview](https://github.com/JirkaDellOro/Code-Inverted/tree/master/X00_Code/L03_FormElements/Overview) from the appendix running locally. In this lesson you will gradually enable and examine its functionality. At first only the heading "Form-Elements" appears.
+
+## Text Input
+The most important input option is text. Using keyboard events, you could intercept every character as you type and build up a string, but there is a much simpler way. The generic `input` element already provides this basic functionality in its default form as a text field, and it can do much more.
+> Example: <input type="text" placeholder="Type something here" required/>
+
+### Placeholder
+The `placeholder` attribute can be assigned a value that can serve, for example, as a prompt for the user. As soon as the user begins typing, the placeholder automatically disappears and reappears when the field is cleared.
+
+### Password Input
+The value "password" for the `type` attribute ensures that the input is not shown and cannot be copied. 
+
+### Validation
+For example, specifying "email" or "url" as the value for the `type` attribute already performs a simple validation of the entered string to detect obvious input errors and show that the value is invalid. If the ‘valueless’ attribute `required` is specified, it additionally indicates that input is mandatory.The visual appearance can be adjusted using CSS and the pseudo-selectors  `:invalid`, `:valid` and `:required`. 
+Much more complex validation can be performed using regular expressions, which however requires some expertise. For this, the `pattern` attribute is used to define the regular expression to be applied. In the example, exactly 3 digits are required.
+
 ### Textarea
-Eine größere Variante des `input`-Elementes ist die `textarea`. Hier können längere Texte über mehrere Zeilen eingegeben werden, bei Überlauf erscheint eine Laufleiste und das Nutzeri kann das Feld ggf. in seiner Größe verändern.  
-### Übungen
-> - [x] Aktiviere jetzt in der HTML-Datei das Fieldset mit der `id` "fsText". Entferne hierzu die umschließenden Kommentar-Auszeichnungen `<!--` und `-->`. Am einfachsten geht das, indem Du den ganzen Absatz markierst und dann `Ctrl+#` drückst (Mac: ⌘+K ⌘+U). Speichere die Datei.
-> - [x] Das Fieldset mit der Bezeichnung "Text-Input" sollte nun bei der aktualisierten Anzeige der Datei im Browser erscheinen. Prüfe das Verhalten der Elemente und vollziehe nach, wie es zustande kommt. Bedenke, dass noch kein Skript am Werk ist.  
-> - [x] Aktiviere nun das Skript "FormElements.js" in der HTML-Datei. Bediene dann weiter die Elemente und beobachte die Ausgabe in der Konsole. Wann wird das `input`-Event verschickt, wann `change`?
-> - [x] Untersuche den Code in der Datei FormElements.ts und kläre, wie er funktioniert.  
+A larger variant of the `input` element is `textarea`. Here, longer texts can be entered over multiple lines; when the content overflows, a scrollbar appears, and the user can, if necessary, resize the field.
+
+### Exercises
+> - [x] Now activate in the HTML file the fieldset with the `id` "fsText". To do this, remove the surrounding comment markers`<!--` and `-->`. The easiest way is to select the whole block and then press `Ctrl+#` (Mac: ⌘+K ⌘+U). Save the file.
+> - [x] The fieldset labeled "Text-Input"should now appear when you reload the file in the browser. Check how the elements behave and trace how this behavior comes about. Keep in mind that no script is running yet. 
+> - [x] Now activate the script "FormElements.js"  in the HTML file. Continue interacting with the elements and observe the output in the console. When is the `input` event dispatched, and when is `change` dispatched?
+> - [x] Examine the code in the file FormElements.ts and clarify how it works.
 
 ## Selektionen
-Häufig soll das Nutzeri auch zwischen verschiedenen Möglichkeiten auswählen, ohne selbst Text einzugeben. Hierzu müssen ihm die Auswahlmöglichkeiten präsentiert und eine eindeutige Interaktionsmöglichkeit angeboten werden. HTML bietet hier verschiedene Elemente bzw. Elementtypen an.  
+Very often, the user should be able to choose between different options without entering text. For this, the options must be presented and a clear way of interacting must be offered. HTML provides various elements and element types for this.
 
 ### Datalist
-Hiermit kann einem Textfeld eine Liste von vordefinierten Einträgen zugewiesen werden. Das Nutzeri kann per Zeigerinteraktion einen solchen Eintrag auswählen oder durch Eintippen auf der Tastatur die Auswahl einschränken. Es kann aber immer noch auch Freitext eingeben und die Auswahl ignorieren. Die Kopplung von `input` und `datalist` geschieht durch die Attribute `list` und respektive `id`.  
+With datalist, a text field can be assigned a list of predefined entries. The user can select such an entry via pointer interaction or restrict the selection by typing on the keyboard. However, they can still enter arbitrary free text and ignore the selection. The connection between `input` and `datalist`is made via the attributes `list`and `id`.  
 
 ### Radiobutton
-Beispiel: <input type="radio" name="radio"><input type="radio" name="radio" checked><input type="radio" name="radio">  
-Dieser Typ ist speziell für Single-Choice-Auswahlen gemacht. Alle `input`-Elemente des Typs `radio`, welche den gleichen Wert im Attribut `name` tragen, werden als Gruppe behandelt. Nur ein Element der Gruppe kann markiert sein.  
+Example: <input type="radio" name="radio"><input type="radio" name="radio" checked><input type="radio" name="radio">  
+This type is specifically designed for single‑choice selections. All `input` elements of type `radio`that share the same value in the `name` attribute are treated as a group. Only one element of the group can be selected.
 
 ### Checkbox
-Beispiel: <input type="checkbox"><input type="checkbox" checked><input type="checkbox" id="c3">  
-Mit `input`-Elementen des Typs `checkbox` werden dagegen klassischerweise Multiple-Choice-Auswahlen dargestellt.  
+Example: <input type="checkbox"><input type="checkbox" checked><input type="checkbox" id="c3">  
+`input` elements of type `checkbox`, on the other hand, are typically used for multiple‑choice selections.
 
-> **Achtung:** Radiobuttons und Checkboxes beziehen sich in der Regel auf einen nebenstehenden Text. Für das Nutzeri ist es sehr ärgerlich, wenn diese Beziehung nicht auch zur Unterstützung der Interaktion genutzt wird, es also nicht auf den Text klicken kann um zu interagieren. Dabei ist es äußerst einfach dies zu berücksichtigen, der Text muss lediglich von einem `label`-Tag umschlossen sein. Die Kopplung von `label`- und `input`-Element geschieht dann einfach mit Hilfe der Attribute `for` und `id`. Dies sollte **immer** implementiert werden!  
+> **Attention:** Radio buttons and checkboxes usually refer to a text next to them. For the user, it is very annoying if this relationship is not used to support interaction—i.e. if they cannot click the text to interact. It is extremely easy to take this into account: the text just has to be wrapped in a `label`tag. The connection between `label` and `input`is then made via the attributes `for` and `id`. This should **always** be implemented!
 
 ### Select
-Beispiel: <select name="Select" id="select">
+Example: <select name="Select" id="select">
 <option value="option1">1.</option>
 <option value="option2" selected>2.</option>
 <option value="option2" selected>3.</option>
 </select>  
 
-Am mächtigsten ist das `select`-Element, auch 'Dropdown-Menü' oder 'ComboBox' genannt. Auf engem Raum kann eine vordefinierte Auswahl an Optionen als Single- oder auch Multiple-Choice Auswahl angeboten werden. Dabei können sogar noch Untergruppierungen vorgenommen werden.  
+The `select` element, is the most powerful one, also known as a `dropdown menu` or `combo box`. In a small amount of space, it can offer a predefined set of options as a single‑choice or multiple‑choice selection. It can even be used to create sub‑groups of options.
 
-### Übungen
-- [x] Aktiviere nun das zweite Fieldset, es trägt die `id` "fsSelection". Experimentiere im Browser mit den Selektions-Elementen.
-- [x] Beobachte in der Konsole genau die Zuordnung von Elementname und Wert. Was fällt dir auf? Wo kommen die Werte her? Vergleiche mit den Texteingaben.
-- [x] Aktiviere nun im Skript den Code zu "// Handling checkbox". Warum ist dieser Code hier, was ist dessen Sinn? Beobachte die Ausgabe in der Browserkonsole.
-- [x] Ergänze das `select`-Tag um das 'wertlose' Attribut `multiple`. Wähle nun im Browser dort bei gedrückter Ctrl- oder Shift-Taste mehrere Optionen. Beobachte erneut die Ausgabe und halte deine Beobachtung fest.
+### Exercises
+- [x] Now activate the second fieldset; it has the `id` "fsSelection". Experiment in the browser with the selection elements.  
+- [x] Observe in the console exactly how element names and values are matched. What do you notice? Where do the values come from? Compare with the text inputs.
+- [x] Now activate in the script the code marked with "// Handling checkbox". Why is this code here—what is its purpose? Observe the output in the browser console.
+- [x] Add the ‘valueless’ attribute `multiple` to the `select` tag. In the browser, select several options there while holding down the Ctrl or Shift key. Again observe the output and record your observations. 
 
-## Weitere Eingabeelemente
-Es gibt noch einige Eingabeelemente, die sich gänzlich anders verhalten. Ihre grundlegende Funktionsweise erschließt sich recht schnell und einfach.  
+## Further Input Elements
+There are also some input elements that behave completely differently. Their basic functionality is, however, very easy to understand.
 
-- [x] Aktiviere das Fieldset mit der `id` "fsSpecial". Experimentiere damit, verändere die Attributwerte und bediene die Elemente im Browser. Beobachte die Konsolenausgaben.
-- [x] Beantworte die Frage nach der Wirkung des `value`-Attributs  
+- [x] Activate the fieldset with the `id` "fsSpecial". Experiment with it: change attribute values and interact with the elements in the browser. Observe the console output.  
+- [x] Answer the question about the effect of the `value` attribute.  
 
-> **Hinweis**: es wird jetzt sehr deutlich, wie extrem das Input-Element standardmäßig seine Erscheinungsform ändert, abhängig von seinem Typ-Attribut. Das macht es zu einer "Allzweckwaffe". Neben den Attributen `name` und `value`, bringen Inputelemente zudem die Attribute `readonly` und `disabled` mit. Nutzeris können dann den Inhalt nicht mehr ändern, bei `disabled` das Element noch nicht einmal mehr fokussieren oder Inhalte herauskopieren.
+> **Note**: It now becomes very clear how dramatically the Input element changes its appearance by default depending on its type attribute. This makes it an "all‑purpose weapon". In addition to the attributes `name` and `value`, input elements also have the attributes `readonly` and `disabled`. In that case, users can no longer change the content, with `disabled` they cannot even focus the element or copy any content.  
 
-## Ausgabeelemente
-Es gibt zudem noch ein paar standardisierte Elemente, welche dem Nutzeri Rückmeldung geben. Sie dienen also der Interaktion des Systems mit dem Nutzeri.
+## Output Elements
+There are also a few standardized elements that provide feedback to the user. They serve the interaction from the system back to the user.
 
-- [x] Aktiviere das letzte Fieldset, es hat die `id` "fsOutput". 
-- [x] Aktiviere auch die letzten Codefragmente. Erkläre, wie die Ausgabeelemente angesteuert werden.  
+- [x] Activate the last fieldset, it has the `id` "fsOutput". 
+- [x] Also activate the last code fragments. Explain how the output elements are controlled/addressed. 
 
-# Cocktailbar 
+# Cocktail Bar 
 
 <img src="Material/CocktailBar.png"/>
 
-Wie oft sitzt man nicht abends zuhause und wünscht sich einen richtig leckeren Cocktail. Aber die Zutaten fehlen, es ist zu aufwendig damit anzufangen und raus will man auch nicht mehr? Da drängt sich doch die nächste geniale Geschäftsidee auf: die **Online-Cocktailbar!**  
+How often do you sit at home in the evening and wish you had a really delicious cocktail? But the ingredients are missing, it is too much effort to get started, and you do not want to go out anymore? The next brilliant business idea practically suggests itself: the **online cocktail bar!**  
 
-Kundis können hier mit Hilfe eines Webformulars spontan einen Cocktail bestellen, der ihnen wenige Tage später per Post nach Hause geliefert wird. 
+Customers can spontaneously order a cocktail here via a web form, which will be delivered to their homes by mail a few days later.
 
-## Anwendungsfalldiagramm (Use-Case-Diagram)
-Zeichne wieder ganz schnell ein kleines Anwendungsfalldiagramm. Versuche es selbst, bevor Du dir das Video anschaust.  
+## Use-Case-Diagram
+Quickly draw a small use case diagram again. Try it yourself before you watch the video. 
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_ROTBOJQE"><img src="../X01_Appendix/Img/L03_V1_Bild.JPG" width="25%"/></a>
   <a href="Material/CocktailBar_UseCaseDiagram.jpg"><img src="Material/CocktailBar_UseCaseDiagram.jpg" width="25%"/></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_ROTBOJQE"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L03 FormLements: Anwendungsfalldiagramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_ROTBOJQE"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L03 FormLements: Use Case Diagram</a>
 </div> 
 
-## Skizze: User-Interface 
-Das User-Interface wird nun schon ein wenig komplexer. Erstelle eine Skizze und überlege, welche Tags, Attribute und Listener Du brauchst. Investiere ein wenig Zeit um selbst einen ersten Entwurf zu gestalten, bevor Du das Video anschaust.
+## Sketch: User Interface 
+The user interface is now becoming a bit more complex. Create a sketch and think about which tags, attributes and listeners you need. Invest a little time in designing an initial draft yourself before you watch the video.
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_ZVWFIXVL"><img src="../X01_Appendix/Img/L03_V2_Bild.JPG" width="25%"/></a>
@@ -102,18 +108,18 @@ Das User-Interface wird nun schon ein wenig komplexer. Erstelle eine Skizze und 
   <a href="http://hdl.handle.net/10900.3/OER_ZVWFIXVL"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L03 FormLements: UI-Scribble</a>
 </div>
 
-## Aktivitätsdiagramme
-Nun ist schon grob konzipiert, was geschehen soll und wie sich das darstellt. Entwickle nun wieder ein Aktivitätsdiagramm mit dessen Hilfe Du festlegst, wie das Ganze funktioniert. Beginne wieder mit den Ereignissen und arbeite dich vom Groben ins Feine. Mach' dir am Anfang also noch nicht zu viele Gedanken über Details, sondern zerlege große Probleme in kleinere. Versuche es selbst, bevor Du das Video anschaust.
+## Activity Diagrams
+At this point, you have already roughly designed what should happen and how it should be presented. Now develop an activity diagram again to define how everything works. Start again from the events and move from the coarse to the fine. At the beginning, do not worry too much about details; instead, break large problems down into smaller ones. Try it yourself before you watch the video.
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_VUTEAUWS"><img src="../X01_Appendix/Img/L03_V3_Bild.JPG" width="25%"/></a> 
   <a href="Material/CocktailBar_ActivityDiagram.jpg"><img src="Material/CocktailBar_ActivityDiagram.jpg" width="25%"/></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_VUTEAUWS"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L03 FormLements: Aktivitätsdiagramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_VUTEAUWS"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L03 FormLements: Activity Diagram</a>
 </div>
 
 ## Implementation I
-Versuche dich nun an der Implementation. Schaue dir das Video spätestens an, wenn Du dich an die Zusammenfassung der Bestellung machst. Hier gibt es noch einige Tipps.
+Now try your hand at the implementation. Watch the video at the latest when you start working on the order summary. There are a few more tips there.
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_PSXQYBNK"><img src="../X01_Appendix/Img/L03_V4_Bild.JPG" width="25%"/></a>
@@ -122,27 +128,28 @@ Versuche dich nun an der Implementation. Schaue dir das Video spätestens an, we
 </div>
 
 # FormData
-JavaScript stellt einen einfachen Mechanismus zur Verfügung um Formularelemente automatisch auszuwerten und auf die Ergebnisse zuzugreifen. Hierzu müssen die Formularelemente in der DOM-Laufzeithierarchie einem `form`-Element untergeordnet sein. Wird bei der Erzeugung eines Objekts des Typs `FormData` nun ein Verweis auf auf dieses `form`-Element übergeben, so werden die Werte der `name`- und `value`-Attribute als Schlüssel-Werte-Paare zur Verfügung gestellt.
+JavaScript provides a simple mechanism to automatically evaluate form elements and access the results. For this, the form elements must be subordinate to a `form` element in the DOM runtime hierarchy. If, when creating an object of type `FormData`, a reference to this form element is passed, the values of the `name` and `value` attributes are made available as key–value pairs.
 ```typescript
 let formData: FormData = new FormData(document.forms[0]);
 ```
-Das `document`-Objekt stellt bereits bequem eine Liste aller untergeordneten `form`-Elemente zur Verfügung. In obigem Beispiel wird also das erste Formular des Dokuments ausgewertet.
+The `document`object conveniently provides a list of all subordinate `form` elements. In the example above, the first form in the document is evaluated.
 
-## `name`-Attribut
-Bislang hatte das `name`-Attribut nur für die Gruppierung von Radiobuttons eine Rolle gespielt. Tatsächlich stellt es aber für die automatische Auswertung von Formularen das maßgebliche Zuordnungskriterium dar. 
-> **Achtung:** nicht das Attribut `id` ist für Formularelemente ausschlaggebend, sondern `name`  
+## `name`-Attribute
+Up to now, the `name` attribute has only played a role in the grouping of radio buttons. In fact, for the automatic evaluation of forms it is the decisive criterion for mapping.
+> **Attention:** it is not the `id` attribute that is relevant for form elements, but `name`. 
 
-Zu beachten ist auch, dass das `name`-Attribut, anders als `id` nicht eindeutig sein muss. Bei der Auswertung kann derselbe Name also mehrfach als Schlüssel auftauchen und jeweils unterschiedliche Werte tragen.  
+It is also important to note that, unlike `id`, the `name` attribute does not have to be unique. When evaluating, the same name can therefore appear multiple times as a key, each time with different values. 
 
-## Auslesen
+## Reading Out
 ### `get(...)`
-Bei eindeutigen und bekannten Namen lassen sich die Werte der `value`-Attribute mit Hilfe der Objektmethode `get(...)` wie bei einem assoziativen Array auslesen. Zum Beispiel so:
+For unique and known names, the values of the `value` attributes can be read using the `get(...)` method of the object, similar to an associative array, for example:
 ```typescript
 console.log(formData.get("Drink"));
 ```
 ### `entries()`
-Da aber die Namen nicht zwingend eindeutig sind und sie auch nicht unbedingt im Code reproduziert werden sollen, ist es häufig sinnvoll, über alle Einträge im FormData-Objekt zu iterieren.
-Die Objektmethode `entries()` eines FormData-Objektes liefert alle gefundenen Schlüssel-Werte-Paare. Mit einer `for..of`-Schleife können diese bequem nacheinander behandelt werden:
+However, since the names are not necessarily unique and should not necessarily be reproduced in the code, it is often useful to iterate over all entries in the FormData object.
+The `entries()` method of a FormData object returns all found key–value pairs. With a `for..of` loop these can conveniently be processed one after another:
+
 ```typescript
 for (let entry of formData.entries()) {
     console.log(entry);
@@ -150,7 +157,7 @@ for (let entry of formData.entries()) {
     console.log("value: " + entry[1]);
 }
 ```
-Jedes `entry`-Objekt ist also ein kleines Array mit zwei Einträgen, an Stelle 0 ein String mit dem der Wert des `name`-Attributs des ursprünglichen Form-Elements, und an Stelle 1 den entsprechenden Wert des `value`-Attributs. Letzterer ist hier vom Typ `FormDataEntryValue`, eine etwas besondere Zeichenkette, und muss gegebenenfalls konvertiert werden.  
+Each `entry` object is thus a small array with two entries: at position 0 a string containing the value of the`name` attribute of the original form element, and at position 1 the corresponding value of the `value` attribute. The latter is of the type `FormDataEntryValue`, a somewhat special string, and may need to be converted.
 
 ## Implementation II
 
@@ -161,13 +168,13 @@ Jedes `entry`-Objekt ist also ein kleines Array mit zwei Einträgen, an Stelle 0
   <a href="http://hdl.handle.net/10900.3/OER_UDZAJFTH"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L03 FormLements: Implementation 2</a>
 </div>   
 
-> Achtung:   
-> - im Video wird mehrfach von FormData-Element gesprochen. Besser ist FormData-Objekt, denn es ist kein HTML-Element.
-> - zum im Video wird die auch zulässige Kurzschreibweise `for (let entry of formData)` genutzt. Ordentlicher aber ist die oben angegebene `for (let entry of formData.entries())`
+> Attention:   
+> - In the video, the term FormData element is used several times. It is better to say FormData object, because it is not an HTML element.
+> - In the video, the shorter form `for (let entry of formData)` is also used, which is allowed. However, the version given above, `for (let entry of formData.entries())`is cleaner.
 
-- [x] Die Ausgabe der Bestellübersicht funktioniert noch nicht richtig. Finde den Fehler und korrigiere ihn.
-- [x] Implementiere die Sonderbehandlung der Drinks.
-- [x] Implementiere die Berechnung der Gesamtsumme
-- [x] Überprüfe die Konzeption und korrigiere gegebenfalls die Diagramme entsprechend der gemachten Erfahrungen.  
+- [x] The output of the order overview does not yet work correctly. Find the error and fix it.
+- [x] Implement the special handling of the drinks.
+- [x] Implement the calculation of the total sum.
+- [x] Review the design and, if necessary, correct the diagrams based on your experiences. 
 
-Hinweis: Ungenauigkeiten bei der Berechnung von Fließkommazahlen können sehr schnell zu hässlichen Zahlendarstellungen führen. Der Typ `number` verfügt aber über mehrere Methoden zur Umwandlung in eine formatierte Zeichenkette. Recherchiere danach und nutze sie.
+Note: Inaccuracies in the calculation of floating-point numbers can very quickly lead to ugly number representations. However, the `number` type has several methods for converting a number into a formatted string. Research these methods and use them.
