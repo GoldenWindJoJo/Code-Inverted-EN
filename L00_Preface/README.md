@@ -1,10 +1,9 @@
 # L00_Preface  
 > **Notice:** 
-> - The inclusive neuter is used in the texts of these lessons, see <https://jirkadelloro.github.io/Neutrum>
-> - EIA2 was a module within the Media Conception study program. The instructional videos originate from this module and are being reused for Code 1 and 2. Therefore, there are occasional references to structures such as "workshops," which now underpin the overall concept of the Games & Immersive Media degree program.
+> - EIA2 was a module within the Media Design study program. The instructional videos originate from this module and are being reused for Code 1 and 2. Therefore, there are occasional references to structures such as "workshops," which now underpin the overall concept of the Games & Immersive Media degree program.
 
 ## Motivation  
-- [x] Click on the play icons and watch the videos. They give you an insight into the opportunities this course opens up for you if you actively participate, and they convey the urgency of the material. Step out of the role of passive consumer and become a doer! You stand at a crossroads: will you be among those who master machines, or among those who master machines? (A little kōan for meditation)
+- [x] Click on the play icons and watch the videos. They give you an insight into the opportunities this course opens up for you if you actively participate, and they convey the urgency of the material. Step out of the role of passive consumer and become a doer! You stand at a crossroads: Master machines or be mastered.
 <!--
 <div style="float:left; min-height:17em"><a href="https://www.youtube.com/watch?v=y-t8SWdogGo&t=1439s"><img src="Material/Trapp.jpg" style="float:left; margin-right: 5px"/><img src="../X01_Appendix/Img/video.jpg" width="3%"/> Digital Designer | Dr. Marcus Trapp | UX-DAY KONFERENZ 2018</a><br/>   
 
