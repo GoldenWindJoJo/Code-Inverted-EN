@@ -1,11 +1,10 @@
 # L00_Preface  
-> **Hinweise:** 
-> - In den Texten dieser Lektionen wird das inklusive Neutrum verwendet, siehe <https://jirkadelloro.github.io/Neutrum>
-> - EIA2 war ein Modul für den Studiengang Medienkonzeption. Die Lehrvideos entstammen diesem Modul und werden für Code 1 und 2 wieder verwendet. Deswegen wird teilweise auf Strukturen wie "Workshop" verwiesen, die mittlerweile das Gesamtkonzept des Studiengangs Games & Immersive Media tragen.
+> **Notice:** 
+> - The inclusive neuter is used in the texts of these lessons, see <https://jirkadelloro.github.io/Neutrum>
+> - EIA2 was a module within the Media Conception study program. The instructional videos originate from this module and are being reused for Code 1 and 2. Therefore, there are occasional references to structures such as "workshops," which now underpin the overall concept of the Games & Immersive Media degree program.
 
 ## Motivation  
-- [x] Klicke auf die Startsymbole und schaue dir die Videos an. Sie geben dir einen Einblick in die Möglichkeiten, die sich durch den Kurs für dich eröffnen werden, wenn Du aktiv mitarbeitest, und sie vermitteln dir, wie dringlich die Inhalte sind. Verlasse die Rolle des Konsumentis und werde zum Macheri! Du stehst am Scheideweg: wirst Du zu denen gehören, die Maschinen beherrschen, oder zu jenen, die Maschinen beherrschen? (kleines Kōan zum Meditieren)
-
+- [x] Click on the play icons and watch the videos. They give you an insight into the opportunities this course opens up for you if you actively participate, and they convey the urgency of the material. Step out of the role of passive consumer and become a doer! You stand at a crossroads: will you be among those who master machines, or among those who master machines? (A little kōan for meditation)
 <!--
 <div style="float:left; min-height:17em"><a href="https://www.youtube.com/watch?v=y-t8SWdogGo&t=1439s"><img src="Material/Trapp.jpg" style="float:left; margin-right: 5px"/><img src="../X01_Appendix/Img/video.jpg" width="3%"/> Digital Designer | Dr. Marcus Trapp | UX-DAY KONFERENZ 2018</a><br/>   
 
@@ -37,27 +36,26 @@ Learning how to write isn't just for people who grow up to become writers, math 
 </div>
 -->
 
-## Rückblick
-Im Modul "Theory 1" hattest Du bereits fundamentale Prinzipien der Informatik und der Programmierung kennen gelernt. Du hast eine Vorstellung davon, wie ein Computer funktioniert und wie Daten kodiert und verknüpft werden. Auch hast Du dich bereits mit Algorithmen beschäftigt und Abläufe in Form von Diagrammen konzipiert. Das alles sind wichtige Grundlagen, auf denen das Modul "Code 1" aufbaut.
+## Review
+In the “Theory 1” module, you had already been introduced to fundamental principles of computer science and programming. You have an idea of ​​how a computer works and how data is encoded and linked. You have also already worked with algorithms and designed processes in the form of diagrams. All of these are important foundations upon which the “Code 1” module builds.
 
 
-## Ausblick
-In "Code 1" und "Code 2" lernst Du nun, auch komplizierte Aufgabenstellungen anzugehen. Dabei steht eine planvolle Vorgehensweise im Fokus. Eine gute Konzeption ist erforderlich, bevor es an die Umsetzung dieser per Code geht. Hierzu wirst Du Diagrammformen der "Unified Modelling Language" (UML) verwenden, um mit deren Hilfe Probleme zu durchdringen und Lösungen zu konzipieren. Ihre nachfolgenden Implementationen mit TypeScript stellen lediglich Nachweise der erfolgreichen Konzeption dar. Ohne ein Konzept ist es müßig mit dem Coden zu beginnen...
+## Outlook??(ausblick)
+In “Code 1” and “Code 2,” you will learn how to tackle even complex tasks, with a focus on a systematic approach. A good design is required before proceeding to its implementation via code. To this end, you will use diagram types from the Unified Modeling Language (UML) to gain insight into problems and devise solutions. Your subsequent implementations using TypeScript merely serve as proof of a successful design. Without a concept, it is pointless to start coding…
 
-Das folgende Aktivitätsdiagramm zeigt schon den Vorgang der Konzeption.   
+The following activity diagram illustrates the Concept process.  
 [Activity Diagram - Konzeption](../X01_Appendix/UML/AD_Konzeption.svg)  
 
-- [x] Untersuche das Diagramm. Kannst Du schon nachvollziehen, was es vermittelt? Alle Symbole sind genormt und haben besondere Bedeutung, grobe Zusammenhänge erschließen sich aber vielleicht schon intuitiv. In diesem Kurs geht es auch darum dich in die Lage zu versetzen, solche Diagramme korrekt und sinnvoll selbst zu zeichnen.
+- [x] Examine the diagram. Can you already grasp what it conveys? All the symbols are standardized and hold specific meanings, yet the general relationships may already be intuitively apparent. This course also aims to enable you to draw such diagrams yourself—correctly and meaningfully.
 
-## Sektionen
-### Sektion 1
-besteht aus den Lektionen 01 bis 03 und behandelt tiefergehend die Arbeit mit HTML-Elementen und dem DOM, um komplexere und vor allem dynamische interaktive Anwendungen auf dieser Basis planen und entwickeln zu können. Außerdem werden die interaktiven Formularelemente des HTML-Standards eingesetzt und ausgewertet.  
+## Sections
+### Section 1
+consists of lessons 01 through 03 and covers working with HTML elements and the DOM in greater depth, enabling the planning and development of more complex—and, above all, dynamic and interactive—applications based on this foundation. In addition, interactive form elements from the HTML standard are utilized and processed.
+### Section 2
+consists of Lessons 04 through 06 and covers the distribution of an application across client-server database systems, enabling you to design modern applications that dynamically process and manage information on the Internet and make it available for user interaction. The complexity here lies less in the algorithms than in the multitude of systems and the communication between them. Lesson 07 has been incorporated into Lesson 06.
 
-### Sektion 2
-besteht aus den Lektionen 04 bis 06 und behandelt die Verteilung einer Anwendung auf Client-Server-Datenbank-Systeme, so dass Du moderne Anwendungen konzipieren kannst, welche Informationen im Internet dynamisch verarbeiten und verwalten und den Nutzern zur Interaktion bereit stellen. Die Komplexität liegt hier weniger in den Algorithmen als in der Vielzahl der Systeme und der Kommunikation zwischen ihnen. Lektion 07 ist in Lektion 06 aufgegangen.
+### Section 3
+consists solely of Lesson 08 and establishes the canvas as a new foundation for the visual representation of a program's output. Instead of relying on predefined structures, it allows for drawing with pixel-perfect precision anywhere on the surface. This breaks through the limitations of the box model and the DOM, unlocking complete creative freedom.
 
-### Sektion 3
-besteht lediglich aus der Lektion 08 und etabliert den Canvas als neue Grundlage für die visuelle Darstellung der Ergebnisse eines Programms. Hier werden nun nicht mehr mit vorgefertigten Strukturen genutzt, sondern es kann pixelgenau und beliebig auf einer Fläche gezeichnet werden. Damit sind die Grenzen des Box-Models und des DOMs gesprengt und die volle Gestaltungsfreiheit wird erlangt. 
-
-### Sektion 4
-besteht aus den Lektionen 09 bis 11 und behandelt die Frage, was überhaupt diese "Objekte" sind, mit denen die ganze Zeit gearbeitet wurde, wie man solche selbst erstellt und was man damit noch machen kann. Hier öffnet sich ein intuitiver Zugang zur Entwicklung interaktiver Anwendungen, der unabhängig von Betriebssystemen, Plattformen und dergleichen ist. Mit den erlangten Kenntnissen lassen sich nicht nur klassische Websites, sondern Anwendungen in völlig anderen Bereichen planen und entwickeln, von der nativen Smartphone-App bis zu voll ausgereiften Konsolengames.
+### Section 4
+consists of lessons 09 through 11 and addresses the question of what exactly these “objects” which have been used throughout actually are, how to create them yourself, and what else can be done with them. This opens up an intuitive approach to developing interactive applications that is independent of operating systems, platforms, and the like. With the knowledge gained, one can plan and develop not only traditional websites but also applications in entirely different fields,ranging from native smartphone apps to fully fledged console games.
