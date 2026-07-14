@@ -2,57 +2,58 @@
 <img src="Material/ZitsFaceToFace.jpg">  
 <small>Quelle: <a href="https://arnoldzwicky.org/category/these-modern-times/page/3/">https://arnoldzwicky.org/category/these-modern-times/page/3/</a></small>
 
-Die Cocktailbar funktioniert so schon ganz gut, allerdings gibt es noch einen großen Nachteil: die Bestellung wird noch nicht verschickt. Solange also das Barkeeperi nicht daneben sitzt, wenn das Kundi seinen Cocktail zusammenstellt, wird ihm das Geschäft entgehen. Diese Konstellation entspricht aber nicht unseren betrachteten Anwendungsfällen und macht das System ohnehin obsolet.  
-Es muss also die Webseite, die vom Browser des Kundis auf dessen Rechner angezeigt wird, mit einem anderen Rechner kommunizieren, der die Bestellung empfängt, verarbeitet und schließlich dem Barkeeperi mitteilt. Gegebenenfalls sollte er auch eine Rückmeldung über die Bearbeitung geben, die wiederum vom Browser des Kundis empfangen und letzterem angezeigt wird.
+The cocktail bar already works quite well as it is, but there is still one major drawback: the order is not yet being sent. As long as the bartender is not sitting next to the customer while they are putting together their cocktail, the business will be lost. However, this situation does not match the use cases we are considering and makes the system obsolete anyway.
+Therefore, the web page that is displayed by the customer’s browser on their computer must communicate with another computer that receives the order, processes it, and finally communicates it to the bartender. If necessary, it should also provide feedback about the processing, which in turn is received by the customer’s browser and displayed to them.
 
-- [x] Lies dir diesen kurzen [Wikipedia-Artikel](https://de.wikipedia.org/wiki/Client-Server-Modell) durch um einige Grundbegriffe des Client-Server-Modells zu klären. 
+- [x] Read this short [Wikipedia-Artikel](https://de.wikipedia.org/wiki/Client-Server-Modell) to clarify some basic terms of the client–server model.
 
-## Anwendungsfalldiagramm
-Tatsächlich nutzt die Cocktailbar selbst bereits ein Client-Server-System sobald sie auf Github-Pages veröffentlicht wurde. Pages fungiert nun als File-Server und liefert die HTML-, CSS- und JS-Dateien aus, die ein Browser interpretieren kann. Der Browser stellt den Client dar und es ist irrelevant, auf welchem Rechner er läuft, solange er über eine Internetverbindung mit dem Server kommunizieren kann.  
-- [x] Vergleiche hierzu die [EIA2-Landschaft](../X01_Appendix/Landscape/EIA2Landscape2022.svg). Welche Systeme und Prozesse sind dir mittlerweile aus EIA1 und EIA2 bekannt? Zeichne einen geschlossenen Linienzug ein, der all dies ein- und alle unbekannten Prozesse und Systeme ausschließt.  
+## Use Case Diagram
+In fact, the cocktail bar already uses a client–server system as soon as it is published on GitHub Pages. Pages acts as a file server and delivers the HTML, CSS, and JS files that a browser can interpret. The browser acts as the client, and it does not matter on which computer it runs, as long as it can communicate with the server via an internet connection.
+- [x] Compare this with the [EIA2-Landschaft](../X01_Appendix/Landscape/EIA2Landscape2022.svg). Which systems and processes are you already familiar with from EIA1 and EIA2? Draw a closed polyline that includes all of these and excludes all unknown processes and systems.
 
-Teilt man also das Anwendungsfalldiagramm auf, so dass es zwei Systeme, Client und Server, darstellt, so wird klar, dass
-- das Kundi mit einem anderen System interagiert als das Barkeeperi
-- die Bestellung von dem einen System, dem Client, an das andere System, dem Server, übertragen werden muss.  
+If we split the use case diagram so that it shows two systems, client and server, it becomes clear that
+- the customer interacts with a different system than the bartender
+- the order has to be transferred from one system, the client, to the other system, the server.  
 
 ![](Material/draw.io/UseCase.svg)  
-> Das oben angesprochene File-Serving ist hier nicht dargestellt, da dies Browser und Server bereits automatisch erledigen.
+> The file serving mentioned above is not shown here, since the browser and server already take care of this automatically.
 
-## Kommunikation
-Kommunikation ist der Prozess des Austauschs oder der Übertragung von Information. Dabei werden zwei grundsätzliche Formen derselben unterschieden. 
-### Synchron
+## Communication
+Communication is the process of exchanging or transferring information. There are two basic forms of communication that are distinguished. 
+### Synchronous
 ![](Material/Synchron.svg)  
 
-Synchron bedeutet "zeitlich gemeinsam". Bei der Kommunikation heißt das allerdings nicht gleichzeitig, sondern "aufeinander abgestimmt". Das bedeutet, dass die Kommunikationspartner aufeinander warten, bis der jeweils andere seine Information übertragen hat und dann ihrerseits mit einer Übertragung beginnen. Somit verbringen die beteiligten Systeme die Hälfte der zur Verfügung stehenden Zeit zwangsläufig mit Warten. Im Diagram, welches den Kommunikationsalgorithmus eines der Partner darstellt, wird dies mit der kleinen Schleife angedeutet.  
+Synchronous means “at the same time”. In communication, however, this does not mean “simultaneous”, but “coordinated in time”. This means that the communication partners wait for each other until the other has transferred their information and then begin transferring in turn. Thus, the systems involved inevitably spend half of the time available waiting. In the diagram that shows the communication algorithm of one of the partners, this is indicated by the small loop.
 
-- [x] Sammle Beispiele für synchrone Kommunikation in deinem eigenen Alltag.  
+- [x] Collect examples of synchronous communication in your own everyday life.
 
-So klein diese Schleife auch erscheint, sie kann ein großes Problem darstellen. Die Systeme könnten die Wartezeit sinnvoll nutzen, anstatt nur in ihr zu verharren. Besonders problematisch wird es, wenn ein System für die Antwort lange braucht. Wenn beispielsweise eine Webseite nicht mehr reagiert, weil der Browser auf eine Antwort des Servers wartet, wird das Nutzeri den Prozess bald abbrechen.
+As small as this loop may seem, it can be a big problem. The systems could make sensible use of the waiting time instead of just staying in it. It becomes particularly problematic when a system needs a long time to respond. For example, if a website no longer reacts because the browser is waiting for an answer from the server, the user will soon abort the process.
 
 
-### Asynchron
+### Asynchronous 
 ![](Material/Asynchron.svg)  
-Daher hat sich die asynchrone Kommunikation durchgesetzt. Die Kommunikationspartner setzen eine oder mehrere Anfragen ab, damit ist ihr Teil zunächst erledigt und sie können sich um andere Aufgaben kümmern. Wenn eine Antwort auf eine der Anfragen vorliegt, erhält das anfragende System ein Signal. Dieses dient als Startpunkt für einen neuen Prozess, bei dem zunächst die Antwort verarbeitet wird und gegebenenfalls weitere Anfragen verschickt werden.  
+For this reason, asynchronous communication has become established. The communication partners send one or more requests; with that their part is initially done and they can take care of other tasks. When an answer to one of the requests is available, the requesting system receives a signal. This serves as the starting point for a new process in which the answer is first processed and, if necessary, further requests are sent.  
 
-- [x] Sammle Beispiele für asynchrone Kommunikation in deinem eigenen Alltag.
-- [x] Was sind die besonderen Herausforderungen bei der asynchronen Kommunikation?
+- [x] Collect examples of asynchronous communication in your own everyday life.
+- [x] What are the particular challenges of asynchronous communication?
 
-Damit ist es Webseiten beispielsweise möglich, die Darstellung aufzubauen und Interaktion zur Verfügung zu stellen, während weitere Daten geladen werden. Oder während der Interaktion mit dem Nutzeri Daten zu versenden.  
+This makes it possible for websites, for example, to build up the display and provide interaction while further data are being loaded. Or to send data during interaction with the user.
 
 ## Forms
-HTML-Forms bieten bereits gänzlich ohne zusätzliche Programmierung die Möglichkeit, Daten synchron zu verschicken. Hierzu ist es lediglich erforderlich, dem Form-Tag ein `action`- und ein `method`-Attribut anzufügen, sowie im Formular einen Submit-Button zu integrieren. Der `action`-Wert gibt den URL an, an welchen die Daten gehen soll. Die Daten selbst, also die Werte der Formularelemente, werden bei Betätigung des Submit-Buttons automatisch aufbereitet und verschickt. Wie sie verschickt werden, hängt von der gewählten `method` ab.
+HTML forms already offer the possibility of sending data synchronously completely without additional programming. For this, it is only necessary to add an `action` and a `method` attribute to the form tag and to integrate a submit button in the form. The `action`value specifies the URL to which the data should be sent. The data themselves, i.e. the values of the form elements, are automatically prepared and sent when the submit button is pressed. How they are sent depends on the chosen `method`.
 ### Get
-Bei `method="get"` werden die Daten als Zeichenketten einfach im Klartext an den URL angehängt, abgetrennt mit einem `?`. Die Schlüssel- und Wertepaare sind mit `&` (Et, kaufmännisches Und, Ampersand) voneinander getrennt, die Schlüssel und Werte mit einem `=` verbunden. Der Browser ruft dann diesen URL mitsamt Anhang auf, die komplette Zeichenkette erscheint in der Adresszeile.
-- [x] Surfe im Netz und suche nach Beispielen für die Datenübertragung in dieser Form, in dem Du die Adressezeile beobachtest.
-- [x] Ergänze das Formularelement deiner aktuellen Cocktailbar-Implementation mit den Attributen `method="get"` und `action=""`. Der leere Wert bei `action` bedeutet, dass der aktuelle URL erneut genutzt werden soll. Füge zudem mit
+With `method="get"`, the data are simply appended to the URL in plain text as strings, separated by a `?`. The key–value pairs are separated from each other by `&` (et, ampersand), the keys and values are connected by `=`. The browser then calls this URL including the appendix, the complete string appears in the address bar.
+
+- [x] Surf the web and look for examples of data transfer in this form by observing the address bar.
+- [x] Extend the form element of your current cocktail bar implementation with the attributes `method="get"` and `action=""`. The empty value for `action` means that the current URL is to be used again. Additionally, insert a submit button in the form with
 ```html
-<button type="submit">Abschicken</button>
+<button type="submit">Submit</button>
 ```
-einen Submit-Button im Formular ein. Untersuche was geschieht, wenn Du nun die Seite aufrufst und den Button betätigst.
-> Der typ `"submit"` ist die Voreinstellung für Buttons und muss nicht explizit angegeben werden. Jeder Button innerhalb eines Formulars, bei dem nicht explizit ein anderer Typ angegeben ist, führt also zum Datenversand. Und häufig zu Verwirrung bei den Entwickleris...
+, examine what happens when you now call the page and press the button.
+> The type `"submit"` is the default for buttons and does not have to be specified explicitly. So every button inside a form for which no other type is explicitly specified will trigger sending the data. And this frequently leads to confusion among developers...
 
 ### Post
-Bei `method="post"` werden die Daten als eigene Datenpakete versand und sind nicht für das Nutzeri sichtbar. Post wird aber vor allem auch dann verwendet, wenn größere Datenmengen verschickt werden, da die zulässige Länge des URL begrenzt ist. Auf der Serverseite müssen die Datenpakete zunächst erst wieder zu einer zusammenhängenden Request zusammengefügt werden.
+With `method="post"` werden die Daten als eigene Datenpakete versand und sind nicht für das Nutzeri sichtbar. Post wird aber vor allem auch dann verwendet, wenn größere Datenmengen verschickt werden, da die zulässige Länge des URL begrenzt ist. Auf der Serverseite müssen die Datenpakete zunächst erst wieder zu einer zusammenhängenden Request zusammengefügt werden.
 - [x] Verwende nun die Methode `"post"` im Formular und betätige den Submit-Button. Versuche nun mit Hilfe der Entwicklertools die Daten zu finden. Klicke dazu auf den Reiter "Netzwerk" oder "Netzwerkanalyse" und dann auf den Post-Request bei den gelisteten Anfragen.  
 
 ## Implementation asynchroner Kommunikation
