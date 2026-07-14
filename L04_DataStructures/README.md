@@ -2,26 +2,27 @@
 <img src="Material/OrdnungChaos.jpg">
 <small>Quelle: <a href="https://gutezitate.com/zitate-bilder/zitat-ordnung-ist-etwas-fur-primitive-das-genie-beherrscht-das-chaos-albert-einstein-181618.jpg">https://gutezitate.com/zitate-bilder/zitat-ordnung-ist-etwas-fur-primitive-das-genie-beherrscht-das-chaos-albert-einstein-181618.jpg</a></small>
 
-Albert Einstein war wohl unbestritten eines der größten Genies, welche die Menschheit je hervorgebracht hat. Es ist unwahrscheinlich jemanden zu beleidigen, wenn in dieser Lektion davon ausgegangen wird, dass keine beteiligte Person einen ähnlichen Status genießt. Das gilt wohl für die meisten, die an der Konzeption interaktiver Anwendungen beteiligt sind und vielleicht mehr noch für die Nutzeris der Anwendungen. Wer also nicht Einsteins Genie für sich in Anspruch nimmt, könnte von Ordnung doch profitieren.   
+Albert Einstein was undoubtedly one of the greatest geniuses humanity has ever produced. It is unlikely to offend anyone if, in this lesson, we assume that none of the people involved enjoys a similar status. This probably applies to most of those involved in designing interactive applications, and perhaps even more to the users of these applications. So anyone who does not claim Einstein’s genius for themselves might still benefit from order.
 
-- **FunFact**: Einstein wird noch ein weiteres Zitat zugesprochen, welches in diesem Zusammenhang nicht unerwähnt bleiben sollte: "Genie ist 1 % Talent und 99 % harte Arbeit ..."  
+- **FunFact**: Another quote attributed to Einstein, which should not go unmentioned in this context, is: “Genius is 1% talent and 99% hard work ..."  
 
 ## Separation Of Concerns
-Ebenso unstrittig wie Einsteins Genialität ist das Prinzip der Trennung der Zuständigkeiten (SoC) in der Softwareentwicklung. Hierbei geht es darum, dass jeder Teil der ganzen Software auch eine klare und von den anderen Teilen getrennte Zuständigkeit hat. Diese Zuständigkeit soll sich mit einem knappen Satz beschreiben lassen. Wenn in diesem Satz das Wort "und" vorkommt, ist möglicherweise etwas faul und dem Teil sind zu viele Zuständigkeiten übertragen.  
-Bei der Cocktailbar haben wir schon vieles richtig gemacht, insbesondere, wenn wir das Ganze aus einer sehr übergeordneten Perspektive und die für die Entwicklung von Web-Applikationen grundlegende Separation betrachten.  
-- [x] Arbeite diesen knappen [Artikel in SelfHTML.org](https://wiki.selfhtml.org/wiki/HTML/Tutorials/Trennung_von_Inhalt,_Pr%C3%A4sentation_und_Verhalten) durch. Vergleiche mit deiner eigenen Arbeit und prüfe, ob Du alles berücksichtigt hast.  
+Just as undisputed as Einstein’s genius is the principle of Separation of Concerns (SoC) in software development. This principle is about ensuring that each part of the overall software has a clear responsibility that is separated from the responsibilities of the other parts. This responsibility should be describable in a short sentence. If the word “and” appears in that sentence, something may be wrong, and that part has been assigned too many responsibilities. For the cocktail bar, we have already done many things right, especially if we look at it from a very high-level perspective and consider the basic separation required for developing web applications.
+- [x] Work through this short [Artikel in SelfHTML.org](https://wiki.selfhtml.org/wiki/HTML/Tutorials/Trennung_von_Inhalt,_Pr%C3%A4sentation_und_Verhalten). Compare it with your own work and check whether you have taken everything into account.
 
-Der CSS-Teil der Cocktailbar beeinflusst nur die visuelle Gestaltung und fügt keine Inhalte oder Interaktionsmöglichkeiten hinzu. Das Skript kümmert sich ausschließlich um die Auswertung der Interaktion. Die HTML-Datei liefert die Struktur der Seite und die Interaktionselemente und stellt die Datenquelle dar... ups, da sind einige **UND**s drin. Und da knirscht es auch bald.
+The CSS part of the cocktail bar affects only the visual design and does not add any content or interaction possibilities. The script deals exclusively with evaluating the interaction. The HTML file provides the structure of the page and the interaction elements and serves as the data source... oops, there are quite a few **AND**s in there. And that is where things will soon start to grind.
 
-## Trennung von Struktur und Inhalt
-In SelfHTML ist beschrieben, dass das HTML-Dokument Struktur und Inhalt bereit stellen soll. Das passt auch recht gut für statische Seiten, bei denen die Inhalte sich nie wesentlich ändern werden. Schon der Blackmailer Companion war aber ein gutes Gegenbeispiel. Der wesentliche Inhalt entsteht dort erst durch die Interaktion mit dem Nutzer und weder kann noch sollte er in der HTML-Datei statisch festgelegt sein. Diese legt nur die grobe Struktur fest. Richtig bleibt aber, dass das, was mit Hilfe der HTML-Datei entsteht, nämlich das DOM, weiterhin Struktur und Inhalt bereitstellt, selbst aber dynamisch ist und vom Skript manipuliert wird.  
-Die Vereinigung von Struktur und Inhalt bei der Cocktailbar ist problematisch, denn das Angebot der Bar und die Preise können sich ändern. Und gehen wir davon aus, dass das Barkeeperi nicht selbst unter den Entwickleris der Online-Cocktailbar ist, stellt sich die Frage, wie das geänderte Angebot nun in die App findet. Soll das Betreiberi selbst im HTML-Code herumfuhrwerken? Und riskieren, dass die ganze App nicht mehr funktioniert, weil es einen Tippfehler bei einem Attribut hat? Diese Option darf ausgeschlossen werden.  
-Das heißt, die bisherige Trennung der Zuständigkeiten muss um die Trennung des Inhaltes von Struktur, Verhalten und Gestaltung erweitert werden, sodass der Inhalt verändert werden kann, ohne Änderungen an den anderen Zuständigkeiten vornehmen zu müssen oder versehentlich zu vorzunehmen.  
+## Separation of Structure and Content
+SelfHTML states that the HTML document should provide structure and content. This fits quite well for static pages whose content will never change significantly. However, the Blackmailer Companion was already a good counterexample. There, the essential content only emerges through interaction with the user and neither can nor should be statically defined in the HTML file. The HTML file only defines the rough structure. It is still true that what is created with the help of the HTML file—namely the DOM—continues to provide structure and content, but is itself dynamic and manipulated by the script.
 
-## Erweiterung des Anwendungsfalldiagramms
-Zwei Dinge sind aus Obigem zu folgern:
-- es gibt einen weiteren Akteur, das Barkeeperi
-- ihm muss eine Möglichkeit zur Verfügung gestellt werden das Angebot anzupassen ohne in die eigentliche Applikation einzugreifen  
+Combining structure and content in the cocktail bar is problematic, because the bar’s menu and prices can change. And assuming that the bartender is not one of the developers of the online cocktail bar, the question arises of how the changed menu is supposed to find its way into the app. Is the operator supposed to tinker around in the HTML code themselves? And risk the whole app no longer working because of a typo in an attribute? This option must be ruled out.
+
+This means that the existing separation of responsibilities must be extended by separating the content from structure, behavior and presentation, so that the content can be changed without having to change the other responsibilities or accidentally changing them.
+
+## Extension of the Use Case Diagram
+Two things follow from the above:
+- there is another actor, the bartender
+- they must be given a way to adjust the menu without interfering with the actual application  
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_GFOXPPRS"><img src="../X01_Appendix/Img/L04_V1_Bild.JPG" width="25%"/></a>
@@ -29,19 +30,19 @@ Zwei Dinge sind aus Obigem zu folgern:
 <a href="http://hdl.handle.net/10900.3/OER_GFOXPPRS"><img src="../X01_Appendix/Img/video.jpg" width="3%"/>L04 Use Case Diagram</a><br/>
 </div>
 
-## Algorithmen und Datenstrukturen
-Neben dem Prinzip des "Divide et Impere", ist es bei der Konzeption von Anwendungen grundsätzlich eine sehr gute Vorgehensweise zwischen den Algorithmen und den Datenstrukturen zu unterscheiden. In Kombination stellen beide zusammen die Anwendung dar. Bestimme und untersuche einerseits die zu verarbeitenden Information, und überlege, wie diese Information strukturiert werden sollte, um sie gut verarbeiten zu können. Daraus ergeben sich die Datenstrukturen. Überlege andererseits, wie diese Information verarbeitet werden soll, somit konzipierst Du die Algorithmen.  
+## Algorithms and Data Structures
+Besides the principle of “Divide et impera”, it is generally a very good approach in application design to distinguish between algorithms and data structures. Taken together, the two form the application. On the one hand, identify and examine the information to be processed, and consider how this information should be structured so that it can be processed well. From this, the data structures arise. On the other hand, think about how this information should be processed; by doing so, you design the algorithms.  
 
 <img src="Material/AdaLovelace.jpg" align="right"/>
 
-- **FunFact**: viele Quellen schreiben den ersten Algorithmus, der je für einen Computer konzipiert wurde, Lady Ada Lovelace (1815-1852) zu. Der zugehörige mechanische Computer, die "Analytical Engine", konnte zu dieser Zeit noch nicht funktionsfähig hergestellt werden. Adas Algorithmus aber funktionierte! Ihr zu Ehren wurde über ein Jahrhundert später eine populäre Programmiersprache "Ada" genannt.
+- **FunFact**: Many sources attribute the first algorithm ever designed for a computer to Lady Ada Lovelace (1815–1852). The associated mechanical computer, the “Analytical Engine”, could not yet be built in a functional way at that time. But Ada’s algorithm worked! In her honor, more than a century later, a popular programming language was named “Ada”.
 
-Die Konzeption der Algorithmen und Datenstrukturen stellt also die Grundlage für eine nachfolgende Programmierung dar. Ohne diese Grundlage die Programmierung zu beginnen ist eine erratische Vorgehensweise und führt bei komplexeren Anwendungen in der Regel zu erhöhtem Aufwand und minderwertigen Lösungen.  
+The design of algorithms and data structures thus forms the basis for the subsequent programming. Starting the programming without this foundation is an erratic approach and, for more complex applications, usually leads to increased effort and inferior solutions.
 
-Die getrennte Betrachtung führt zu guten Datenstrukturen, die auch von noch nicht geplanten Algorithmen für andere Zwecke verarbeitet werden können, und zu Algorithmen, die wiederum noch nicht bekannte Daten verarbeiten können.  
+Considering them separately leads to good data structures that can also be processed by algorithms that have not yet been planned for other purposes, and to algorithms that in turn can process data that is not yet known.
 
-# Cocktailbar: Datenstruktur
-Die Cocktailbar funktioniert ja recht gut, sie ist aber völlig unflexibel und lässt das Barkeeperi außen vor. Es ist also wünschenswert, dass die Seite im Prinzip so bleibt, aber nicht von einer statischen HTML-Datei abgeleitet wird sondern dynamisch auf der Grundlage von Daten erzeugt wird, die das Barkeeperi selbst pflegen kann. Eine einfache Möglichkeit ist, ihm eine spezielle und simpel strukturierte Textdatei an die Hand zu geben, in welche es nach einem übersichtlichen Muster seine Daten eintragen kann. Es soll also nicht mit einem Chaos konfrontiert werden, das Genialität fordert, sondern mit Ordnung.
+# Cocktail Bar: Data Structure
+The cocktail bar works quite well, but it is completely inflexible and leaves the bartender out of the loop. It is therefore desirable that the page essentially stays the same, but is not derived from a static HTML file; instead, it should be generated dynamically based on data that the bartender can maintain themselves. A simple option is to provide them with a special, simply structured text file into which they can enter their data following a clear pattern. So they should not be confronted with chaos that demands genius, but with order.
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_MRBDUWIR"><img src="../X01_Appendix/Img/L04_V2_Bild.JPG" width="25%"/></a>
@@ -50,8 +51,12 @@ Die Cocktailbar funktioniert ja recht gut, sie ist aber völlig unflexibel und l
 <a href="http://hdl.handle.net/10900.3/OER_MRBDUWIR"><img src="../X01_Appendix/Img/video.jpg" width="3%"/>L04 Datenstruktur</a>
 </div>
 
-## Generierung des Formulars
-Nun ist die Datenstruktur definiert und wie das fertige Formular aussehen und funktionieren soll ist auch bekannt und bereits getestet. Jetzt muss also noch ein Algorithmus entwickelt werden, welcher mit Hilfe der Daten das Formular generiert. Dazu muss zunächst entschieden werden, welche Teile des DOM automatisch beim Laden der Seite durch die Interpretation der HTML-Datei erzeugt werden sollen, und welche dann dynamisch durch das Skript dazu kommen. Theoretisch ist es natürlich möglich, komplett auf eine Beschreibung der Seitenstruktur in der HTML-Datei zu verzichten, lediglich einen Verweis auf das Skript zu implementieren und die DOM-Erzeugung komplett dem dadurch aufgerufenen Skript zu überlassen. Einerseits würde dies aber auch dem SoC-Prinzip zuwider laufen, weil unnötig viel Verantwortlichkeit auf das Skript übertragen wird, andererseits liegt bereits eine HTML-Datei vor, welche die Struktur beschreibt. Es erscheint also eher sinnvoll, lediglich die Beschreibungen der dynamischen Strukturen aus der bestehenden HTML-Datei zu entfernen und sie auf die statischen zu reduzieren. Das ist eine klassische Design-Entscheidung und wird für dieses Beispiel in obigem Sinne getroffen.  
+## Generation of the Form
+Now the data structure is defined, and we also know how the finished form should look and function, and it has already been tested. So now an algorithm must be developed that generates the form using the data. To do this, we must first decide which parts of the DOM are to be generated automatically when the page loads by interpreting the HTML file, and which parts are then added dynamically by the script.
+
+In theory, it is of course possible to omit a description of the page structure in the HTML file entirely, implement only a reference to the script, and leave DOM creation completely to the script that is called in this way. On the one hand, however, this would violate the SoC principle, because too much responsibility would be assigned to the script; on the other hand, an HTML file that describes the structure already exists.
+
+It therefore seems more sensible to remove only the descriptions of the dynamic structures from the existing HTML file and reduce it to the static ones. This is a classic design decision and, for this example, is made in the sense described above.
 
 
 <div align="center">
@@ -62,7 +67,7 @@ Nun ist die Datenstruktur definiert und wie das fertige Formular aussehen und fu
 <a href="Material\CocktailBar_ActivityDiagram_generateContent.jpg"><img src="Material\CocktailBar_ActivityDiagram_generateContent.jpg" width="25%"/></a>
 </div>
 
-> - [x] Konzipiere auch die beiden anderen Aktivitäten zur Erstellung der Interaktionsgruppen.  
+> - [x] Design the two other activities for creating the interaction groups as well.  
 
 ## Implementation I
 
@@ -78,22 +83,22 @@ Nun ist die Datenstruktur definiert und wie das fertige Formular aussehen und fu
 </div>
 
 ## Refactoring
-### Erfahrungen einfließen lassen  
-> - [x] Reflektiere die Korrekturen, die sich bei der ersten Implementation ergeben haben, im Konzept. Konzipiere auch Fehlerhinweise, so dass das Barkeeperi einen Tipp bekommt, wenn aufgrund einer Fehleingabe etwas nicht funktioniert.
+### Incorporating experiences  
+> - [x] Reflect in the concept the corrections that resulted from the first implementation. Design error messages as well, so that the bartender gets a hint when something does not work because of incorrect input.
 
-### Vervollständigen  
-> - [x] Überarbeite und vervollständige die Implementierung entsprechend der verbesserten Konzeption. Passe auch die zu verwendenden Elementtypen und ggf. das Stylesheet an.
-> - [x] Lagere die Interfaces in eine eigene Datei aus, so dass das Barkeeperi nicht versehentlich daran manipuliert.  
+### Completing  
+> - [x] Revise and complete the implementation according to the improved concept. Also adjust the element types to be used and, if necessary, the stylesheet.
+> - [x] Outsource the interfaces into a separate file so that the bartender does not accidentally tamper with them.  
 
 ### Separation of Concerns
-Betrachtet man nun den Code in der HTML-Datei, dem Skript und der Datendatei fällt auf, dass die Kategorien des Angebots der Cocktailbar überall auftauchen und nicht nur für die Bezeichnung, sondern auch für die Steuerung des Programms verwendet werden. Das widerspricht dem SoC-Prinzip!
-> - [x] Überarbeite die Konzeption der Cocktailbar derart, dass nicht in der HTML-Datei, im Skript und in der Datendatei alle Bezeichnungen für die Angebotskategorien auftauchen. Sie sollten nur in der Datendatei stecken. Hier muss dann auch die Information über die gewünschte Form der Interaktion für die jeweilige Kategorie untergebracht sein. Hierzu wird es sinnvoll sein, eine eigene Datenstruktur für die Kategorien zu erschaffen, in denen mehr Information steckt.  
+If we now look at the code in the HTML file, the script, and the data file, we notice that the categories of the cocktail bar’s menu appear everywhere and are used not only for labels but also for controlling the program. This contradicts the SoC principle!
+> - [x] Revise the concept of the cocktail bar so that the names of the menu categories do not appear in the HTML file, the script, and the data file. They should only be contained in the data file. This is also where the information about the desired form of interaction for each category must be stored. To achieve this, it will be useful to create a dedicated data structure for the categories that contains more information.
 
 
 ## JSON (JavaScript Object Notation)
-Natürlich ist diese Lösung noch nicht unbedingt der Weisheit letzter Schluss um das Angebot für das Barkeeperi wartbar zu machen. Aufgrund der Angabe des `namespace`s und der Deklaration sowie dem Zuweisungsoperator `let data: Data = ` handelt es sich bei der Datei "Data.*" immer noch um eine Skript-Datei und das Barkeeperi kann bei falscher Handhabung leicht das Programm unbrauchbar machen. Ohne diese Angaben würde es sich aber bereits um eine valide JSON-Datei handeln und in den nächsten Lektionen wird erklärt, wie man damit umgeht und wie man reines JSON tatsächlich als Daten- und Datentransferformat nutzt.  
-JSON wird heute interessanterweise auch intensiv außerhalb der JavaScript-Welt in gänzlich andersartigen Anwendungen eingesetzt. Es konnte sich mittlerweile als Konkurrent zu **XML (Extensible Markup Language)**, dessen Struktur auch HTML folgt, etablieren und bezüglich des öffentlichen Interesses, sofern man das auf Google Trends ermitteln kann, XML seit dem Frühjahr 2016 hinter sich lassen.  
+Of course, this solution is not necessarily the ultimate wisdom when it comes to keeping the menu maintainable for the bartender. Because of the specification of the`namespace` and the declaration as well as the assignment operator `let data: Data = `  is still a script file, and if the bartender handles it incorrectly, they can easily render the program unusable. Without these specifications, however, it would already be a valid JSON file, and in the next lessons it will be explained how to work with it and how to use pure JSON as a data and data transfer format.
+Interestingly, JSON is now also used extensively outside the JavaScript world in completely different kinds of applications. In the meantime it has established itself as a competitor to **XML (Extensible Markup Language)**, whose structure also underlies HTML, and in terms of public interest—at least as far as can be determined using Google Trends—has overtaken XML since spring 2016.
 
 <img src="Material/XMLvsJSON.png">  
 
-Weiterhin ist aber auch XML ein verbreiteter Standard und in manchen Anwendungen effizienter einzusetzen.
+XML is still a widely used standard and can be employed more efficiently than JSON in some applications.
