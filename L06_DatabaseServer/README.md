@@ -2,53 +2,53 @@
 <img src="Material/ServerName.jpg" title="This hostname is going in dozens of remote config files. Changing a kid's name is comparatively easy!">
 <small>Quelle: <a href="https://xkcd.com/910/">https://xkcd.com/910/</a></small>  
 
-Ein reiner Fileserver wird natürlich den Ansprüchen nicht gerecht, welche die Cocktailbar an die Gegenseite der Kommunikation stellt. Die Bestellung kommt zwar an, aber die Serversoftware ist nicht darauf programmiert, damit etwas anzufangen. Der Query-String wird schlicht ignoriert. Was genau damit geschehen soll, wurde allerdings auch noch gar nicht definiert. Im vorangegangenen Kapitel wurde lediglich festgehalten, dass der Server die Bestellung entgegen nehmen soll.  
+A standard file server naturally fails to meet the requirements the cocktail bar places on the receiving end of the communication. While the order does arrive, the server software is not programmed to process it; the query string is simply ignored. However, exactly what is supposed to happen with it has not yet been defined; the previous chapter merely established that the server should accept the order.
 
-Nun müssen wir davon ausgehen, dass das Barkeeperi nicht im Keller eines Rechenzentrums sitzt und wartet, bis auf irgendeinem Monitor ein Fenster aufgeht und eine Bestellung anzeigt. Anders als an einer nicht-virtuellen Bar, kommunizieren Barkeeperi und Kundi nun asynchron. Die Bestellungen müssen also gespeichert werden und zwar so, dass das Barkeeperi darauf jederzeit von anderen Clients aus Zugriff hat. Damit brauchen wir als weiteres System einen Datenspeicher.
+We must now assume that the bartender isn't sitting in a data center basement, waiting for a window to pop up on a monitor displaying an order. Unlike at a physical bar, the bartender and the customer now communicate asynchronously. Consequently, orders must be stored in such a way that the bartender can access them at any time from other clients. This means we need a data store as an additional system component.
 
-## Use-Case-Diagramm
+## Use-Case-Diagram
 
 ![](Material/UseCase.svg)
 
-Neben dem Datenspeicher wurde im Diagramm auch ein Client für das Barkeeperi berücksichtigt. Spätestens jetzt wird klar, wie hilfreich Anwendungsfalldiagramme in frühen Stadien der Softwareentwicklung sind. 
+In addition to the data store, a client for the bartender role was also included in the diagram. It is at this point that the usefulness of use case diagrams in the early stages of software development becomes clear.
 
-> - [x] Studiere intensiv das dargestellte Diagramm und erkläre was es darstellt.
+> - [x] Study the diagram shown closely and explain what it represents.
 
 ## Swimlane-Activity Diagram
-Im Use-Case-Diagramm ist ein Muster zu erkennen. Häufig löst eine Interaktion des Nutzeris eine Aktivität im Client aus, wodurch eine Request an den Server geschickt wird, welcher dann auf den Datenspeicher zugreift, eine Response formuliert und an den Client zurückschickt, der diese aufbereitet und dem Nutzeri eine Rückmeldung gibt. Diese Standard-Aktivität über Systemgrenzen hinweg kann auch in einem Aktivitätsdiagramm dargestellt werden.
+A pattern is evident in the use case diagram. Often, a user interaction triggers an activity in the client, resulting in a request being sent to the server; the server then accesses the data store, formulates a response, and sends it back to the client, which processes it and provides feedback to the user. This standard activity spanning system boundaries can also be represented in an activity diagram.
 
 ![](Material/Activity.svg)  
 
-Jedes beteiligte System, gegebenenfalls auch das Nutzeri, wird dabei in einem eigenen Bereich, einer sogenannten Swimlane, also Schwimmbahn, dargestellt.
+Each participating system and, where applicable, the user is represented in its own area, known as a "swimlane."
 
-## Datenbank
-Was oben zunächst unspezifisch als Datenspeicher angeführt wurde, ist in der Regel eine Datenbanksoftware, die große Datenmengen schnell und effizient verwalten kann. Diese Systeme sind meist standardisiert, so dass eine Serversoftware sich nicht mit der internen Funktionsweise auseinandersetzen, sondern lediglich die richtigen Befehle und Datenformate bedienen muss, um die Datenbank zu nutzen.
+## database
+What was initially referred to above in general terms as data storage is typically database software capable of managing large volumes of data quickly and efficiently. These systems are generally standardized, meaning that server software does not need to deal with their internal workings but simply needs to use the correct commands and data formats to interact with the database.
 
-### Relationale Datenbanken
-Seit den 1970er Jahren dominieren relationale Datenbanken, bei denen die Daten in Tabellenstrukturen untergebracht werden und durch Querverweise ein Netz von Tabellen aufgespannt wird. Mit der Structured-Query-Language (SQL) wurde eine Abfragesprache entwickelt, mit der komplexe Anweisungen formuliert werden können, welche die Datenbanksoftware dann selbständig ausführt um Daten aus dem Bestand zu liefern oder zu manipulieren. Heute ist insbesondere die Open-Source-Datenbanksoftware MySQL sehr weit im Internet verbreitet.
-> **FunFact:** Dem Namen MySQL wird meist intuitiv die Bedeutung "MeinSQL" zugesprochen. Tatsächlich aber hat der finnische Entwickler Michael Widenius sein 1994 gestartetes Open-Source-Projekt nach seiner Tochter My benannt.
+### Relational databases
+Since the 1970s, relational databases—in which data is organized into table structures and cross-references create a network of tables—have dominated the field. Structured Query Language (SQL) was developed as a query language for formulating complex instructions that the database software then executes autonomously to retrieve or manipulate data. Today, the open-source database software MySQL, in particular, is widely used across the Internet.
+> **FunFact:** People often intuitively interpret the name "MySQL" as meaning "My SQL." In reality, however, the Finnish developer Michael Widenius named the open-source project he launched in 1994 after his daughter, My.
 
-### NoSQL-Datenbanken
-Mit dem durch das Internet stetig wachsenden Datenaufkommen wurde der Bedarf an Skalierungsmöglichkeiten immer größer. Die Leistung und Kapazität einer Datenbank sollte also während des Betriebs durch Einsatz von mehr Hardware einfach vergrößert werden können. Relationale Datenbanksysteme sind aber ursprünglich nicht dafür ausgelegt, die Daten zu verteilen. 
-NoSQL bzw. dokumentenorientierte Datenbanken adressieren dieses Problem. Die zu verwaltenden Daten müssen dabei nicht in starr definierte Tabellenform gebracht werden, sondern jeder Datensatz kann als beliebig strukturiertes Dokument abgelegt werden.  
-Das No in NoSQL bedeutet "Not only", es gibt also auch Systeme, die mit SQL arbeiten können. Dokumentenorientierte Datenbanken sind eine Variante der NoSQL-Datenbanken, es gibt noch andere.
+### NoSQL-Data bases
+With the steadily increasing volume of data driven by the Internet, the need for scalability options grew ever greater. Ideally, a database's performance and capacity should be easily increased during operation by adding more hardware. However, relational database systems were not originally designed to distribute data.
+NoSQL—or document-oriented—databases address this issue. The data to be managed does not need to be forced into a rigidly defined tabular format; instead, each record can be stored as a document with an arbitrary structure.
+The "No" in NoSQL stands for "Not only," meaning there are also systems capable of working with SQL. Document-oriented databases are one type of NoSQL database; others exist as well.
 
 ### MongoDB
-2009 wurde mit MongoDB eine NoSQL-Datenbanksoftware veröffentlicht, die JavaScript als interne Verkehrssprache nutzt. Die Daten liegen im JSON-Format vor, Abfragen und Aggregationsfunktionen können direkt als JavaScript-Anweisungen formuliert werden, außerdem können ganze Anweisungsfolgen zum Datenbanksystem geschickt und dort ausgeführt werden.  
+In 2009, MongoDB was released—a NoSQL database software that uses JavaScript as its internal lingua franca. Data is stored in JSON format, and queries and aggregation functions can be formulated directly as JavaScript statements; furthermore, entire sequences of statements can be sent to the database system and executed there.
 
-> **FunFact:** Der Name MongoDB leitet sich von *humongous* ab, womit die groteske Größe der Datenmengen gemeint ist, die mit dieser Software verwaltet werden können.
+> **FunFact:** The name MongoDB is derived from *humongous*, referring to the enormous volume of data that can be managed with this software.
 
-Zusammen mit node.js, was es ermöglicht, JavaScript außerhalb des Browsers zu nutzen, kann also die ganze Serverseite heute mit JavaScript/TypeScript umgesetzt werden. Das Nachfolgeprojekt von node.js, deno, verarbeitet direkt TypeScript. Wenn auch die aktuellen Installationen im Internet noch von JavaScript, PHP und MySQL dominiert sind, bist Du mit Node.js, TypeScript und MongoDB sehr zukunftsträchtig aufgestellt.
+Combined with Node.js—which enables the use of JavaScript outside the browser—the entire server-side component can now be implemented using JavaScript or TypeScript. Deno, the successor project to Node.js, supports TypeScript natively. Although current web installations are still dominated by JavaScript, PHP, and MySQL, using Node.js, TypeScript, and MongoDB positions you well for the future.
 
-Für die Konzeption ist es allerdings zunächst unerheblich, welche Systeme letztlich zum Einsatz kommen.
+For the conceptual design, however, it is initially immaterial which systems are ultimately used.
 
 ## MingiDB
-Die Installation und Einrichtung einer Datenbank im Netz und die Entwicklung der serverseitigen Steuersoftware würde den Rahmen dieses Kurses sprengen. So wurde speziell hierfür eine winzige Serversoftware entwickelt, die sich an MongoDB orientiert aber äußerst leicht installieren lässt, direkten Einblick in die verwalteten Daten erlaubt und über keinerlei Sicherheitsmechanismen und Optimierungen verfügt.
+Installing and setting up a network-based database and developing the server-side control software would go beyond the scope of this course. Consequently, a lightweight server application was developed specifically for this purpose; modeled on MongoDB, it is extremely easy to install and allows direct insight into the managed data, yet it lacks any security mechanisms or optimizations.
 
-> **Achtung:** MingiDB wurde ausschließlich zu Lehrzwecken und für Prototypen entwickelt und darf nicht darüber hinaus zum Einsatz kommen.
+> **Attention:** MingiDB was developed exclusively for educational purposes and prototypes and must not be used for any other purpose.
 
-### Datenbank
-Eine MingiDB-Datenbank ist lediglich ein Ordner auf einem über das Internet erreichbaren Computer, der PHP verarbeiten kann, in dem die Datei `index.php` von MingiDB abgelegt ist. Das darin enthaltene PHP-Skript legt innerhalb des Ordner selbständig JSON-Dateien an, die als `collection` bezeichnet werden. Die einzelnen Einträge in einer `collection` werden `document` genannt und sind einfach unsere bekannten assoziativen Arrays im JSON-Format. Jeder Eintrag wird dabei von MingiDB automatisch mit einer eindeutigen Identifikation versehen, auch wenn die Inhalte ansonsten identisch sind.
+### database
+A MingiDB database is simply a folder on an internet-accessible computer capable of processing PHP, containing the MingiDB `index.php` file. The PHP script within this folder automatically creates JSON files—referred to as `collections` inside the folder itself. The individual entries within a `collection` are called `documents` and are essentially the familiar associative arrays in JSON format. MingiDB automatically assigns a unique identifier to each entry, even if the contents are otherwise identical.
 
 ```plaintext
 Database
@@ -63,21 +63,21 @@ Database
 ```  
 
 ### Server
-Das Skript dient gleichzeitig als Server, mit dem der Client kommuniziert. Normalerweise kann ein solcher Server frei programmiert werden und selbstständig Daten auch erzeugen, verändern und prüfen. Für diesen Kurs genügt es, dass er die Queries, die er vom Client erhält, nach einem festgelegten Schema interpretiert und damit die Daten verwaltet.
+The script also serves as the server with which the client communicates. Typically, such a server can be freely programmed and can independently generate, modify, and validate data. For this course, however, it suffices for the server to interpret the queries received from the client according to a predefined scheme and manage the data accordingly.
 
 ### Installation
-Github-Pages ist ein reiner Fileserver und Du hast keine Möglichkeit, mehr Funktionalität auf der Serverseite zu implementieren. Deine Datenbank muss von einem Service betrieben werden, der dir diese Möglichkeit bietet. Und Du brauchst einen freien Zugang dazu. Nutze jetzt deinen eigenen HFU-Webspace, hier können selbstgeschriebene Programme serverseitig ausgeführt werden. Diese und weitere Daten kannst Du dort mit Hilfe des File-Transfer-Protocol (ftp bzw. sftp) selbst verwalten, fast so wie mit deinem lokalen Dateisystem.
-- [x] Mache dich zunächst mit dem Webspace vertraut, den dir die Hochschule zur Verfügung gestellt hat, und mit einem der empfohlenen FTP-Clients. Siehe <https://howto.hs-furtwangen.de/webdata/>
-- [x] Hole dir nun MingiDB von <https://github.com/JirkaDellOro/MingiDB> und folge den Anweisung zur Installation und dem Tutorial. 
-- [x] experimentiere mit dem MingiDB-Client und deiner Datenbank.
+GitHub Pages is strictly a file server, so you have no way to implement additional server-side functionality. Your database must be hosted by a service that supports this capability, and you need unrestricted access to it. Instead, use your own HFU webspace, where custom programs can be executed on the server side. You can manage these and other files there yourself using the File Transfer Protocol (FTP or SFTP)—much like working with your local file system.
+- [x] First, familiarize yourself with the web space provided by the university and with one of the recommended FTP clients. See <https://howto.hs-furtwangen.de/webdata/>
+- [x] Get MingiDB now from <https://github.com/JirkaDellOro/MingiDB> and follow the installation instructions and the tutorial. 
+- [x] Experiment with the MingiDB client and your database.
 
-# Cocktailbar: Datenbankanbindung
-MingiDB kann also GET-Requests vom Client entgegen nehmen, den Query interpretieren und den Datenspeicher verwalten, darin Datensätze erzeugen (Create), lesen (Read), verändern (Update) und löschen (Delete). Diese vier Aktivitäten sind fundamental und werden kurz durch das Akronym `CRUD` zusammengefasst.  
+# Cocktail bar: Database connectivity
+MingiDB can thus accept GET requests from the client, interpret the query, and manage the data store—creating, reading, updating, and deleting data records within it. These four activities are fundamental and are briefly summarized by the acronym `CRUD`.
 
-Wie MongoDB erwartet auch MingiDB die Daten im JSON-Format. Zudem wird im Query ein Kommando und die Angabe der Collection erwartet. Das bedeutet, dass er bearbeitet werden muss, bevor er abgeschickt wird.
+Like MongoDB, MingiDB expects data in JSON format. Additionally, the query requires a command and the specification of the collection. This means it must be processed before being sent.
 
-## Umwandlung
-Leider bieten weder FormData noch URLSearchParams Methoden zur Umwandlung der Formulardaten in das erforderliche JSON-Format. Der Algorithmus hierfür ist aber nicht sonderlich komplex.
+## Converting
+Unfortunately, neither FormData nor URLSearchParams offers methods for converting form data into the required JSON format. However, the algorithm for doing so is not particularly complex.
 ```typescript 
 interface FormDataJSON {
   [key: string]: FormDataEntryValue | FormDataEntryValue[];
@@ -92,29 +92,29 @@ for (let key of formData.keys())
     json[key] = values.length > 1 ? values : values[0];
   }
 ```
-- [x] Ergründe, was hier geschieht. Recherchiere nach den Typen und Anweisungen im Internet.
+- [x] Find out what is happening here. Research the types and instructions online.
 
 ## Query
-Es geht zunächst nur um die Bestellung, also ist nur das Kommando "insert" erforderlich. Die Collection heißt "Orders" und es wird davon ausgegangen, dass sie in der Datenbank bereits existiert. Mit Hilfe eines leeren URLSearchParams-Objekt kann der Query nun leicht erzeugt werden.
+Initially, the focus is solely on the order, so only the "insert" command is required. The collection is named "Orders," and it is assumed that it already exists in the database. The query can now be easily created using an empty URLSearchParams object.
 ```typescript
 let query: URLSearchParams = new URLSearchParams();
 query.set("command", "insert");
 query.set("collection", "Orders");
 query.set("data", JSON.stringify(json));
 ```
-Ein so erzeugter Query sieht in der Zeichenkettendarstellung nun beispielsweise so aus:  
+A query generated in this way now looks like this, for example, in its string representation:  
 `?command=insert&collection=Orders&data={"Drink":"Sex on the beach","Container":"Papercup","Extras":["Lemon","Orange"],"Amount":"0.4"}`
 
-- [x] Übertrage den Code in die `sendOrder`-Funktion deiner Cocktailbar (oder hole dir den Code aus dem Anhang) und bringe ihn mit deiner eigenen Datenbank zum Laufen. Dazu musst Du dort die Collection "Orders" zuvor angelegt haben und im Code den URL auf deine Datenbank angeben.
+- [x] Copy the code into the `sendOrder` function of your cocktail bar (or get the code from the attachment) and get it working with your own database. To do this, you must first create an "Orders" collection and specify the URL for your database in the code.
 
-## Angebot
-Das Angebot des Barkeeperis liegt derzeit noch als statische Datei bei der Applikation. Entsprechend des Use-Case-Diagramms sollte es in einer Collection `offer` liegen. Dabei wäre es möglich, das komplette Angebot als ein einziges Dokument abzulegen, so wie es derzeit auch vorliegt. Allerdings wäre die Funktionalität einer Datenbank vielleicht besser genutzt, wenn man das Angebot auf mehrere Dokumente aufteilt. Diese könnten so aussehen:
+## Offer
+The Barkeeper offering is currently stored as a static file within the application. According to the use-case diagram, it should reside in an `offer` collection. While it would be possible to store the entire offering as a single document—just as it is currently set up—database functionality might be better utilized by splitting the offering across multiple documents. These could look like this:
 ```typescript
 { Drink: [ { name: "Mojito", price: 25.00 }, { name: "Caipirinha", price: 30.00 }, ... ] }
 { Extras: [ { name: "Ice", price: 0.50 }, { name: "Lemon", price: 0.20}, ... ]}
 ...
 ```
-Auch ist es möglich und vielleicht sinnvoll, eigene Collections für Drinks, Extras, Container etc. anzulegen und darin für jedes Item ein eigenes Dokument.
+It is also possible—and perhaps sensible—to create dedicated collections for drinks, extras, containers, etc., with a separate document for each item within them.
 ```typescript
 Collection Drink
 { name: "Mojito", price: 25.00 }
@@ -125,7 +125,7 @@ Collection Extras
 { name: "Lemon", price: 0.20}
 ...
 ```
-Diese Collections könnte man auch in einer eigenen Datenbank, bei MingiDB also einem eigenen Ordner, für das Barkeeperi-Angebot anlegen und damit strenger von den Bestellungen trennen.  
+You could also create these collections in a separate database—or, in the case of MingiDB, a separate folder—for the Barkeeperi offering, thereby keeping them more strictly separated from the orders.  
 
-> **Achtung:** Wie also Informationen in Datenbanken strukturiert sein sollen, ist eine Designentscheidung, die Du treffen musst!
+>**Attention:** So, how information should be structured in databases is a design decision you have to make!
 

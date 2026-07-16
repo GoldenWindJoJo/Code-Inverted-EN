@@ -3,35 +3,34 @@
 <img src="Material/bobross.jpg"/>
 <small>Quelle: <a href="http://pix4.qmde.de/www.quotenmeter.de/pics/sonstiges/2019/medien/bobross_ox__W1000xh0.jpg">http://pix4.qmde.de/www.quotenmeter.de/pics/sonstiges/2019/medien/bobross_ox__W1000xh0.jpg</a></small>  
 
-Die standardisierten HTML-Elemente vereinfachen die Gestaltung einer Web-Applikation enorm, und Formular-Elemente unterstützen sogar komplexe Interaktion in einer den meisten Nutzeris bereits geläufigen Form. Allerdings sind die Gestaltungsmöglichkeiten dadurch recht eingeschränkt. Ebenso übliche Formen der Informationsvermittlung, wie beispielsweise Diagramme, lassen sich damit nicht zur Laufzeit erzeugen. Hierfür nutzt man das `HTMLCanvasElement`!  
-> **FunFact:** Canvas heißt so viel wie Plane, Segel, Markise... aber auch Leinwand.
+Standardized HTML elements greatly simplify the design of web applications, and form elements even support complex interactions in a format already familiar to most users. However, this imposes significant limitations on design possibilities. Furthermore, common methods of presenting information—such as charts—cannot be generated at runtime using these elements. That is where the `HTMLCanvasElement` comes in!
+> **FunFact:** "Canvas" can mean a tarpaulin, a sail, or an awning... but also an artist's canvas.
 
-Das `HTMLCanvasElement`stellt eine rechteckige Fläche auf einer Browserseite zur Verfügung, deren einzelne Bildpunkte (Pixel) mit Hilfe von Zeichenbefehlen beliebig eingefärbt werden können. Innerhalb dieser Fläche lassen sich frei Formen und Farben dynamisch generieren. 
-> **FunFact:** Pixel ist ein Kunstwort, dass sich aus **Pic**ture und **El**ement oder **Cell** zusammensetzt. Eine Rastergrafik, wie sie unsere modernen Monitore darstellen, unsere Kameras liefern oder unsere Webseiten aufbauen, sind aus einer Vielzahl solcher farbiger Pixel zusammengesetzt.
+The `HTMLCanvasElement` provides a rectangular area on a browser page where individual pixels can be colored as desired using drawing commands. Within this area, shapes and colors can be dynamically generated.
+> **FunFact:** "Pixel" is a portmanteau derived from **pic**ture and **el**ement (or **cell**). Raster graphics—such as those displayed on modern monitors, captured by cameras, or used to build web pages—are composed of a multitude of these colored pixels.
 
 ## CanvasRenderingContext
-Die Befehle für diese Bildmanipulation stellt das `HTMLCanvasElement` aber nicht direkt zur Verfügung, sondern es bietet hierfür spezielle Programmierschnittstellen (Application Programming Interfaces, API) an, die in diesem Zusammenhang CanvasRenderingContext genannt werden. Sie können sehr umfangreich sein und es gibt sie sowohl für 2D- als auch für 3D-Grafikdarstellung z.B. mit WebGL. Mit dem folgenden Code wird ein solcher CanvasRenderingContext für die Bildmanipulation mit zweidimensionalen Zeichenkommandos von einem im DOM vorhandenen Canvas angefordert und eine Referenz darauf gespeichert.  
+However, the `HTMLCanvasElement` does not provide the commands for this image manipulation directly; instead, it offers specialized programming interfaces (APIs)—known in this context as the `CanvasRenderingContext`—for this purpose. These interfaces can be quite extensive and are available for both 2D and 3D graphics rendering (e.g., using WebGL). The following code requests such a `CanvasRenderingContext`—designed for image manipulation via two-dimensional drawing commands—from a canvas element present in the DOM and stores a reference to it.
 ```typescript
 let canvas: HTMLCanvasElement = document.querySelector("canvas");
 let crc2: CanvasRenderingContext2D = canvas.getContext("2d");
 ```
-- [x] Erstelle eine HTML-Datei und lege dort mit `<canvas>` ein Canvas-Element an.
-- [x] Erstelle ein TypeScript-Programm, welches den RenderingContext des Canvas-Elementes anfordert und eine Referenz in einer Variable namens `crc2` speichert, wie oben angegeben.
-- [x] Gib in einer weiteren Zeile `crc2.` ein und verschaffe dir einen Eindruck von der Menge der Zeichenbefehle, die dir nun zur Verfügung stehen.  
+- [x] Create an HTML file and set up a canvas element using `<canvas>`.
+- [x] Create a TypeScript program that requests the rendering context of the canvas element and stores a reference in a variable named `crc2`, as specified above.
+- [x] Type `crc2.` on another line and get an idea of ​​the range of drawing commands now available to you.  
 
-Die Pixel des Canvas-Elements werden beim Aufbau des DOMs zunächst mit der Farbe `#FFFFFF`, also weiß, besetzt. Daher fällt der Canvas auf weißem Hintergrund nicht ins Auge. Der einfachste Befehl, den Du nutzen kannst um das zu ändern, ist `fillRect()`, wobei zunächst die Füllfarbe als Eigenschaft `fillStyle` des RenderingContexts definiert werden muss.
+When the DOM is constructed, the pixels of the canvas element are initially set to the color `#FFFFFF`—that is, white. Consequently, the canvas does not stand out against a white background. The simplest command you can use to change this is `fillRect()`, though you must first define the fill color using the `fillStyle` property of the rendering context.
 ```typescript
 crc2.fillStyle = "#FF0000";
 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 ```
-- [x] Finde heraus, welche Bedeutung die Parameter der Methode `fillRect` haben. Experimentiere damit.
+- [x] Find out what the parameters of the `fillRect` method mean. Experiment with them.
 
-## Pfade
-`fillRect(...)`, `clearRect(...)` und `strokeRect(...)` sind die einzigen Zeichenbefehle, die sofort ein sichtbares Ergebnis liefern. Komplexere Formen definierst Du zunächst mit Hilfe eines Pfad-Objektes.
-
-### Vektorgrafik
-Wenn auch das entstehende Bild am Ende als Rastergrafik vorliegt, die Definition der Pfade erfolgt nach den Regeln der Vektorgrafik. Das bedeutet, dass Du nicht einzelne Pixel manipulierst, sondern mathematische Beschreibungen der zu zeichnenden Formen und ihrer Koordinaten formulierst. Die Rasterung übernimmt dann der RenderingContext wenn die Zeichenmethoden `stroke()` und `fill()` aufgerufen werden. Daraufhin erst werden die Pixel, die innerhalb oder am Rande des Pfades liegen nach der zuvor definierten Füll- oder Linienvorschrift mit Farbe versehen.  
-Es gibt allerdings auch Methoden zur direkten Manipulation von Pixeln, die in dieser Lektion aber keine Rolle spielen sollen.
+## Paths
+`fillRect(...)`, `clearRect(...)` and `strokeRect(...)` are the only drawing commands that immediately produce a visible result. You define more complex shapes first using a path object.
+### Vector graphic
+Even though the resulting image is ultimately a raster graphic, the paths are defined according to vector graphics principles. This means you do not manipulate individual pixels directly; instead, you formulate mathematical descriptions of the shapes to be drawn and their coordinates. The rendering context handles the rasterization when the `stroke()` and `fill()` drawing methods are called. Only then are the pixels located inside or along the edge of the path colored according to the previously defined fill or stroke specifications. 
+However, there are also methods for direct pixel manipulation, though these will not be covered in this lesson.
 
 ### Arc  
 
@@ -42,35 +41,35 @@ crc2.closePath();
 crc2.stroke();
 ```  
 
-- [x] Erkunde, was `arc` bewerkstelligt und was die Parameter bedeuten.
-- [x] Finde heraus, wie Du die Linienfarbe ändern kannst.
-- [x] Was geschieht, wenn die Anweisung `closePath()` nicht ausgeführt wird. Warum?
+- [x] Explore what `arc` does and what the parameters mean.
+- [x] Find out how to change the line color.
+- [x] What happens if the `closePath()` instruction is not executed? Why?
 
 
 ### Ellipse
-Lange Zeit war es erforderlich, Ellipsen als verzerrte Kreise darzustellen oder mit Kurven anzunähern. Mittlerweile gibt es aber auch eine `ellipse`-Anweisung.
+For a long time, it was necessary to represent ellipses as distorted circles or to approximate them using curves. However, there is now an `ellipse` command as well.
 
 - [x] Finde heraus, wie die Ellipse funktioniert...
 
-### Linienzüge
-Mit den Anweisungen `moveTo(...)` und `lineTo(...)` kannst Du einen Pfad um Linienzüge erweitern. Eine Linie wird dabei nur durch die Endposition definiert, die Startposition ist die Endposition der vorangegangenen Anweisung.  
+### Line segments
+You can extend a path with line segments using the `moveTo(...)` and `lineTo(...)` commands. A line is defined solely by its end position, while the start position is the end position of the preceding command.
 
-- [x] Lasse ein Dreieck zeichnen.
+- [x] Have a triangle drawn.
 
-### Kurven
-Mit `moveTo(...)` und `lineTo(...)` kannst Du beliebige eckige Formen darstellen. Wenn es geschmeidiger werden soll, nutzt Du quadratische oder Bezier-Kurven.  
+### Curves
+You can create any kind of angular shape using `moveTo(...)` and `lineTo(...)`. If you want smoother lines, use quadratic or Bézier curves.
 
-- [x] Experimentiere mit [dieser Anwendung](https://jirkadelloro.github.io/Code-Inverted/X01_Appendix/Canvas/Curves/Curves/start.html). Beachte, dass für quadratische Kurven außer dem vorangegangenen Endpunkt des aktuellen Pfades zwei weitere, für Bezierkurven drei weitere Punkte angegeben werden müssen.  
+- [x] Experiment with [this application](https://jirkadelloro.github.io/Code-Inverted/X01_Appendix/Canvas/Curves/Curves/start.html). Note that for quadratic curves, in addition to the previous end point of the current path, two further points must be specified; for Bézier curves, three further points are required. 
 
 ### Text
-Alternativ zu einer Textüberlagerung durch ein weiteres HTML-Element, kann Text auch durch den RenderingContext auf den Canvas gebracht werden. Hierzu dienen die Methoden `fillText(...)` und `strokeText(...)` und weitere Methoden zur Steuerung der Textausgabe.
+As an alternative to overlaying text using an additional HTML element, text can also be rendered onto the canvas via the rendering context. The methods `fillText(...)` and `strokeText(...)`, along with other methods for controlling text output, are used for this purpose.
 
-### Weiteres
-Der CanvasRenderingContext bietet noch einige Zeichen- und Stilmittel mehr, studiere hierzu dieses [CheatSheet](../X01_Appendix/Canvas/HTML5_Canvas_Cheat_Sheet.pdf). Damit erhältst Du schnell einen Überblick und kannst die Syntax nachschlagen. Aber auch das ist nicht vollständig. Im Internet findest Du bei Bedarf noch zahlreiche weitere Quellen.
+### Further information
+The CanvasRenderingContext offers several additional drawing and styling features; consult this [cheat sheet](../X01_Appendix/Canvas/HTML5_Canvas_Cheat_Sheet.pdf) for details. This gives you a quick overview and allows you to look up the syntax. However, even this is not exhaustive; you can find numerous other sources online if needed.
 
-### Pfadobjekte
-Bei Verwendung der Pfad-Methoden direkt auf dem RenderingContext, wird ein globales Pfadobjekt manipuliert. Mit `beginPath()` wird der darin enthaltene alte Pfad gelöscht und ein neuer angelegt.  
-Es ist aber auch möglich, mit `new Path2D()` individuelle Pfadobjekt zu erzeugen und die Pfadanweisungen darauf auszuführen. So kann der Pfad gespeichert und im Laufe des Programms wiederverwenden werden, ohne dass der Algorithmus zur Pfaderstellung wieder durchlaufen werden muss. Zum Zeichnen eines solchen Pfadobjektes wird es schließlich als Parameter der Zeichenmethode einfach mitgegeben.  
+### Path objects
+When using path methods directly on the `RenderingContext`, a global path object is manipulated. Calling `beginPath()` clears the existing path and creates a new one.
+However, it is also possible to create individual path objects using `new Path2D()` and execute path commands on them. This allows the path to be stored and reused later in the program without having to re-run the path-creation algorithm. Finally, to draw such a path object, it is simply passed as a parameter to the drawing method. 
 
 ```typescript
 let path: Path2D = new Path2D();
@@ -79,28 +78,28 @@ crc2.stroke(path);
 ```
 
 ## Rendering
-"Render" ist ein relativ unspezifisches Wort und bedeutet lediglich so viel wie "ausführen, machen, tun". Im Zusammenhang mit digitalen Medien ist meist die Erzeugung eines Bildes anhand gegebener Daten gemeint. Es gibt unterschiedliche Ansätze hierfür.   
+"Render" is a relatively non-specific term that simply means "to execute," "to make," or "to do." In the context of digital media, it usually refers to the generation of an image based on given data. There are various approaches to this.
 
-> **FunFact:** Render als Substantiv heißt auch "Putz". Die in der 3D-Grafik häufig genannte "Renderpipe" könnte man also falsch als "Putzpfeife" übersetzen.  
+> **FunFact:** As a noun, "Render" also means "plaster." Consequently, one could mistakenly translate the "render pipe"—frequently mentioned in 3D graphics—as a "plaster pipe."
 
 ### Retained Mode
-Es wird zunächst ein Modell der gesamten darzustellenden Szene erzeugt, was fortwährend manipuliert werden kann. Das Rendering-API kümmert sich dann darum, die Szene als Ganzes zu rendern. Ein dir wohlbekanntes Beispiel für ein solches Modell ist das DOM. Es wird automatisch gerendert und so die visuelle Darstellung erzeugt, die das Nutzeri sieht.
+First, a model of the entire scene to be displayed is created, which can be continuously manipulated. The rendering API then handles rendering the scene as a whole. A familiar example of such a model is the DOM. It is rendered automatically, thereby generating the visual representation that the user sees.
 
 ### Immediate Mode
-CanvasRenderingContext aber arbeitet im Immediate Mode. Es gibt keinerlei Verwaltung für darzustellende Bildteile. Wann, wo und wie jeder Pfad gerendert wird, obliegt vollständig dem Programm, welches den Context nutzt. Sobald ein Zeichenkommando abgearbeitet wird, verändern betroffene Pixel im Zielbild ihre Farbe. 
+However, CanvasRenderingContext operates in immediate mode. There is no management of the image elements to be displayed. When, where, and how each path is rendered is entirely up to the program using the context. As soon as a drawing command is executed, the affected pixels in the target image change color.
 
-> **Achtung:** Da der Canvas wiederum ein DOM-Element ist, muss der Browser Gelegenheit bekommen, das fertige Bild auf der Seite darzustellen. Eine Endlosschleife beispielsweise wird ihn daran hindern.
+> **Attention:** Since the canvas is itself a DOM element, the browser must be given the opportunity to render the finished image on the page. An infinite loop, for example, would prevent it from doing so.
 
-### Maleralgorithmus
-Das bedeutet, das nachfolgende Zeichenkommandos die Wirkung der vorangegangenen überschreiben können. Das Bild muss also "von hinten nach vorne" aufgebaut werden. Bildteile, die im Hintergrund liegen sollen, werden zuerst gezeichnet, danach die Bildteile im Vordergrund. Das ist der sogenannte Maleralgorithmus, denn ein Maler arbeitet am effizientesten ebenfalls so.  
-- [x] Schaue dir Malvideos im Internet an, vielleicht von oben dargestelltem Bob Ross. Beachte, in welcher Folge er die Bildbestandteile malt.
+### Painter's algorithm
+This means that subsequent drawing commands can overwrite the effects of preceding ones. Consequently, the image must be constructed "from back to front": elements intended for the background are drawn first, followed by those in the foreground. This is known as the "painter's algorithm," as this is also the most efficient way for a painter to work.
+- [x] Take a look at some videos online—perhaps featuring Bob Ross. Pay attention to the order in which he paints the various elements of the picture.
 
-## Koordinatensystem
-Das Standard-Koordinatensystem hat seinen Ursprung in der linken oberen Ecke des Canvas, positive Koordinatenwerte steigen horizontal nach rechts an, vertikal nach unten. Angaben sind direkt bezogen auf Pixel, wobei die Koordinate (0.5,0.5) den ersten sichtbaren Pixel ganz links oben referenziert, die Koordinate (canvas.width-0.5, canvas.height-0.5) den letzten sichtbaren Pixel rechts unten.  
+## Coordinate system
+The standard coordinate system has its origin in the top-left corner of the canvas; positive coordinate values ​​increase horizontally to the right and vertically downwards. Values ​​are specified directly in pixels, with the coordinate (0.5, 0.5) referencing the first visible pixel at the top-left, and the coordinate (canvas.width - 0.5, canvas.height - 0.5) referencing the last visible pixel at the bottom-right.
 
-> **Achtung:** Wie immer bei den digitalen Medien beginnen wir die Zählung mit der 0, daher liegt bei einem Canvas mit der Größe 300x200 der Pixel mit der Koordinate (300, 200) nicht mehr im sichtbaren Bereich.  
+> **Attention:** As is always the case with digital media, we start counting at 0; therefore, on a canvas measuring 300x200, the pixel at coordinate (300, 200) lies outside the visible area.  
 
-Als Koordinatenwerte sind nicht nur Ganzzahlen zulässig, sondern auch Fließkommazahlen. Je nach Einstellung des Canvas wird dann beim Rendern der nächste Pixel gefüllt, oder die Farbe halbtransparent auf die umgegebenden Pixel verteilt. Um einen Pixel tatsächlich genau mittig zu treffen, kann es erforderlich sein, Nachkommastellen zu nutzen. Der untenstehende Code erzeugt das nebenstehende Bild (stark vergrößert).  
+Coordinate values ​​can be either integers or floating-point numbers. Depending on the canvas settings, rendering will either fill the nearest pixel or distribute the color—with partial transparency—across the surrounding pixels. To target the exact center of a pixel, it may be necessary to use decimal values. The code below generates the image shown alongside (greatly enlarged).  
 
 <img src="Material/Aliasing.png" style="float: right" >  
 
@@ -115,41 +114,40 @@ crc2.lineTo(10.5, 10);
 crc2.stroke();
 ```
 
-Eine schräge Linie verläuft immer durch viele Zwischenpositionen. Würden nur die dabei am stärksten berührten Pixel gezeichnet, entsteht ein Treppen-Effekt (Aliasing). Bei der Farbverteilung (Anti-Aliasing) wird dies kaschiert, es entstehen durch die Transparenzen aber neue Farben im Bild und die Linie wird unscharf gezeichnet.
+A diagonal line always passes through numerous intermediate positions. If only the pixels most heavily intersected by the line were drawn, a "staircase" effect (aliasing) would result. Color blending (anti-aliasing) masks this, but the use of transparency creates new colors in the image and causes the line to appear blurred.
 
 ## Transformation
-Sollen ähnliche Bildbestandteile, z.B. Bäume, Häuser, Schneeflocken etc., mehrfach in einem Bild auftauchen, ergibt sich ein Problem. Da die Pfade, mit deren Hilfe diese Bestandteile gezeichnet werden, mit absoluten Koordinaten bezogen auf das Standard-Koordinatensystem konstruiert werden, sind diese Informationen fest im Pfad definiert. Selbst wenn keine literalen Werte als Parameter übergeben sondern Variablen genutzt werden, so dass der Code zur Konstruktion wiederverwendet werden kann, muss der komplette Pfad erneut konstruiert werden, wenn der gleiche Bildbestandteil an einer anderen Stelle auftauchen soll.  
-Hier schaffen Transformationen Abhilfe. Anstatt die Koordinaten und Dimensionen neu anzugeben, kann mit Transformationen das Koordinatensystem verändert werden, auf das sich die Angaben beziehen. 
+A problem arises when similar image elements—such as trees, houses, snowflakes, etc.—are to appear multiple times within an image. Since the paths used to draw these elements are constructed using absolute coordinates relative to the standard coordinate system, this information is hard-coded into the path definition. Even if variables are used instead of literal values ​​as parameters—thereby allowing the construction code to be reused—the entire path must be reconstructed if the same image element is to appear at a different location. 
+Transformations offer a solution here. Instead of respecifying coordinates and dimensions, transformations allow the coordinate system to which the values ​​refer to be changed.
 
 <!--
-- [x] Lade dir den Standalone [FlashPlayer-Projector von Adobe](https://www.adobe.com/support/flashplayer/debug_downloads.html) herunter. Eine Installation ist nicht erforderlich.
-- [x] Öffne damit diese URL: <https://webuser.hs-furtwangen.de/~del/Apps/Transformation/Transformation.swf>
-- [x] Experimentiere mit der Transformator-App. Erzeuge drei unterschiedliche und aktive Transformationen und beobachte die Auswirkungen.
-- [x] Vertausche sie durch Klick auf das Doppelpfeil-Symbol. Erkläre, warum das Haus des Nikolaus seine Position oder Erscheinung dabei ändert.
+- [x] Download the standalone [Adobe Flash Player Projector](https://www.adobe.com/support/flashplayer/debug_downloads.html). No installation is required.
+- [x] Use this to open the following URL: <https://webuser.hs-furtwangen.de/~del/Apps/Transformation/Transformation.swf>
+- [x] Experiment with the Transformer app. Create three different, active transformations and observe the effects.
+- [x] Swap them by clicking the double-arrow icon. Explain why the "House of Santa Claus" changes its position or appearance in the process.
 -->
 
-Die Transformationen werden nacheinander ausgeführt und jede weitere Transformation verändert das Ergebnis der vorangegangenen. Tatsächlich existiert nur eine Transformationsmatrix, welche die komplette Transformationskette darstellt. Jedesmal, wenn `translate(...)`, `rotate()` oder `scale()` aufgerufen wird, wird diese Matrix verändert. Bei der Erstellung oder beim Zeichnen eines Pfades wird die Gesamtmatrix mit einer einfachen Matrixmultiplikation auf die Koordinaten angewendet.  
-Das bedeutet, dass immer wiederkehrende Transformatsaufrufe in der Matrix kumulieren, was in der Regel nicht gewünscht ist. Für dieses Problem gibt es mehrere Lösungsansätze:
-- mit `resetTransform()` die Gesamtmatrix wieder auf den Urzustand bringen
-- mit `save()` den aktuellen Zustand der Gesamtmatrix speichern, und diesen Zustand später mit `restore()` wieder herstellen. Dabei kann auch mehrfach `save()` aufgerufen werden, die dabei gespeicherten Zustände werden per `restore()` in umgekehrter Reihenfolge wieder restauriert.
-- mit `getTransform()` den aktuellen Zustand der Gesamtmatrix speichern und einer Variable vom Typ `DOMMatrix`zuweisen. Mit `setTransform(...)` und der Variable als Parameter wird dieser Zustand wieder hergestellt  
+The transformations are performed sequentially, and each subsequent transformation modifies the result of the preceding one. In fact, there is only a single transformation matrix representing the entire chain of transformations. This matrix is ​​modified each time `translate(...)`, `rotate()`, or `scale()` is called. When a path is created or drawn, the composite matrix is ​​applied to the coordinates using simple matrix multiplication.
+This means that repeated transform calls accumulate in the matrix, which is generally undesirable. There are several approaches to solving this problem:
+- restore the overall matrix to its original state using `resetTransform()`
+- Save the current state of the overall matrix using `save()`, and restore this state later using `restore()`. `save()` can be called multiple times; the saved states are restored in reverse order using `restore()`.
+- You can save the current state of the overall matrix using `save()` and restore it later using `restore()`. `save()` can be called multiple times; the saved states are restored in reverse order via `restore()`. Alternatively, you can save the current state of the overall matrix using `getTransform()` and assign it to a variable of type `DOMMatrix`; this state is then restored using `setTransform(...)` with that variable as the parameter.  
 
-## Stil
-### Farbe
-Der CanvasRenderingContext kann Farbangaben als Zeichenketten verarbeiten, wie sie ebenso in CSS3 verwendet werden. Hier hat man also die Auswahl der Farbkodierung und kann die heranziehen, die sich für die Aufgabe am besten eignet. Für eine Serie von Bildelementen, die mit gleicher Farbe aber unterschiedlicher Helligkeit dargestellt werden sollen, ist die Angabe im HSL-Format deutlich leichter zu bewerkstelligen als in den anderen Formaten. Folgende Zeichenketten produzieren alle das gleiche  <span style="background-color: salmon; width:130px; display:inline-block; text-align:center">Lachsrot</span>
+## Style
+### Color
+The CanvasRenderingContext can process color specifications as strings, just like those used in CSS3. This gives you a choice of color encodings, allowing you to select the one best suited to the task at hand. For a series of image elements that need to be rendered in the same color but with varying brightness, specifying the color in HSL format is significantly easier than using other formats. The following strings all produce the same <span style="background-color: salmon; width:130px; display:inline-block; text-align:center">salmon red</span>
 
-| Format       | Zeichenkette                                   |
+| Format       | string                                   |
 |--------------|------------------------------------------------|
 | Hexadezimal  | #FA8072                                        |
 | RGB          | RGB( 250, 128, 114 ) oder RGB( 98%, 50%, 45% ) |
 | HSL          | HSL( 6, 93%, 71% )                             |
 | Predefiniert | salmon                                         |
 
-RGB und HSL erlauben (dann auch als RGBA und HSLA bezeichnet) noch einen vierten Parameter, nämlich die Opazität (Alpha) die als Fließkommazahl zwischen 0 und 1 angegeben wird. Zudem ist auch die weniger präzise Angabe mit nur drei hexadezimalen Ziffern möglich.
+RGB and HSL also allow (when referred to as RGBA and HSLA) a fourth parameter opacity (alpha)—specified as a floating point number between 0 and 1. Additionally, the less precise notation using only three hexadecimal digits is also possible.
 
-### Farbverlauf
-Zwei Arten von Farbverläufen (Gradients) sind möglich, der lineare und der radiale. Beim linearen werden zwei Punkte auf dem Canvas angegeben, die Farbe verläuft dann vom ersten zum zweiten. Der radiale Farbverlauf wird ebenso mit Hilfe von zwei Punkten aber auch zwei Radien definiert. Damit ergeben sich zwei Kreise zwischen deren Perimetern die Farbe verläuft.  
-Welche Farbwerte der Verlauf an welchen Stellen erreichen soll, wird mit Hilfe von Haltepunkten auf der Verlaufsstrecke angegeben. Die Lage der Haltepunkte wird dabei nur mit einem einzigen Wert relativ zur Gesamtstrecke bzw. -fläche des Verlaufs definiert. Dabei entspricht der Wert 0 der Position des Beginns und 1 der des Endes des Verlaufs. Der Haltepunkt mit dem kleinsten Wert bestimmt die Farbe bis zum Beginn und darüber hinaus, der mit dem größten die Farbe bis zum Ende und darüber hinaus. Dazwischen laufen die Farben ineinander.
+### Color gradient
+Two types of gradients are possible: linear and radial. For a linear gradient, two points are specified on the canvas, and the color transitions from the first point to the second. A radial gradient is defined using two points as well as two radii, resulting in two circles between whose perimeters the color transitions. The specific color values ​​at various points along the gradient path are determined using stops. The position of each stop is defined by a single value relative to the gradient's total length or area, where a value of 0 corresponds to the start and 1 to the end of the gradient. The stop with the lowest value determines the color at the start and beyond, while the one with the highest value determines the color at the end and beyond; between these points, the colors blend into one another.
 
 ```typescript       
 let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, 100);
@@ -161,11 +159,11 @@ gradient.addColorStop(1, "gold");
 crc2.fillStyle = gradient;
 crc2.fillRect(0, 0, 200, 100);
 ```
-- [x] Welches Bild liefert der oben angegebene Code?
-- [x] Füge weitere Haltepunkte ein um schärfere Kanten zwischen den Farben zu erhalten.
+- [x] What image does the code provided above produce?
+- [x] Add more stop points to achieve sharper edges between the colors.
 
 ### Pattern
-Es ist auch möglich, Füllmuster einzusetzen. Dabei werden verschiedene Quellen für das Muster unterstützt wie Bitmaps, SVG-Bilder oder auch Grafiken, die auf einem Canvas erzeugt werden. Folgender Code liefert nebenstehendes Bild.
+It is also possible to use fill patterns. Various sources for the pattern are supported, such as bitmaps, SVG images, or graphics generated on a canvas. The following code produces the image shown alongside.
 
 <img src="Material/Pattern.png" style="float: right" >  
 
@@ -190,15 +188,15 @@ crc2.fillStyle = crc2.createPattern(pattern.canvas, 'repeat');
 crc2.fillRect(0, 0, canvas.width, canvas.height);
 ```
 
-## Linien
-Natürlich lässt sich auch die Gestaltung der Linien, die mit der Anweisung `stroke()` gezeichnet werden, detailliert kontrollieren. Linien können durchgehend oder unterschiedlich gestrichelt werden, Farben, Gradienten und auch Muster erhalten, sowie die Linienenden und die Ausführung von Knicken in den Linien spezifisch gestalten sein.
+## Lines
+Naturally, the appearance of lines drawn using the `stroke()` command can also be controlled in detail. Lines can be solid or have various dashed patterns, be assigned colors, gradients, and even patterns, and feature specific styling for line endings and the handling of corners.
 
-- [x] Recherchiere im Internet nach den Möglichkeiten für die Liniengestaltung.
+- [x] Research options for line styling on the Internet.
 
 ## Save/Restore
-Die Anweisungen `save()` und `restore()` speichern nicht nur die aktuelle Transformationsmatrix zwischen, sondern auch die Stilangaben für die Füllungen und Linien und weitere Informationen, die insgesamt den Zustand (`state`) des RenderingContexts beschreiben. Somit ist es möglich, beispielsweise wieder zum vorangegangenen Stil zurück zu kehren, wenn zwischenzeitlich ein anderer benötigt wurde. `save()` speichert die Informationen auf einem Ablagestapel (stack), weitere Aufrufe von `save()` legen weitere solcher Informationen oben auf. Mit `restore()` wird der Stapel von oben nach unten Stück für Stück geleert und die Zustände des CanvasRenderingContexts in umgekehrter Reihenfolge der Speicherung wiederhergestellt.
+The `save()` and `restore()` methods save not only the current transformation matrix but also style settings for fills and lines, along with other information that collectively defines the state of the rendering context. This makes it possible, for instance, to revert to a previous style after a different one has been used in the interim. `save()` stores this information on a stack; subsequent calls to `save()` push additional sets of information onto the top. `restore()` empties the stack from top to bottom, one item at a time, restoring the `CanvasRenderingContext` states in the reverse order of their saving.
 
-# L08.2 Landschaftsbild
+# L08.2 Landscape
 
 ## Scribble
 <div align="center">
@@ -210,17 +208,17 @@ Die Anweisungen `save()` und `restore()` speichern nicht nur die aktuelle Transf
 
 
 
-## Aktivitätsdiagramm
+## Activity diagram
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_BKILGHVL"><img src="../X01_Appendix/Img/L08_V2_Bild.JPG" width="25%"/></a>
 <a href="Material\Alley_ActivityDiagram.jpg"><img src="Material\Alley_ActivityDiagram.jpg" width="25%"/></a>
 <br/>
-<a href="http://hdl.handle.net/10900.3/OER_BKILGHVL"><img src="../X01_Appendix/Img/video.jpg" width="2%"/>L08 Canvas: Aktivitätsdiagramm</a>
+<a href="http://hdl.handle.net/10900.3/OER_BKILGHVL"><img src="../X01_Appendix/Img/video.jpg" width="2%"/>L08 Canvas: Activity diagram</a>
 </div>
 
 
 
-## Implementation des Hintergrund
+## Implementation of the background
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_XQZRKOBR"><img src="../X01_Appendix/Img/L08_V3_Bild.JPG" width="25%"/></a>
 <br/>
@@ -228,7 +226,7 @@ Die Anweisungen `save()` und `restore()` speichern nicht nur die aktuelle Transf
 </div>
 
 
-## Implementation der Wolke
+## Implementation of the cloud
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_YFYTDWCV"><img src="../X01_Appendix/Img/L08_V4_Bild.JPG" width="25%"/></a>
 <br/>
@@ -236,29 +234,29 @@ Die Anweisungen `save()` und `restore()` speichern nicht nur die aktuelle Transf
 </div>
 
 
-## Aktivitätsdiagramm zu den Bergen
+## Activity diagram for the mountains
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_CMDSHKDM"><img src="../X01_Appendix/Img/L08_V5_Bild.JPG" width="25%"/></a>
 <a href="Material\Alley_ActivityDiagram-Mountains.jpg"><img src="Material\Alley_ActivityDiagram-Mountains.jpg" width="25%"/></a>
 <br/>
-<a href="http://hdl.handle.net/10900.3/OER_CMDSHKDM"><img src="../X01_Appendix/Img/video.jpg" width="2%"/>L08 Canvas: Aktivitätsdiagramm Berge</a>
+<a href="http://hdl.handle.net/10900.3/OER_CMDSHKDM"><img src="../X01_Appendix/Img/video.jpg" width="2%"/>L08 Canvas: Activity diagram mountains</a>
 </div>
 
 
 
-## Implementation der Berge
+## Implementation of the mountains
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_BARAOYLQ"><img src="../X01_Appendix/Img/L08_V6_Bild.JPG" width="25%"/></a>
 <br/>
-<a href="http://hdl.handle.net/10900.3/OER_BARAOYLQ"><img src="../X01_Appendix/Img/video.jpg" width="2%"/>L08 Canvas: Implementation Berge</a>
+<a href="http://hdl.handle.net/10900.3/OER_BARAOYLQ"><img src="../X01_Appendix/Img/video.jpg" width="2%"/>L08 Canvas: Implementation Mountains</a>
 </div>
 
 
-## Übungen
-- [x] Isoliere die Funktionalität eine Zufallszahl zwischen einem minimalen und maximalen Wert zu liefern. Konzipiere sie als Aktivität und implementiere sie als Funktion, welche die beiden Grenzwerte entgegenen nimmt und eine entsprechende Zufallszahl zurück gibt. Ersetze die Stellen im Programm, an denen diese Funktion genutzt werden kann und sollte durch entsprechende Aufrufe derselben.
-- [x] Studiere das [Scribble](Material/draw.io/Alley_Scribble.svg) und das [Aktivitätsdiagramm](Material/draw.io/Trees_ActivityDiagram.svg) zum Aufbau der Baumreihe sowie die Implementation. Hier findest Du vielleicht noch einige wertvolle Hinweise für deine weitere Arbeit.
-- [x] Studiere den Code der Allee und ergründe, warum noch weitere Variablen vor den Aufrufen der draw-Functionen dazu gekommen sind.
-- [x] Experimentiere mit den Parametern der verschiedenen Funktionen und auch mit den hardkodierten Werten innerhalb dieser. Modifiziere so das Bild nach deinem ästhetischen Empfinden.
-- [x] Lasse die Position der Straße am Horizont um einen zufälligen Betrag zwischen -200 und 200 Pixeln horizontal verschieben, so dass der Fluchtpunkt bei jedem Aufruf des Programms ein anderer ist. Warum werden die Baumreihen mitbewegt?
+## Exercises
+- [x] Isolate the functionality for generating a random number between a minimum and a maximum value. Design it as a distinct operation and implement it as a function that accepts the two limit values ​​and returns a corresponding random number. Replace the points in the program where this function can and should be used with appropriate calls to it.
+- [x] Study the [Scribble](Material/draw.io/Alley_Scribble.svg) and the [activity diagram](Material/draw.io/Trees_ActivityDiagram.svg) regarding the layout of the row of trees, as well as the implementation. You might find some valuable pointers there for your further work.
+- [x] Study the code for the avenue and figure out why additional variables were introduced before the calls to the draw functions.
+- [x] Experiment with the parameters of the various functions, as well as the hard-coded values ​​within them. Modify the image according to your aesthetic sensibilities.
+- [x] Shift the horizontal position of the road on the horizon by a random amount between -200 and 200 pixels so that the vanishing point differs each time the program is run. Why do the rows of trees move along with it?
 
-- [x] Der CanvasRenderingContext bietet noch weitere Möglichkeiten wie z.B. Schatten. Verschaffe dir einen Überblick über diese.
+- [x] The CanvasRenderingContext offers additional features, such as shadows. Get an overview of them.

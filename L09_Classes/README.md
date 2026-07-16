@@ -4,34 +4,34 @@
 
 <small>Quelle: https://www.thepositiveencourager.global/alan-kay-on-creativity-3</small>
 
-Als Sohn eines Wissenschaftlers und einer Künstlerin hat Alan Kay nie zwischen Kunst und Wissenschaft unterschieden. Während er als Jazzgitarrist und Gitarrenlehrer Geld verdiente, erwarb er seinen Bachelorabschluss in Mathematik und Molekularbiologie, einen Masterabschluss in Elektrotechnik und den Ph.D. in Informatik. Er prägte maßgeblich den Begriff der objektorientierten Programmierung.  
+As the son of a scientist and an artist, Alan Kay never distinguished between art and science. While earning a living as a jazz guitarist and guitar teacher, he obtained a bachelor's degree in mathematics and molecular biology, a master's degree in electrical engineering, and a Ph.D. in computer science. He played a pivotal role in coining the term "object-oriented programming."
 
-## Objektorientierung
-Dieses Entwurfsparadigma für Software erlaubt eine intuitive Modellierung und Konzeption auch komplexer Softwareanwendungen.  
+## Object-orientation
+This software design paradigm enables the intuitive modeling and conceptualization of even complex software applications.  
 
-Aus deiner Erfahrung weißt Du, dass sich die von dir wahrgenommene Realität aus einer Unzahl von materiellen (Autos, Häuser, Lebewesen, Möbel etc.) und immateriellen (Sprache, Gefühle, Konten, Identitäten etc.) Teilen zusammensetzt. Diese Umwelt vollständig zu beschreiben ist wohl unmöglich, die einzelnen Teile aber kannst Du auf unterschiedlichen Abstraktionsebenen schon besser erfassen. Dabei vereinfachst, klassifizierst und generalisierst Du und baust im Kopf ein Modell der Realität auf, was dir erlaubt Vorhersagen zu treffen, auch wenn Du nicht alle Details deiner aktuellen Umgebung kennst. Du weißt was ein Hund ist, obwohl es den Hund gar nicht gibt. Es gibt immer nur ganz spezifische Exemplare von Hund. Trotzdem gehst Du davon aus, dass ein dir völlig unbekannter Hund bellen kann. Du weißt, dass ein Hund in der Regel vier Beine hat, eine Schnauze und einen Schwanz, dass er neben bellen auch die Fähigkeit hat zu knurren und zu beißen und manchmal furchtbar zu stinken.  
+You know from experience that the reality you perceive is composed of a vast number of material elements (cars, houses, living beings, furniture, etc.) and immaterial ones (language, feelings, accounts, identities, etc.). While fully describing this environment is likely impossible, you can certainly grasp its individual components at various levels of abstraction. In doing so, you simplify, classify, and generalize, constructing a mental model of reality that allows you to make predictions even without knowing every detail of your immediate surroundings. You know what a dog is, even though "the dog" does not actually exist; there are only ever specific individual dogs. Nevertheless, you assume that a dog completely unknown to you is capable of barking. You know that a dog typically has four legs, a snout, and a tail, and that—in addition to barking—it has the ability to growl, bite, and sometimes smell terrible.
 
-## Abstraktion
-Ähnlich gehst Du beim objektorientierten Entwurf vor. Wenn Du ein System planst, überlegst Du, aus welchen Teilen es sich zusammensetzt, welche gleichartigen Teile es gibt, wie Du diese beschreiben kannst und wie die Teile mit ihrer Umwelt interagieren. Du abstrahierst und generalisierst und kannst für verschiedene Klassen von Teilen Eigenschaften identifizieren, die das einzelne, tatsächlich existierende Teil näher beschreiben. Bei der Klasse Hund könnte das beispielsweise die Größe oder die Fellfarbe sein. Diese Eigenschaften sind in gewissen Grenzen variabel, ohne dass das beschriebene Tier kein Hund mehr wäre. Es bleibt ein Hund, auch wenn es manchmal schwer zu glauben ist.  
+## Abstraction
+You take a similar approach with object-oriented design. When planning a system, you consider the parts that make it up, the types of similar parts involved, how to describe them, and how these parts interact with their environment. You use abstraction and generalization to identify properties for various classes of parts—properties that further describe the individual, actual part. For the "Dog" class, for instance, these might be size or coat color. These properties can vary within certain limits without the animal in question ceasing to be a dog. It remains a dog—even if that is sometimes hard to believe. 
 
 <img src="Material/Hunde.jpeg"/>  
 <small><a href="https://zaypa.com/wie-wahle-ich-deinen-hund-fur-dich-und-deine-familie.html">https://zaypa.com/wie-wahle-ich-deinen-hund-fur-dich-und-deine-familie.html</a></small>
 
-> **Abstraktion** ist das erste Prinzip der Objektorientierung!
+> **Abstraction** is the first principle of object-orientation!
 
-## Modellierung
-Bislang hatten wir komplexere Datenstrukturen mit Interfaces irgendwo im Code beschrieben. Damit haben wir schon Eigenschaften von Objekten angegeben. Beispielsweise besitzen alle Vektoren aus dem vorangegangenen Kapitel die Eigenschaften x und y, bei jedem einzelnen tatsächlich erschaffenen Vektor sind sie mit individuellen Werten definiert. Was mit diesen Vektoren aber geschieht, ist an ganz anderen Stellen im Code implementiert. So werden Vektoren addiert oder skaliert und der Code dafür muss jedes mal neu geschrieben werden.
+## Modeling
+Up to this point, we have defined more complex data structures using interfaces somewhere in the code. In doing so, we have already specified object properties; for instance, all vectors from the previous chapter possess x and y properties, which are defined with specific values ​​for each individual vector actually created. However, the logic governing what happens to these vectors is implemented elsewhere in the code. Consequently, whenever vectors need to be added or scaled, the corresponding code has to be written from scratch each time.
 
-Bei der objektorientierten Modellierung definierst Du nicht nur die Eigenschaften, sondern auch die Aktivitäten, die ein Objekt der beschriebenenen Klasse ausführen können soll. So wie der Hund beißen, bellen, knurren und stinken kann, kann der Vektor vielleicht seine Länge ändern, oder durch Addition mit einem anderen Vektor zu einem resultierenden Vektor werden und so weiter. Im Diagramm schreibst Du hierzu einfach unter dem Feld für den Namen des Typs und dem Feld für die Eigenschaften nun ein drittes Feld, in dem Du die Aktivitäten auflistest.  
+In object-oriented modeling, you define not only the properties but also the activities that an object of the described class should be able to perform. Just as a dog can bite, bark, growl, and smell, a vector might be able to change its length or combine with another vector via addition to form a resultant vector, and so on. In the diagram, you simply add a third field—below the fields for the type name and the properties—where you list these activities.
 
 <img src="Material/draw.io/Vector_ClassDiagram.svg">
 
-Bislang hattest Du Interfaces nur als Randnotiz mit in die Aktivitätsdiagramme eingetragen. Nun lernst Du einen neuen Diagrammtyp kennen: **das Klassendiagramm**. Hier wird dargestellt, wie die Klassen aufgebaut sind und miteinander in Beziehung stehen.  
+Up to now, you have only included interfaces as a side note in activity diagrams. Now you will be introduced to a new type of diagram: **the class diagram**. It illustrates how classes are structured and how they relate to one another.  
 
-- [x] Wo hast Du so etwas bloß schon mehrmals gesehen?
+- [x] Where on earth have you seen something like that several times?
 
 ## Implementation  
-Die im Diagramm dargestellte Vektorklasse kann folgendermaßen implementiert werden
+The vector class shown in the diagram can be implemented as follows:
 
 ```typescript
 class Vector {
@@ -50,48 +50,48 @@ class Vector {
 }
 ```
 
-Vector ist jetzt nicht mehr nur eine Objektstruktur, die sich mit einem Interface beschreiben lässt, Vector ist jetzt eine Klasse. So wird nun statt `interface` das reservierte Wort `class` benutzt. Die Aktivitäten werden wie gewohnt als Funktionen implementiert, aber das Schlüsselwort `function` wird nicht mehr angegeben.
+Vector is no longer just an object structure that can be described by an interface; Vector is now a class. Consequently, the reserved word `class` is used instead of `interface`. The activities are implemented as functions as usual, but the `function` keyword is no longer specified.
 
-> **Hinweis:** Funktionen innerhalb von Klassen werden "Methoden" genannt. Objekte der Klasse verfügen nun über Methoden mit denen sie sich und ihre Umwelt beeinflussen können.
+> **Note:** Functions within classes are called "methods." Objects of the class now possess methods that allow them to influence themselves and their environment.
 
 
-## Kapselung
-Das Programm, das einen solchen Vektor nutzt, muss nun nicht mehr wissen, wie man einen Vektor skaliert oder einen zweiten hinzuaddiert. Es genügt zu wissen, dass man es tun kann und welche Parameter der Vektor hierzu braucht. Den Rest macht der Vektor selbst. Damit wird der Vektor zu einer Black-Box, deren interne Arbeitsweise nicht bekannt sein muss, um sie zu verwenden. Der Vektor ist "gekapselt". 
+## Encapsulation
+A program using such a vector no longer needs to know how to scale the vector or add a second one to it. It suffices to know that these operations are possible and which parameters the vector requires for them; the vector handles the rest itself. This turns the vector into a "black box"—its internal workings need not be known in order to use it. The vector is "encapsulated."
 
-> **Kapselung** ist das zweite Prinzip der Objektorientierung!
+> **Encapsulation** is the second principle of object-orientation!
 
-## Instanzierung
-Der obenstehende Code beschreibt die Klasse Vektor, es existiert aber noch kein Exemplar eines Objektes dieser Klasse. Die Erzeugung eines solchen erfolgt, ganz anders als bei der Arbeit mit Interfaces, mit der Anweisung `new`. Diesen Vorgang nennt man auch Instanzierung, denn es wird eine Instanz der Klasse geschaffen.
+## Instantiation
+The code above describes the `Vector` class, but no instance of an object of this class exists yet. Unlike when working with interfaces, such an object is created using the `new` statement. This process is also known as instantiation, as an instance of the class is created.
 
-- [x] Aus welchen Zusammenhängen kennst Du `new` bereits?
-- [x] Implementiere die Vektorklasse in einem neuen `namespace` und füge darunter die untenstehenden Zeilen an. 
+- [x] In what contexts are you already familiar with `new`?
+- [x] Implement the vector class in a new `namespace` and append the lines below.
 
 ```typescript
 let v1: Vector = new Vector();
 v1.scale(2);
 console.log(v1);
 ```  
-- [x] Teste das Programm im Browser oder mit Node. Welche Konsolenausgabe erhältst Du?
-- [x] Verfolge das Programm mit dem Debugger bis hinein in die Methode `scale` der Klasse. Was hat es mit dem Schlüsselwort `this` auf sich?
-- [x] Zu Beginn der Klasse werden die Eigenschaften x und y deklariert. Ergänze den Code an dieser Stelle so, dass sie auch gleich mit dem Wert 0 definiert werden. Was ändert sich beim nächsten Test und Debuggen?
-- [x] Spendiere der Klasse eine neue Methode `set(_x: number, _y: number)` welche den Eigenschaften eines Objektes der Klasse die Werte von `_x` bzw. `_y` zuweist. Lasse v1 vor dem Aufruf von `scale` diese Methode ausführen mit Werten die Du dir ausdenkst. Was geschieht jetzt?
+- [x] Test the program in the browser or with Node. What console output do you get?
+- [x] Trace the program using the debugger into the class's `scale` method. What is the significance of the `this` keyword?
+- [x] At the beginning of the class, the properties x and y are declared. Modify the code at this point so that they are also initialized with the value 0. What changes during the next test and debugging session?
+- [x] Add a new method `set(_x: number, _y: number)` to the class that assigns the values ​​of `_x` and `_y` to the properties of an object of that class. Before calling `scale`, have v1 execute this method using values ​​of your own choosing. What happens now?
 
-## Klasse vs. Objekt
-Häufig werden die Begriffe Klasse und Objekt verwechselt oder unscharf gebraucht. Das führt zu Verwirrung und Fehlern. Auch wenn der Unterschied in diesem Text bereits mehrfach herausgestellt wurde, soll an dieser Stelle noch einmal explizit darauf eingegangen werden.
-Eine Klasse beschreibt die Struktur, die ein Objekt derselben aufweisen soll, und die Methoden, die mit einem solchen Objekt verknüpft werden. Sie ist vergleichbar mit dem Hunde-Genom oder mit dem Hausbauplan eines Architektis. Ist die Klasse definiert, können beliebig viele Objekte der Klasse erzeugt werden, so wie ein ganzer Hundewurf, eine Siedlung oder ein ganzes Array voller Vektoren. Jedes dieser Objekte besitzt die in der Klasse angegebenen Eigenschaften, gegebenenfalls mit individuellen Werten, wie Fellfarbe, Dachziegeltyp oder Koordinate.  
+## Class vs. Object
+The terms "class" and "object" are frequently confused or used imprecisely, leading to confusion and errors. Although the distinction has already been highlighted several times in this text, it is worth addressing it explicitly once more here.
+A class describes the structure that an object of that class is to possess, as well as the methods associated with such an object. It is comparable to the dog genome or an architect's blueprint for a house. Once the class is defined, any number of objects of that class can be created—much like an entire litter of puppies, a housing development, or an array full of vectors. Each of these objects possesses the properties specified in the class, potentially with individual values ​​such as coat color, roof tile type, or coordinates.
 
 <img src="Material/Instanzierung.svg">
 
-Ein Objekt einer Klasse kann zudem die in der Klasse definierten Methoden nutzen, ohne dass eine Referenz auf das Objekt der Methode als Parameter übergeben werden muss. Stattdessen wird das Objekt innerhalb der Methode automatisch mit dem reservierten Wort `this` referenziert. Der Aufruf der Methode erfolgt mit Hilfe der Punkt-Syntax `object.method(...)`. Da das Objekt eine Instanz einer bestimmten Klasse ist, wird damit die Methode eindeutig identifiziert, auch wenn andere Klassen über eine Methode gleichen Namens verfügen sollten.
+Furthermore, an object of a class can utilize the methods defined within that class without requiring a reference to the object itself to be passed as a parameter. Instead, the object is automatically referenced within the method using the reserved word `this`. The method is invoked using dot notation—`object.method(...)`—and since the object is an instance of a specific class, the method is uniquely identified, even if other classes possess a method with the same name.
 
 ## Constructor
-Die Hausbau-Metapher führt dich gleich zu einem weiteren interessanten Aspekt. Das Architekti, also Du, macht zwar den Plan, gebaut wird ein Haus aber von einem Bauunternehmeri. Im Englischen: Constructor.  
+The house-building metaphor leads you straight to another interesting aspect. The architect—that is, you—draws up the plans, but the house is actually built by a building contractor.
 
-Auch bei der Instanzierung von Objekten kommt ein Constructor zum Einsatz, den Du im Deutschen wiederum Konstruktor nennen kannst. Er ist eine besondere Methode, die automatisch aufgerufen wird, wenn die Anweisung `new` ausgeführt wird und kümmert sich darum, dass das Objekt ordentlich gebaut wird. Ein Standardkonstruktor ist in JavaScript immer dabei und tritt nicht in Erscheinung. Du kannst aber für jede Klasse einen eigenen Konstruktor definieren.   
+A constructor is also used when instantiating objects. It is a special method that is automatically called when the `new` statement is executed, ensuring that the object is properly constructed. JavaScript always includes a default constructor that operates behind the scenes, but you can define your own constructor for any class.   
 
-Ein Konstruktor ist dann von Bedeutung, wenn weitere Informationen zum Bau des Objektes einfließen sollen oder währenddessen zwingend noch weitere Aktivitäten ausgeführt werden müssen. Bei einem Haus sollte der Constructor vielleicht wissen, welche Ziegel er nun tatsächlich auflegen soll, da diese Eigenschaft des Hauses variabel ist. Wird ein Hund konstruiert, soll vielleicht gleich die Gemeinde informiert werden, damit sie die Hundesteuer eintreiben kann.
+A constructor is significant when additional information needs to be incorporated into the object's creation or when other mandatory actions must be performed during the process. In the case of a house, the constructor might need to know exactly which bricks to lay, as this is a variable property of the house. When a dog is created, the local municipality might need to be notified immediately so that it can collect the dog tax.
 
-Bei der Vektorklasse erscheint es sinnvoll, bei der Konstruktion eines Vektors gleich die Komponenten mitzugeben, so dass die Eigenschaften x und y des Vektors sofort die gewünschten Werte erhalten.
+For the vector class, it makes sense to supply the components when constructing a vector, so that the vector's x and y properties immediately take on the desired values.
 
 ```typescript
 class Vector {
@@ -110,67 +110,67 @@ class Vector {
     ...
 }
 ```
-Der Konstruktor verlangt nun zur Instanzierung eines Vektors zwingend die Übergabe zweier Werte. TypeScript wird einen Fehler melden, wenn Du versuchst einen Vektor wie zuvor nur mit `new Vector();` zu instanzieren. `new Vector(10, -3)` dagegen wird akzeptiert und der Vektor wird mit den gegebenen Werten angelegt.
+The constructor now strictly requires two values ​​to be passed in order to instantiate a vector. TypeScript will report an error if you try to instantiate a vector using only `new Vector();` as before. `new Vector(10, -3)`, on the other hand, is accepted, and the vector is created with the provided values.
 
-> **Hinweis:** Die set-Methode ist übrigens die, welche Du weiter oben schon hättest implementieren sollen. Falls es nicht geklappt hat, kannst Du hier spicken...
+> **Note:** Incidentally, the `set` method is the one you should have implemented earlier. If it didn't work out, you can take a peek here...
 
-## Konventionen
-Im Umgang mit Klassen und Objekten solltest Du dich unbedingt an einige Konventionen halten:
+## Conventions
+When working with classes and objects, you should definitely adhere to a few conventions:
 
-- Jede Klasse wird in einer eigenen Datei implementiert
-- Der Dateiname entspricht dem Namen der Klasse (z.B. `Vector` findet sich in Vector.ts)
-- Die Namen der Methoden wiederholen nicht den Klassennamen (`scale` statt `scaleVector`)
-- Der Klassenname beschreibt das Wesen genau einer Instanz der Klasse, nicht mehrerer (`Vector` statt `Vectors`)  
+- Each class is implemented in its own file.
+- The filename corresponds to the class name (e.g., `Vector` is found in Vector.ts).
+- The method names do not repeat the class name (`scale` instead of `scaleVector`).
+- The class name describes the nature of exactly one instance of the class, not multiple instances (`Vector` instead of `Vectors`).
 
-> **Hinweis:** JavaScript grenzt standardmäßig Namensräume dateibezogen ab. Nutze das Schlüsselwort `export` um Informationen wie Klassen oder Variablen in deinem ganzen Namensraum ohne Einschränkung publik zu machen.
+> **Note:** By default, JavaScript scopes namespaces to the file level. Use the `export` keyword to make information—such as classes or variables—publicly available throughout your namespace without restriction.
 
 # L09.2 Asteroids
-Mit diesen Basisregeln des objekorientierte Entwurfs kann man sich schon daran machen, eine komplexe interaktive Anwendung zu konzipieren und zu implementieren. Als Beispiel für diese und die folgenden Lektionen wird das Videospiel "Asteroids" (Atari 1979) in seiner ursprünglichen Arcade-Version herangezogen. 
+With these basic rules of object-oriented design, one can begin to conceptualize and implement a complex interactive application. The original arcade version of the video game "Asteroids" (Atari, 1979) is used as an example for this and the following lessons.
 
-> **FunFact:** Asteroids ist einer der größten Erfolge in der Geschichte der Videogames und Ataris meistverkaufter Münzautomat. Es gab allerdings eine dominante Strategie, die es geübten Spielern erlaubte nach Einwurf nur einer Münze stundenlang zu spielen und dabei so viele Bonus-Schiffe anzuhäufen, dass der Automat, dann vom Spieler allein gelassen, noch lange Zeit brauchte um alle Schiffe zu zerstören...  
+> **FunFact:** Asteroids is one of the greatest successes in the history of video games and Atari’s best-selling arcade machine. However, there was a dominant strategy that allowed skilled players to play for hours after inserting just a single coin, accumulating so many bonus ships that the machine—once abandoned by the player—would take a long time to destroy them all...
 
-- [x] Falls dir Asteroids nicht bekannt ist, schau dir den entsprechenden Wikipedia-Artikel und dieses Youtube-Video an: <https://www.youtube.com/watch?v=WYSupJ5r2zo>
+- [x] If you aren't familiar with Asteroids, take a look at the corresponding Wikipedia article and this YouTube video: <https://www.youtube.com/watch?v=WYSupJ5r2zo>
 
-## Anwendungsfalldiagramm
+## Use case diagram
 ![](Material/draw.io/Asteroids_UseCaseDiagram.svg)
 
-- [x] Wenn dir das Anwendungsfalldiagramm nicht gleich einleuchtet, schau dir den Wikipedia-Artikel und das Video genau an und versuche, die einzelnen Anwendungsfälle dem Geschehen zuzuordnen.
-- [x] Beachte, dass im Diagramm viele Anwendungsfälle aufgeführt sind, die das System selbständig bewältigen muss. Was vom Player gesteuert ist, ist auch mit ihm verbunden.
+- [x] If the use case diagram doesn't make sense to you right away, take a close look at the Wikipedia article and the video, and try to match the individual use cases to the events taking place.
+- [x] Note that the diagram lists many use cases that the system must handle autonomously. Anything controlled by the player is also connected to it.
 
 ## UI-Scribble
 ![](Material/draw.io/Asteroids_Scribble.svg)  
 
-Um das Spiel interessanter zu machen, insbesondere für die Übungszwecke in diesem Kurs, wird eine etwas andere Verteidigungsmechanik für das Raumschiff konzipiert. Statt einzelner kleiner Projektile, wie die Ufos sie verschießen, werden Laserstrahlen eingesetzt, die in ihrem Kreuzungspunkt ein vernichtendes Kraftfeld erzeugen. Somit kann die Maus als Steuerung besser genutzt und die zusätzliche Herausforderung eines Energiemanagements für das Spieleri geschaffen werden.
+To make the game more interesting—particularly for the purposes of this course—a slightly different defense mechanism is being designed for the spaceship. Instead of the small, individual projectiles fired by the UFOs, laser beams are used; these create a destructive force field at the point where they intersect. This allows for better use of the mouse as a control mechanism and introduces the added challenge of energy management for the player.
 
-## Klassendiagramm
-Bei der objektorientierte Modellierung kommt ein weiterer Diagrammtyp hinzu, den Du nutzen solltest, bevor Du mit den detaillierten Aktivitätsdiagrammen beginnst. Dabei identifizierst Du zunächst die verschiedenen Objekttypen, die in deiner Anwendung eine Rolle spielen. Sofern es sich dabei um Objekte handelt, die eine sichtbare Repräsentation haben, kannst Du sie im UI-Scribble identifizieren.  
+## Class Diagram
+In object-oriented modeling, there is an additional type of diagram you should use before starting on detailed activity diagrams. Here, you first identify the various object types that play a role in your application. If these are objects with a visible representation, you can identify them in the UI sketch.
 
-### Fünf Fragen 
-Für jeden Objekttyp stellst Du dir dann die folgenden Fragen, wobei "es" ein beispielhaftes Objekt des Typs meint.
+### Five Questions
+For each object type, you then ask yourself the following questions, where "it" refers to an example object of that type.
 
-1. was hat es?
-1. was kann es?    
-1. was weiß es?
-1. wer hält es?
-1. was ist es?
+1. what does it have?
+1. what can it do?    
+1. what does it know?
+1. what does it hold?
+1. what is it?
 
-Die ersten beiden Fragen führen dich direkt zur Darstellung der einzelnen Klassen im Diagramm. Kümmern wir uns zunächst um die Asteroiden...
+The first two questions lead you directly to the representation of the individual classes in the diagram. Let's start with the asteroids...
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_KBWGATWN"><img src="../X01_Appendix/Img/L09_V1_Bild.JPG" width="25%"/></a> 
   <a href="Material/Asteroids_ClassDiagram.jpg"><img src="Material/Asteroids_ClassDiagram.jpg" width="25%"></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_KBWGATWN"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Klassendiagramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_KBWGATWN"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Class diagram</a>
 </div>
 
-## Aktivitätsdiagramm
-Jetzt kannst Du die einzelnen Methoden mit Hilfe von Aktivitätsdiagrammen konzipieren. 
+## Activity Diagram
+You can now design the individual methods using activity diagrams.
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_PNFVRAMC"><img src="../X01_Appendix/Img/L09_V2_Bild.JPG" width="25%"/></a>
   <a href="Material/Asteroids_ActivityDiagram-Asteroid.jpg"><img src="Material/Asteroids_ActivityDiagram-Asteroid.jpg" width="25%"></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_PNFVRAMC"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Aktivitätsdiagramm Asteroid</a>
+  <a href="http://hdl.handle.net/10900.3/OER_PNFVRAMC"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Activity diagram Asteroid</a>
 </div>
 
 ## Implementation
@@ -180,46 +180,46 @@ Jetzt kannst Du die einzelnen Methoden mit Hilfe von Aktivitätsdiagrammen konzi
   <a href="http://hdl.handle.net/10900.3/OER_XFJJRZUC"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Implementation Asteroid</a>
 </div>
 
-## Zeitsignale
-Die Animation mit Hilfe einer Schleife zu bewerkstelligen ist nicht einfach machbar, da der Browser dann nur mit der Schleife beschäftigt ist und keine Zeit mehr hat, das Bild anzuzeigen. Stattdessen soll er das Bild anzeigen und dann warten, bis einige Zeit vergangen ist um das nächste Bild zu zeichnen und anzuzeigen und so weiter.  
-Du weißt bereits, dass EventListeners erhalten und aktiv bleiben, auch wenn das Hauptprogramm bereits beendet ist. Das gilt auch für Zeitsignale! Im Aktivitätsdiagramm ist für diese ein eigenes Symbol als Startknoten definiert, das an eine Sanduhr erinnert. Damit kannst Du nun leicht einen "Herzschlag" für deine Anwendung definieren.  
+## Timing Signals
+Implementing the animation using a simple loop isn't feasible, as the browser would become entirely occupied with the loop and wouldn't have time to actually render the image. Instead, the browser needs to display the image, wait for a specific interval to pass, then draw and display the next image, and so on.
+You already know that event listeners persist and remain active even after the main program has finished executing. The same applies to timing signals! In activity diagrams, a dedicated symbol—resembling an hourglass—is defined as the start node for these signals. This allows you to easily define a "heartbeat" for your application.
 
 ![](Material/Heartbeat.svg)
 
-In JavaScript/TypeScript stehen dir folgende Optionen zur Realisierung solcher Zeitsignale zur Verfügung.  
+In JavaScript/TypeScript, the following options are available to you for implementing such time signals. 
 
 ### window.setTimeout (handler, time, args...)
-Die Anweisung bewirkt, dass die `handler`-Funktion nach Ablauf der mit `time` in Millisekunden angegebenen Zeit aufgerufen wird, gemessen ab dem Zeitpunkt des Anweisungsaufruf. Weitere Parameter (`args...`) können der Funktion dabei übergeben werden.
+The statement causes the `handler` function to be called after the time specified by `time` (in milliseconds) has elapsed, measured from the moment the statement is invoked. Additional parameters (`args...`) can be passed to the function.
 
 ### window.setInterval (handler, time, args...)
-Die Anweisung bewirkt, dass die `handler`-Funktion in dem mit `time` angegebenen zeitlichen Abstand periodisch aufgerufen wird. Weitere Parameter (`args...`) können der Funktion dabei übergeben werden.
+The instruction causes the `handler` function to be called periodically at the time interval specified by `time`. Additional parameters (`args...`) can be passed to the function.
 
 ### window.requestAnimationFrame(handler)
-Die Anweisung bewirkt, dass die `handler`-Funktion periodisch in einem für die grafische Aufbereitung sinnvoll erscheinendem Zeitintervall aufgerufen wird. Über dieses entscheidet der Browser, Chrome versucht eine Bildwiederholrate von 60 Bildern pro Sekunde zu erreichen (Frames per second, fps).
+The instruction causes the `handler` function to be called periodically at a time interval deemed appropriate for graphical rendering. The browser determines this interval, Chrome attempts to achieve a refresh rate of 60 frames per second (fps).
 
-## Hauptprogramm  
+## Main Program  
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_MWEVCUUT"><img src="../X01_Appendix/Img/L09_V4_Bild.JPG" width="25%"/></a>
   <a href="Material/Asteroids_ActivityDiagram-Main.jpg"><img src="Material/Asteroids_ActivityDiagram-Main.jpg" width="25%"></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_MWEVCUUT"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Aktivitätsdiagramm Hauptprogramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_MWEVCUUT"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Activity diagram Main Program</a>
 </div>
 
-> **Hinweis:** Nicht alles lässt sich von vorneherein festlegen, manches musst Du ausprobieren, um ein Gefühl dafür zu bekommen, wie ein gutes Nutzungserlebnis erreicht werden kann. In der Konzeption musst Du abschätzen, welche Tests erforderlich sind und wie Du diese ermöglichst. Du musst zudem selbst Prototypen entwickeln können, um kleinere Sachen alleine zu implementieren und auszuprobieren ohne dafür einen Stab von Leuten zu beschäftigen!
+> **Note:** Not everything can be determined from the outset; you have to experiment with some aspects to get a feel for how to achieve a good user experience. During the conceptual phase, you need to assess which tests are required and how to facilitate them. You also need to be capable of developing prototypes yourself so that you can implement and test minor elements independently, without needing to employ a whole team of people!
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_XHUTJHVV"><img src="../X01_Appendix/Img/L09_V5_Bild.JPG" width="25%"/></a>
   <br/>  
-  <a href="http://hdl.handle.net/10900.3/OER_XHUTJHVV"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Implementation Hauptprogramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_XHUTJHVV"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L09 Classes: Implementation Main Program</a>
 </div> 
 
 
-> **Hinweis**: MouseEvent bietet, derzeit (Mai/2021) als experimentelle Technologie, die Information offsetX und offsetY an.  
+> **Note**: MouseEvent provides the offsetX and offsetY information—currently (as of May 2021) as an experimental technology. 
 
-Ein Problem tritt auf bei der Übergabe der Position an den optionalen Parameter `_position` im Constructor der Asteroid-Klasse. Da Vector ein komplexer Typ ist, hält eine Variable dieses Typs lediglich eine Referenz auf ein Vektorobjekt (siehe [Werte vs. Referenzen](https://JirkaDellOro.github.io/Code-Inverted/L01_Recap%26Foundation#werte-vs-referenzen)). Durch die Zuweisung des Parameterinhaltes an das Objektattribut wurde also kein neues Vektorobjekt erzeugt, sondern nur die Referenz erneut genutzt. Die Bruchstücke referenzieren also das gleiche Vektorobjekt und haben daher die gleiche Position.
+A problem arises when passing the position to the optional `_position` parameter in the `Asteroid` class constructor. Since `Vector` is a complex type, a variable of this type holds only a reference to a vector object (see [Values ​​vs. References](https://JirkaDellOro.github.io/Code-Inverted/L01_Recap%26Foundation#werte-vs-referenzen)). Consequently, assigning the parameter's content to the object attribute does not create a new vector object; instead, it simply reuses the existing reference. As a result, the fragments reference the same vector object and therefore share the same position.
 
-- [x] Löse das Problem, in dem Du nicht die Referenz zuweist, sondern mit den Informationen des Parameters ein neues Positionsobjekt instanzierst und dieses zuweist.
-- [x] Erweitere die Vektorklasse um eine Methode `copy()`, welche ein neues Vektorobjekt zurückliefert, das die gleichen Attributwerte hat wie der Vektor der sie ausführt.
-- [x] Nutze diese Methode um das obige Problem noch eleganter zu lösen.
-- [x] Skaliere die Linienstärke in der draw-Methode der Asteroid-Klasse entsprechend des size-Attributs umgekehrt proportional hoch.
+- [x] Solve the problem by instantiating a new position object using the information from the parameter instead of assigning the reference and assigning that object.
+- [x] Extend the vector class with a `copy()` method that returns a new vector object having the same attribute values ​​as the vector executing it.
+- [x] Use this method to solve the problem above even more elegantly.
+- [x] Scale the line thickness in the draw method of the Asteroid class inversely proportional to the size attribute.

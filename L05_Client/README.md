@@ -53,18 +53,18 @@ With `method="get"`, the data are simply appended to the URL in plain text as st
 > The type `"submit"` is the default for buttons and does not have to be specified explicitly. So every button inside a form for which no other type is explicitly specified will trigger sending the data. And this frequently leads to confusion among developers...
 
 ### Post
-With `method="post"` werden die Daten als eigene Datenpakete versand und sind nicht für das Nutzeri sichtbar. Post wird aber vor allem auch dann verwendet, wenn größere Datenmengen verschickt werden, da die zulässige Länge des URL begrenzt ist. Auf der Serverseite müssen die Datenpakete zunächst erst wieder zu einer zusammenhängenden Request zusammengefügt werden.
-- [x] Verwende nun die Methode `"post"` im Formular und betätige den Submit-Button. Versuche nun mit Hilfe der Entwicklertools die Daten zu finden. Klicke dazu auf den Reiter "Netzwerk" oder "Netzwerkanalyse" und dann auf den Post-Request bei den gelisteten Anfragen.  
+With `method="post"` the data is transmitted as separate data packets and is not visible to the user. However, the post method is primarily used when transmitting larger amounts of data, as there is a limit to the permissible length of a URL. On the server side, the data packets must first be reassembled into a single, coherent request.
+- [x] Now use the `"post"` method for the form and click the submit button. Try to locate the data using the developer tools. To do this, click the "Network" or "Network Analysis" tab and then select the POST request from the list of requests.  
 
-## Implementation asynchroner Kommunikation
+## Implementation of asynchronous communication
 #### XmlHttpRequest-Events
-Bei der asynchronen Kommunikation lässt sich wieder sehr gut die nun wohlbekannte Ereignissteuerung einsetzen. JavaScript bietet hierzu das Standardobjekt `XMLHttpRequest` an. Ein solches Objekt kann mit dem Schlüsselwort `new` erzeugt werden. Das Objekt bietet einige Kommandos, mit denen recht einfach eine Verbindung zum Server aufgebaut und eine Request verschickt werden kann. Während das Objekt die Verbindung verwaltet, erzeugt es bei Statusänderungen entsprechende Events, die wiederum mit dem üblichen Schema von Listeners abgefangen und an die zugehörigen Handlerfunktionen weitergeleitet werden. Auch die vollständige Übertragung der Serverantwort ist eine solche Statusänderung, womit das oben dargestellte Schema der asynchronen Kommunikation clientseitig implementiert werden kann.  
-> Das XML im Namen des Objektes verrät, dass es sich dabei um eine etwas betagte Technologie handelt, die 1999, während der Standardisierung von HTML4, von Microsoft veröffentlicht wurde. Sie ist aber verbreitet und kommt noch häufig zum Einsatz. [Mehr Infos gibt es hier.](https://wiki.selfhtml.org/wiki/JavaScript/XMLHttpRequest)
+Asynchronous communication is an ideal scenario for employing the now-familiar event-driven approach. JavaScript provides the standard `XMLHttpRequest` object for this purpose; such an object can be instantiated using the `new` keyword. The object offers methods that make it straightforward to establish a connection to the server and send a request. As the object manages the connection, it triggers specific events whenever the status changes; these events are captured using the standard listener pattern and passed to the corresponding handler functions. The complete transmission of the server response constitutes one such status change, thereby enabling the implementation of the aforementioned asynchronous communication pattern on the client side.
+> The XML in the object's name reveals that it's a somewhat older technology, released by Microsoft in 1999 during the HTML4 standardization. However, it's widespread and still frequently used. [More information is available here.](https://wiki.selfhtml.org/wiki/JavaScript/XMLHttpRequest)
 
 #### Fetch & Promises
-2017 wurde die globale JavaScript-Funktion `fetch` als Schnittstelle für asynchrone Kommunikation eingeführt. So kann mit einer einzigen Anweisung nach dem Muster `fetch(url [, data])` eine Request verschickt und eine Response erhalten werden. Aufgrund der Asynchronität liefert fetch aber nicht sofort die Antwort des Servers, sondern ein Objekt vom Typ `Promise`. Dies kann metaphorisch betrachtet werden: Das Versprechen, das fetch abgibt, verpflichtet dazu, die eigentliche Funktion auszuführen, in diesem Falle also zu kommunizieren, und im Erfolgsfall, sowie im Falle des Misserfolgs, bestimmte weitere Funktionen aufzurufen. Es handelt sich also wieder um eine Ereignissteuerung, die aber in einem etwas anderen Gewand daherkommt.  
+The global JavaScript function `fetch` was introduced in 2017 as an interface for asynchronous communication. It allows a request to be sent and a response received using a single statement following the pattern `fetch(url [, data])`. However, due to its asynchronous nature, `fetch` does not immediately return the server's response; instead, it returns an object of the type `Promise`. This can be viewed metaphorically: the promise made by `fetch` entails an obligation to execute the actual function—in this case, to communicate—and to invoke specific subsequent functions depending on whether the operation succeeds or fails. It is, therefore, another form of event-driven programming, albeit one that appears in a slightly different guise.  
 
-Im einfachsten Fall sieht das ganze Konstrukt dann so aus:
+In the simplest case, the entire construct looks like this:
 ```typescript
     function communicate(_url: RequestInfo): void {
         // try to communicate
@@ -81,11 +81,11 @@ Im einfachsten Fall sieht das ganze Konstrukt dann so aus:
         console.log("Success", _response);
     }
 ```
-Auch hier ist die Funktionalität über mehrere Funktionen verteilt und daher insgesamt unübersichtlich. Das wird noch verstärkt dadurch, dass die Response, die den Handlern von der Promise als Parameter übergeben wird, noch nicht die Rohdaten der Antwort des Kommunikationspartners darstellt. Um die Response zu verarbeiten sind weitere Funktionen erforderlich, die wiederum Promises erzeugen, die weitere Handler aufrufen und so weiter. 
-> **FunFact:** Dadurch entsteht ein Gewirr an Funktionen, das von Entwickleris als "Callback Hell" bezeichnet wird.
+Here, too, functionality is distributed across multiple functions, making the overall structure difficult to follow. This situation is further compounded by the fact that the response object passed to the handlers by the Promise does not yet represent the raw data from the communication partner's response. Processing the response requires additional functions—which in turn generate Promises that invoke further handlers, and so on.
+> **FunFact:** This creates a tangle of functions that developers refer to as "callback hell."
 
 #### Async/Await
-Deswegen wurden 2017 auch die neuen Schlüsselworte `async` und `await` in JavaScript implementiert. Damit wird nun etwas ganz Erstaunliches möglich. Anstatt mit der synchronen Programmierweise (eine Anweisung im Code erfolgt strikt nach Beendigung der vorangegangenen) und Events asynchrone Prozesse abzubilden und damit "Callback Hell" zu erzeugen, wird mit Hilfe der beiden Schlüsselworte die Programmierung selbst asynchron. Damit wird das fetch-Beispiel plötzlich extrem übersichtlich:
+That is why the new keywords `async` and `await` were implemented in JavaScript in 2017. This enables something truly remarkable. Instead of modeling asynchronous processes using the synchronous programming paradigm—where one code statement executes strictly after the completion of the previous one—and events (which leads to "callback hell"), these two keywords make the programming itself asynchronous. As a result, the `fetch` example suddenly becomes extremely clear and readable:
 
 ```typescript
     async function communicate(_url: RequestInfo): Promise<void> {
@@ -93,50 +93,50 @@ Deswegen wurden 2017 auch die neuen Schlüsselworte `async` und `await` in JavaS
         console.log("Response", response);
     }
 ```
-Mit dem Schlüsselwort `async` wird eine Funktion als asynchron deklariert, das bedeutet, dass ihre Ausführung unterbrochen und zu einem späteren Zeitpunkt fortgesetzt werden kann. Genau dies bewirkt das Schlüsselwort `await`, welches daher nur innerhalb von asynchronen Funktionen Sinn ergibt. Sobald `fetch` gestartet wird, wird die Funktion `communicate` zunächst beendet und die Ausführung des Programms bei der nächsten Anweisung nach deren Aufruf fortgesetzt. Sobald aber `fetch` beendet wurde, wird die Funktion `communicate` bei der Anweisung nach dem fetch fortgesetzt. Das heißt also, dass das Hauptprogramm, sofern es noch nicht komplett abgelaufen ist, unterbrochen wird um die Ausgabe der Response in der Konsole zu bewerkstelligen. Danach ist `communicate` tatsächlich am Ende und das Hauptprogramm wird fortgesetzt. Es könnten aber in der Funktion noch weitere `await`s folgen, die wieder entsprechendes Verhalten bewirken. So bläht die weitere Verarbeitung der Response den Code nicht doch wieder durch Callbacks auf.  
-- [x] Kopiere obenstehenden asynchronen Code und bette ihn in ein neues Programm ein. Lasse vom Hauptprogramm aus die Funktion `communicate` mit dem Parameter "https://jirkadelloro.github.io/Code-Inverted/L05_Client/Material/Test.txt" aufrufen. Lasse vor und nach dem Aufruf von `communicate` in der Konsole die Zeichenketten "Start" und "End" ausgeben.
-- [x] Starte nun das Programm, nachdem Du es lauffähig implementiert hast. Beschreibe deine Beobachtung. In welcher Reihenfolge kommen die Ausgabe in der Konsole?
-- [x] Das ausgegebene Response-Objekt ist komplex und der eigentliche Inhalt der Serverantwort ist noch nicht zu sehen. Erweitere die Funktion `communicate` um eine Zeile, in der Du die Methode text() des Response-Objektes aufrufst. Achtung: text() gibt wieder eine Promise zurück. Nutzt Du aber auch hier `await` erhältst Du als Ergebnis des Ganzen eine Zeichenkette, die Du einer Variablen vom Typ string zuweist. Lasse so den Inhalt der Serverantwort ausgeben.  
+The `async` keyword declares a function as asynchronous, meaning its execution can be paused and resumed at a later time. This is precisely what the `await` keyword does; consequently, it only makes sense to use it within asynchronous functions. Once `fetch` is initiated, the `communicate` function pauses, and program execution continues with the statement immediately following the function call. However, once `fetch` completes, execution of `communicate` resumes at the statement following the `fetch` call. This means that the main program—provided it has not yet finished running—is interrupted to handle outputting the response to the console. Afterward, `communicate` reaches its conclusion, and the main program resumes. However, the function could contain further `await` statements that trigger similar behavior. In this way, processing the response further does not result in code bloat caused by callbacks. 
+- [x] Copy the asynchronous code above and embed it in a new program. Have the main program call the `communicate` function with the parameter "https://jirkadelloro.github.io/Code-Inverted/L05_Client/Material/Test.txt". Have the strings "Start" and "End" printed to the console before and after the call to `communicate`.
+- [x] Now run the program after implementing it so that it is executable. Describe your observations. In what order does the output appear in the console?
+- [x] The returned response object is complex, and the actual content of the server response is not yet visible. Extend the `communicate` function by adding a line that calls the text() method on the response object. Note that text() returns a Promise; however, if you use `await` here as well, the final result will be a string that you can assign to a variable of type string. Then, output the content of the server response.
 
 ## Uniform Resource Locator (URL)
-Jetzt hast Du einige Werkzeuge an der Hand um synchrone oder asynchrone Kommunikation von der Clientseite aus zu starten, also eine Request zu verschicken und eine Response vom Server zu erhalten. Derzeit wird nur die Get-Methode betrachtet, bei der die Nutzdaten in den URL-String eingebettet werden. Bei der asynchronen Kommunikation muss dies nun noch getan werden. Dazu sollte zunächst der Aufbau des URL näher untersucht werden.
-- [x] Studiere den Aufbau des URL anhand der folgenden Grafik.  
+You now have a few tools at your disposal to initiate synchronous or asynchronous communication from the client side—that is, to send a request and receive a response from the server. So far, we have only considered the GET method, where the payload is embedded in the URL string. This step still needs to be implemented for asynchronous communication. To do this, we should first examine the structure of the URL in more detail.
+- [x] Study the structure of the URL using the following graphic.
 <img src="Material/URL.png">  
 <small>Quelle: <a href="https://nodejs.org/dist/latest-v12.x/docs/api/url.html#url_url_strings_and_url_objects">https://nodejs.org/dist/latest-v12.x/docs/api/url.html#url_url_strings_and_url_objects</a></small>  
 
-### Teil 1
-Protocol, Authentifizierung und Host werden benötigt, um eine Verbindung zu einem Server aufzubauen. Häufig genügt allerdings bereits die Angabe des Hostnamen, z.B. www.hs-furtwangen.de, um Browser und Server zur Kommunikation zu bewegen.  
-> So ausgeschrieben ist die Darstellung der Hostnamen eine Hilfestellung für Menschen. Tatsächlich baut der Browser zunächst eine Verbindung zu einem Name-Server auf und fragt dort nach der unter diesem Namen hinterlegten Adresse.  
-- [x] Gib in der Adresszeile des Browsers eine "echte" Adresse ein: 141.28.2.12
+### Part 1
+Protocol, authentication, and host are required to establish a connection to a server. However, simply specifying the hostname, such as www.hs-furtwangen.de,is often sufficient to enable communication between the browser and the server. 
+> Presenting hostnames in this fully written-out format is intended to assist human users. In reality, the browser first establishes a connection to a name server and queries it for the address associated with that name.  
+- [x] Enter a "real" address in the browser's address bar: 141.28.2.12
 
-### Teil 2
-Der zweite Teil des URL wird dann von dem erreichten Server beliebig interpretiert. Ein reiner File-Server versucht im Pfadnamen eine Ordnerstruktur zu erkennen um in seinem Speichersystem eine Datei zu finden, deren Inhalt er als Antwort zurückliefert. github.io ist so ein reiner Fileserver, er hat in obigen Beispiel einfach den Inhalt der Datei Test.txt zurückgeliefert.
+### Part 2
+The second part of the URL is then interpreted arbitrarily by the server that receives the request. A pure file server attempts to identify a folder structure within the path name in order to locate a file in its storage system and return its contents as the response. github.io is one such pure file server; in the example above, it simply returned the contents of the file Test.txt.
 
 #### Query-String
-Der Query-String stellt nun die eigentlichen Nutzdaten dar, die bei der synchronen Übertragung mit der Get-Methode des Formulars bereits automatisch aufbereitet und mitgeschickt wurden. Ein Application-Server, der bezüglich Funktionalität über die Möglichkeiten eines reinen Fileservers hinausgeht, kann diesen String interpretieren und mit den gewonnenen Daten Berechnungen anstellen oder weitere Prozesse steuern.
+The query string now represents the actual payload data that was automatically formatted and transmitted during synchronous transfer using the form's GET method. An application server—offering functionality that extends beyond the capabilities of a simple file server—can interpret this string and use the extracted data to perform calculations or control further processes.
 
-## Daten asynchron senden
-Um also Daten per Get mit Fetch zu senden, muss lediglich der URL um den Query-String erweitert werden. Wie dieser String zustande kommt ist irrelevant, hier kann man beliebig kreativ werden. Sofern die Daten aus einem Formular aber bereits vorliegen, ist es einfach möglich, ihn aus einem FormData-Objekt zu generieren. Hierbei hilft ein weiteres Standard-JavaScript-Objekt: URLSearchParams
+## Send data asynchronously
+To send data via a GET request using fetch, you simply need to append a query string to the URL. How that string is constructed is irrelevant; you can be as creative as you like. However, if the data is already available from a form, it is easy to generate the string from a FormData object. Another standard JavaScript object helps with this: URLSearchParams.
 ```typescript
 let url: string = "https://whatever.server/path/file";
 let query: URLSearchParams = new URLSearchParams(<any>formData);
 url += url + "?" + query.toString();
 await fetch(url);
 ```
-> Zur Zeit (2019) wird leider noch ein kleiner Hack verwendet, da TypeScript noch nicht ein Objekt vom Typ FormData als Parameter akzeptiert und daher mit `<any>` ausgetrickst werden muss.
+> At present (2019), a small hack is unfortunately still required, as TypeScript does not yet accept an object of type `FormData` as a parameter and therefore has to be tricked using `<any>`.
 
 ### Custom Data
-Ein Objekt vom Typ `URLSearchParams` lässt sich fast genauso verwenden wie eines vom Typ `FormData`. Insbesondere können an beide Objekte per `append` noch weitere Schlüssel-Werte-Paare angefügt werden. So ist es sehr leicht auch Informationen, die nicht aus einem Formular kommen, mit auf den Weg zu schicken.  
+A `URLSearchParams` object can be used in much the same way as a `FormData` object. In particular, additional key-value pairs can be added to both objects using `append`. This makes it very easy to include information that does not originate from a form.
 
-> **Zusatzinfo**: `fetch` akzeptiert neben dem URL noch einen zweiten Parameter, ein `RequestInit`-Objekt. Damit lassen sich noch viele weitere zusätzliche Steuerinformationen für die Kommunikation angeben und auch sehr einfach die Post-Methode für die Datenübertragung verwenden. Auch kann dabei das FormData-Objekt direkt genutzt werden. 
+> **Additional information**: In addition to the URL, `fetch` accepts a second parameter: a `RequestInit` object. This allows you to specify a wide range of additional control information for the communication and easily use the POST method for data transmission. You can also use the `FormData` object directly.
 
-# Cocktailbar: Bestellung versenden
+# Cocktail bar: Send order
 
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_DLGSHALR"><img src="../X01_Appendix/Img/L05_V1_Bild.JPG" width="25%"/></a>
 <a href="Material/CocktailBar_UI-Scribble.jpg"><img src="Material/CocktailBar_UI-Scribble.jpg" width="25%"/></a>
   <br/>
-<a href="http://hdl.handle.net/10900.3/OER_DLGSHALR"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Aktivitätsdiagramm</a>
+<a href="http://hdl.handle.net/10900.3/OER_DLGSHALR"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Activity Diagram</a>
 </div>
 
 
@@ -147,51 +147,48 @@ Ein Objekt vom Typ `URLSearchParams` lässt sich fast genauso verwenden wie eine
 <a href="http://hdl.handle.net/10900.3/OER_ZMJSQDTS"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Implementation I</a>
 </div>
 
-- [x] Ergänze die Implementation so, dass beim Reset die Bestellübersicht gelöscht wird!
+- [x] Update the implementation so that the order overview is cleared upon reset!
 
-## Weitere Infos
+## Further information
 
 <details>
-<summary>Lokaler Fileserver</summary>
-Das VSCode-Plugin LiveServer kennst Du bereits und nutzt es wahrscheinlich. Damit ist das CORS-Problem bereits umgangen. Es gibt noch weitere Möglichkeiten, einen lokalen Server zu betreiben.  
-Beim Testen auf der lokalen Maschine tritt nun ein Fehler auf. Der URL wird als ungültig erkannt, da nicht das HyperText-Transfer-Protocol genutzt wird. Es greifen Sicherheitsmechanismen des Browsers, die verhindern, dass Skripte von Websiten auf die lokalen Speichermedien des Clientrechners zugreifen. Sie gehören zur Cross-Origin-Resource-Sharing-Policy (CORS) die regelt, welche Ressourcen von welcher Quelle auf welche Ressourcen von welcher anderen Quelle zugreifen dürfen.  
-Sobald die Cocktailbar von Github-Pages aus aufgerufen wird, tritt das Problem nicht auf. Alle Resourcen befinden sich in derselben Domäne im Netz, wo mit dem http-Protocol gearbeitet wird, und der Zugriff mit `fetch` ist erlaubt.  
-Es wäre natürlich sehr lästig, während der Entwicklung für jeden Test zunächst das aktuelle Projekt auf einen entfernten Fileserver kopieren zu müssen. Stattdessen ist es einfach möglich, die lokale Entwicklungsmaschine zu einem Fileserver zu machen und das Projekt dann unter "Internetbedingungen" zu testen. Im folgenden Beispiel wird hierzu ein winziger Fileserver genutzt, der unter <https://www.npmjs.com/package/serve> zu finden ist.
-
+<summary>Local file server</summary>
+You are likely already familiar with and using the VSCode plugin LiveServer, which effectively bypasses the CORS issue. However, there are other ways to run a local server.
+An error now occurs during testing on the local machine. The URL is flagged as invalid because the HyperText Transfer Protocol is not being used. Browser security mechanisms come into play, preventing scripts on websites from accessing the client computer's local storage. These mechanisms are part of the Cross-Origin Resource Sharing (CORS) policy, which governs which resources from a given source are permitted to access resources from another source.
+The problem does not occur when the cocktail bar is accessed via GitHub Pages. All resources are located on the same domain—using the HTTP protocol—and access via `fetch` is permitted. Of course, it would be very tedious to have to copy the current project to a remote file server for every test during development. Instead, it is easy to turn the local development machine into a file server and then test the project under "Internet conditions." The following example uses a lightweight file server for this purpose, available at <https://www.npmjs.com/package/serve>.
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_ECPNTLWE"><img src="../X01_Appendix/Img/L05_V3_Bild.JPG" width="25%"/></a>
   <br/>
-<a href="http://hdl.handle.net/10900.3/OER_ECPNTLWE"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Lokaler Fileserver</a>
+<a href="http://hdl.handle.net/10900.3/OER_ECPNTLWE"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Local file server</a>
 </div>
 </details>
 
 <details>
 <summary>Submit-Button</summary>  
 
-Es gibt verschiedene Möglichkeiten, das Problem des Submitbuttons zu lösen.  
+There are various ways to solve the submit button problem.
 <ul>
-  <li>im Skript mit `_event.preventDefault()` das Standardverhalten unterbinden</li>
-  <li>als Typ des Buttons in der HTML-Datei `"button"` definieren</li>
-  <li>den Button außerhalb des Formulars platzieren</li>  
+  <li>prevent the default behavior in the script using `_event.preventDefault()`</li>
+  <li>define the button type as "button" in the HTML file</li>
+  <li>place the button outside the form</li>  
 </ul>
 </details>
 
-## Daten nachladen
-`fetch` und die Erkenntnisse aus diesem Kapitel können auch genutzt werden, um das Problem zu lösen, das im vorangegangenen Kapitel noch übrig blieb: die Daten zum Angebot des Barkeeperis vollständig aus dem Programmcode herauszulösen. Ein Fileserver kann, so wie es zuvor mit der Datei Test.txt geschehen ist, den Inhalt einer Datei als Zeichenkette liefern, der Client kann diese Antwort weiterverarbeiten.  
-Im letzten Kapitel wurde die Variable `data` direkt im Code definiert, die Daten waren im Code literal gegeben. Dadurch war es leicht möglich, mit der Punkt-Syntax oder der Klammer-Syntax auf die Daten zuzugreifen und deren hierarchische Ordnung zu nutzen. Liegt nun die Information lediglich als Zeichenkette in der Response vor, ist es wünschenswert, diese ebenso in ein assoziatives Array umzuwandeln.
+## Reload data
+`fetch` and the insights gained in this chapter can also be used to solve the problem left over from the previous chapter: completely separating the bartender's menu data from the program code. Just as was done earlier with the file Test.txt, a file server can provide the contents of a file as a string, and the client can then process that response. In the last chapter, the `data` variable was defined directly within the code—meaning the data existed as a literal within the source code itself. This made it easy to access the data using dot or bracket notation and to leverage its hierarchical structure. However, when the information is received merely as a string within the response, it is desirable to convert it into an associative array as well.
 
-### JSON-Objekt
-Hierfür stellt JavaScript das JSON-Objekt zur Verfügung, mit dem die Erzeugung eines assoziativen Arrays auf Basis der in einer Zeichenkette enthaltenen Information leicht möglich ist. Ebenso kann damit umgekehrt die Repräsentation eines solchen Arrays in Form einer Zeichenkette erzeugt werden. Das JSON-Objekt stellt hierfür zwei Methoden zur Verfügung: `parse` und `stringify`.
+### JSON-Object
+For this purpose, JavaScript provides the JSON object, which makes it easy to create an associative array based on information contained in a string. Conversely, it can also be used to generate a string representation of such an array. The JSON object offers two methods for this: `parse` and `stringify`.
 
 <div align="center">
 <a href="http://hdl.handle.net/10900.3/OER_CRBMCJPT"><img src="../X01_Appendix/Img/L05_V4_Bild.JPG" width="25%"/></a>
 <a href="Material/CocktailBar_ActivityDiagram.jpg"><img src="Material/CocktailBar_ActivityDiagram.jpg" width="25%"/></a>
 <a href="Material/CocktailBar_ActivityDiagram_Client.jpg"><img src="Material/CocktailBar_ActivityDiagram_Client.jpg" width="25%"/></a>
   <br/>
-<a href="http://hdl.handle.net/10900.3/OER_CRBMCJPT"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Diagramme</a>
+<a href="http://hdl.handle.net/10900.3/OER_CRBMCJPT"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Diagrams</a>
 </div>
 
-> **Hinweis:** Im Video wird der Begriff "Marker" verwendet, die korrekte Bezeichnung laut UML-Standard ist "Konnektor"
+> **Notice:** The video uses the term "marker," but the correct term according to the UML standard is "connector.""
 
 ## Implementation II
 
@@ -201,4 +198,4 @@ Hierfür stellt JavaScript das JSON-Objekt zur Verfügung, mit dem die Erzeugung
 <a href="http://hdl.handle.net/10900.3/OER_IBOVUHND"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L05 Client: Implementation II</a>
 </div>
 
-> **Hinweis:** Es existiert bereits eine Fülle von kostenlosen JSON-Editoren, die man dem Barkeeper an die Hand geben könnte, um möglichst fehlerfrei das Angebot zu editieren.
+> **Notice:** There is already a wealth of free JSON editors that could be provided to the bartender to edit the menu with minimal errors.
