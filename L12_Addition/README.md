@@ -3,21 +3,21 @@
 <a href="https://www.youtube.com/watch?v=PK_yguLapgA"><img src="Material/Ariane5Failure.jpg"/></a>
 <small>Quelle: https://docplayer.net/docs-images/66/55611304/images/11-0.jpg</small>
 
-- [x] Klicke auf das Bild, wenn Du sehen möchtest, wie ein kleiner Softwarefehler 290 Millionen Euro in Rauch aufgehen lässt.
+- [x] Click the image to see how a minor software bug caused 290 million euros to go up in smoke.
 
-In diesem Kapitel lernst Du noch einige fortgeschrittene Strukturen kennen, die interaktive Anwendungen flexibler, wartbarer und sicherer machen. Auch wenn Du sie im Kurs vielleicht nicht verwendest, solltest Du sie gesehen und verstanden haben. Zudem werden einige Konstrukte vorgestellt, die nicht unbedingt empfehlenswert, aber weit verbreitet sind, und dich bei deinen Recherchen im Netz irritieren könnten.
+In this chapter, you will learn about some advanced structures that make interactive applications more flexible, maintainable, and secure. Even if you do not use them during the course, you should still be familiar with them and understand how they work. We will also introduce some constructs that are not necessarily recommended but are widely used and might otherwise confuse you when researching online.
 
-## Standardparameter
-Neben dem Fragezeichen gibt es noch eine andere Möglichkeit optionale Parameter bei der Funktions- oder Methodendeklaration vorzusehen. Dabei gibt man einfach nach der Deklaration des formalen Parameters einen Zuweisungsoperator und dann einen Standardwert an. Wird nun beim Aufruf kein Parameter übergeben, erhält der formale Parameter automatisch den Standardwert. Praktisch ist das beispielsweise für den Konstruktor der Vector-Klasse.
+## Default parameters
+In addition to the question mark, there is another way to specify optional parameters in function or method declarations. You simply provide an assignment operator followed by a default value after the declaration of the formal parameter. If no parameter is passed during the call, the formal parameter automatically takes on the default value. This is useful, for example, for the constructor of the Vector class.
 ```typescript
 constructor(_x: number = 0, _y: number = 0) {
     this.set(_x, _y);
 }
 ```
-Nun kann ein neuer Vector einfach mit dem Aufruf `new Vector()` erzeugt werden, die Koordinaten haben dann automatisch beide den Wert 0. Es muss also nicht im Methodenrumpf geprüft werden, ob Parameter übergeben wurden um auf diesen Fall zu reagieren. Werden aber Parameterwerte übergeben, werden diese verwendet.
+A new `Vector` can now simply be created by calling `new Vector()`; both coordinates will automatically be set to 0. Consequently, there is no need to check within the method body whether parameters were passed in order to handle this scenario. However, if parameter values ​​are provided, they will be used.
 
-## Eigenschaftsparameter
-Eigenschaften eines Objektes mit Werten zu definieren, die dem Konstruktor übergeben werden, ist ein sehr häufiges Muster. Daher ist in Typescript eine Kurzschreibweise möglich. Dabei werden die Eigenschaften mit der Signatur des Konstruktors durch die Liste der formalen Parameter deklariert.  
+## Property Parameters
+Defining object properties using values ​​passed to the constructor is a very common pattern. TypeScript therefore offers a shorthand syntax for this, allowing properties to be declared directly within the constructor's formal parameter list.  
 
 ```typescript
 class Test {
@@ -26,14 +26,14 @@ class Test {
 }
 ```  
 
-Eine Instanz der Klasse Test verfügt nun über die Eigenschaften a, b und c, obwohl diese nicht in der Klasse deklariert wurden, sondern in der Konstruktorsignatur. Erzeugt mit `let test: Test = new Test(1, 2, 3);` sind die Eigenschaften dann mit den Werten 1, 2 und 3 definiert.  
+An instance of the `Test` class now possesses the properties `a`, `b`, and `c`, even though they were not declared within the class body itself but rather in the constructor signature. When created using `let test: Test = new Test(1, 2, 3);`, these properties are initialized with the values ​​1, 2, and 3.
 
-Diese Schreibweise "versteckt" allerdings die Eigenschaften in der Signatur und der Coding-Style der Lektionen kann nicht sinnvoll eingehalten werden, da es sich gleichzeitig um Parameter und Eigenschaften handelt. Daher wurde diese Schreibweise nicht verwendet, soll hier aber erwähnt sein.
+However, this syntax "hides" the properties within the signature, making it difficult to adhere to the coding style established in the lessons, as the elements serve as both parameters and properties. Consequently, this approach was not used, though it is worth mentioning here.
 
-## Ausnahmebehandlung
-In den vorangegangenen Lektionen wurde das Thema Fehlerbehandlung weitestgehend ausgeklammert. Lediglich wenn TypeScript durch die strikten Einstellungen des Compilers und des Linters Fehlerquellen angezeigt hat, wurde der Code entsprechend angepasst.  
+## Exception Handling
+Error handling was largely omitted in the previous lessons. Code adjustments were made only when the compiler's and linter's strict settings flagged potential errors.
 
-Gerade wenn ein System mit anderen Systemen oder mit Menschen kommuniziert, entstehen viele Fehler zur Laufzeit und sind schwer vorhersehbar. Wird zudem versucht, alle möglichen Fehler durch Verzweigungen im Code abzufangen, steigt die Komplexität des Programms rasant an.
+Runtime errors frequently occur—and are difficult to predict—especially when a system interacts with other systems or with users. Furthermore, attempting to catch every possible error using conditional logic within the code causes the program's complexity to escalate rapidly.
 
 ```typescript
 interface Greet {
@@ -47,24 +47,24 @@ alert(greet);
 console.log("Done");
 ```
 
-- [x] Implementiere das obenstehende Mini-Programm in einem eigenen Namespace und lasse es im Browser laufen. Was geschieht, wenn Du eine Zahl jenseits 0, 1 und 2 eingibst oder beliebige Zeichen?
+- [x] Implement the mini-program above within its own namespace and run it in the browser. What happens if you enter a number other than 0, 1, or 2, or input arbitrary characters?
 
-Wenn das Programm seinen Dienst quittiert, tut es dies leise. Das Nutzeri hat keine Ahnung was passiert, sofern er nicht Medienkonzeption in Furtwangen studiert und deswegen selbstverständlich die Entwicklerkonsole geöffnet hat. Dort erscheint eine Fehlermeldung.
+If the program fails, it does so silently. The user has no idea what is happening—unless, of course, they are studying Media Conception in Furtwangen and therefore naturally have the developer console open. An error message appears there.
 
-- [x] Erkläre den Fehler!
+- [x] Explain the error!
 
-Vielleicht ist der Fehler aber gar nicht so gravierend, dass das Programm beendet werden müsste. Oder das Nutzeri sollte darüber informiert werden, dass etwas schiefgelaufen ist, so dass es die Ursache prüfen kann. Im Beispiel könnte man natürlich einfach abfragen, ob die Eingabe gültig ist. Es gibt aber noch einen anderen Mechanismus, der auch mit noch unbekannten Fehlerquellen umgehen kann: **Exception-Handling!**
+However, the error might not be serious enough to require the program to terminate. Alternatively, the user should be informed that something went wrong so they can investigate the cause. In this example, one could simply check whether the input is valid. But there is another mechanism capable of handling even unknown sources of error: **exception handling!**
 
-### Error-Objekt
-JavaScript kann bei einem solchen Ausnahmefehler (Exception), der zum Absturz des Programms führt, automatisch ein Error-Objekt erzeugen. Ähnlich einem Event, das durch das DOM weitergereicht wird, kann dieses Objekt durch das Programm gereicht, eher sogar "geworfen" werden. Dieses Objekt enthält Informationen über das Problem, die ausgewertet werden können. Damit müssen also nicht alle Fehler präventiv vermieden werden, sondern sie können im Nachhinein behandelt werden.  
+### Error Object
+In the event of such an exception—one that causes the program to crash—JavaScript can automatically generate an Error object. Much like an event propagated through the DOM, this object can be passed through the program—or, more accurately, "thrown." It contains information about the problem that can be analyzed. Consequently, not every error needs to be prevented proactively; instead, they can be handled after the fact.
 
 ### `try`
-Um den Mechanismus zu nutzen wird zunächst der Code-Block eingegrenzt, der den zu behandelnden Fehler provozieren könnte. Dies geschieht, wie üblich, durch Einfassen in geschweifte Klammern, nun aber mit dem reservierten Wort `try` davor. Damit wird JavaScript angewiesen, zu versuchen den Code im Block auszuführen und ein Error-Objekt zu werfen, wenn etwas schief geht.
+To use this mechanism, you first isolate the code block that might trigger the error you want to handle. As usual, this is done by enclosing the code in curly braces, but this time preceded by the reserved word `try`. This instructs JavaScript to attempt to execute the code within the block and to throw an error object if something goes wrong.
 
 ### `catch`
-An diesen Block muss sich nun direkt ein Block anschließen, der mit dem reservierten Wort `catch` versehen ist. Jetzt wird auch die Wurf-Analogie deutlich, denn hier wird das Error-Objekt aufgefangen und kann innerhalb des Blocks verarbeitet werden. Dazu wird nach der `catch`-Anweisung ein formaler Parameter deklariert, wie es auch bei Funktionen oder Methoden üblich ist. Allerdings kommt eine Eigenheit von TypeScript zum Tragen: wie bei der `for..in`- und der `for..of`-Loop ist keine Typ-Annotation erlaubt.
+This block must be immediately followed by a block designated with the reserved word `catch`. The "throwing" analogy becomes clear here, as the error object is caught and can be processed within the block. To achieve this, a formal parameter is declared after the `catch` statement, just as is common with functions or methods. However, a specific characteristic of TypeScript comes into play: as with `for..in` and `for..of` loops, no type annotation is permitted.
 
-Mit `try` und `catch` gestaltet sich obiger Code zum Beispiel so:
+For example, using `try` and `catch`, the code above looks like this:
 
 ```typescript
 namespace L12_Exception {
@@ -85,26 +85,26 @@ namespace L12_Exception {
 }
 ```
 
-- [x] Erweitere deinen Beispielcode entsprechend und experimentiere dann damit.
+- [x] Expand your example code accordingly and then experiment with it.
 
 ### `finally`
-Nach dem `catch`-Block kann sich noch ein `finally`-Block anschließen. Der Code darin wird auf jeden Fall ausgeführt, egal ob es eine Exception gab oder nicht. Selbst wenn der Beispielcode in einer Funktion definiert ist, und sowohl im `try`- als auch im `catch`-Block eine `return`-Anweisung steht, die Funktion dort also zurückkehrt, wird zuvor noch der `finally`-Block abgearbeitet. Die Ausgabe "Done" aber kommt dann nicht mehr.
+A `finally` block can follow the `catch` block. The code inside it is executed regardless of whether an exception occurred or not. Even if the example code is defined within a function and both the `try` and `catch` blocks contain a `return` statement—meaning the function returns at that point—the `finally` block is processed first. However, the output "Done" will not appear in that case.
 
 ### `throw`
-Du kannst auch selbst eine Exception erzeugen und werfen lassen. Das entspricht etwa der Erzeugung eines CustomEvents, das Du durch das DOM schickst. Das Error-Objekt wird die Kette der Funktionsaufrufe zurück geschickt, bis es in einer der aufrufenden Funktionen von einem `catch`-Block verarbeitet wird. Geschieht letzteres nicht, kommt es als "Unhandled Exception" auf der Konsole raus...
+You can also create and throw an exception yourself. This is roughly analogous to creating a `CustomEvent` and dispatching it through the DOM. The error object propagates back up the function call chain until it is handled by a `catch` block in one of the calling functions. If this does not happen, it appears in the console as an "Unhandled Exception"...
 
-Das bedeutet, dass nun neben `return` und `await` eine dritte Möglichkeit zur Verfügung steht, um Funktionen zu beenden oder zu unterbrechen. Je nach Anwendungsfall kann die Verwendung von `throw` äußerst effizient sein.
+This means that, alongside `return` and `await`, there is now a third way to terminate or interrupt functions. Depending on the use case, using `throw` can be extremely efficient.
 
-- [x] Verfolge den Code "Exception" im Anhang zu dieser Lektion mit dem Debugger!
+- [x] Trace the "Exception" code provided in the attachment to this lesson using the debugger!
 
-### Darstellung im Aktivitätsdiagramm
-Es gibt zwei Perspektiven um die Ausnahmebehandlung im Aktivitätsdiagramm darzustellen. Bei der "Außenansicht" wird nur gezeigt, dass eine Aktivität mit einer Ausnahme beendet werden kann und wie der Fluss dann weitergeht. Dazu kann hier - eben ausnahmsweise - die Aktivität zwei Abflüsse haben, die dann aber nicht eine parallele Weiterverarbeitung bedeuten. Denn einer davon ist mit einem kleinen Dreieck gekennzeichnet und gegebenenfalls, wie bei einem bedingten Fluss, mit einer Information zu der Ausnahmebedingung in eckigen Klammer.
+### Representation in the Activity Diagram
+There are two perspectives for representing exception handling in an activity diagram. The "external view" simply shows that an activity can terminate with an exception and indicates how the flow proceeds from there. For this purpose—as an exception to the usual rules—the activity may have two outgoing flows; however, these do not signify parallel processing. This is because one of them is marked with a small triangle and, optionally—as with a conditional flow—includes information about the exception condition in square brackets.
 ![](Material/draw.io/Exceptions.svg)
 
-Die "Innenansicht" zeigt den inneren Aufbau eines unterbrechbaren Bereiches und die Signale, die eine Ausnahmebehandlung erforderlich machen. Der Rahmen des Bereiches wird gestrichelt dargestellt, der Abfluss vom Signalempfang als gezackte Linie. Neben der gezackten Linie und dem Dreieck an einer Linie gibt es noch die Darstellung mit einem Blitzsymbol an der Linie.
+The "internal view" shows the internal structure of an interruptible region and the signals that necessitate exception handling. The region's boundary is depicted with a dashed line, while the flow resulting from signal receipt is shown as a jagged line. In addition to the jagged line and the triangle on a line, there is also a representation using a lightning bolt symbol on the line.
 
-## Funktions-Objekt
-Funktionen sind in JavaScript, wie alles andere, Objekte. Sie können beispielsweise mit Hilfe von Variablen referenziert werden. Folgendes ist also möglich:
+## Function Object
+In JavaScript, functions—like everything else—are objects. For instance, they can be referenced using variables. The following is therefore possible:
 
 ```typescript
 function doSomething(_parameter: number): string {
@@ -115,10 +115,10 @@ let doToo: Function = doSomething;
 doToo(42);
 ```
 
-Das Ergebnis ist das gleiche wie beim Aufruf `doSomething(42);` denn `doToo` und `doSomething` referenzieren das gleiche Funktionsobjekt.
+The result is the same as calling `doSomething(42);` because `doToo` and `doSomething` reference the same function object.
 
-### Anonyme Funktionen
-Die Funktion kann auch gleich bei der Erzeugung einer Variablen zugeordnet werden, dann ist es nicht erforderlich einen Funktionsnamen zu vergeben. Die Funktion selbst ist dann "anonym".
+### Anonymous Functions
+The function can also be assigned to a variable immediately upon creation; in this case, there is no need to provide a function name. The function itself is then "anonymous".
 
 ```typescript
 let doSomething: Function = function(_parameter: number): string {
@@ -126,9 +126,9 @@ let doSomething: Function = function(_parameter: number): string {
 }
 ```
 
-Die Funktionserzeugung ist gleichbedeutend mit der im Beispiel darüber. Allerdings kann `doSomething(...)` nun erst nach der Definition aufgerufen werden, was eher unschön ist.
+The function creation is equivalent to the one in the example above. However, `doSomething(...)` can now only be called after the definition, which is somewhat less than ideal.
 
-Anonyme Funktionen werden häufig dort genutzt, wo sie als Parameter übergeben werden und nicht als mehrfachverwendbare Objekte im Zugriff bleiben müssen. Beispiel:
+Anonymous functions are frequently used where they are passed as parameters and do not need to remain accessible as reusable objects. Example:
 
 ```typescript
 setTimeout(function (): void {
@@ -136,98 +136,98 @@ setTimeout(function (): void {
     },         2000);
 ```
 
-Der Timeout-Funktion wird das anonyme Funktionsobjekt sofort übergeben und nach zwei Sekunden wird es aufgerufen. Danach ist das Funktionsobjekt Müll und wird vom Garbage Collector irgendwann entsorgt. 
+The anonymous function object is passed immediately to the timeout function and invoked after two seconds. Afterward, the function object becomes garbage and is eventually disposed of by the garbage collector.
 
-Für solche kleinen Funktionen ist diese Anonymität akzeptabel, grundsätzlich vermindern solche Konstrukte aber eher die Lesbarkeit und Wartbarkeit des Programms.
+While such anonymity is acceptable for small functions, these kinds of constructs generally tend to reduce the program's readability and maintainability.
 
-### Arrow-Functions
-Seit 2015 ist in JavaScript eine weitere Schreibweise für Funktionen üblich, die etwas kryptischer aussieht, aber im Wesentlichen gleichbedeutend ist mit der dir bekannten und etwas intuitiveren Schreibweise mit `function`.
+### Arrow Functions
+Since 2015, another way of writing functions has become common in JavaScript; it looks somewhat more cryptic but is essentially equivalent to the `function` syntax you are already familiar with—which is also somewhat more intuitive.
 
 ```typescript
 let doSomething: Function = (_parameter: number): string => {
    ...
 };
 ```
-Aus dem reservierten Wort `function` vor der Parameterliste ist nun der Doppelpfeil zwischen dem Rückgabetyp und dem Funktionskörper geworden.
+The reserved word `function` preceding the parameter list has been replaced by a double arrow placed between the return type and the function body.
 
-### this-binding
-Ein Unterschied aber ist die Funktionalität innerhalb von Klassen. Wird eine Arrow-Function als Methode deklariert, wird sie in der Konsole als Eigenschaft angezeigt. Interessanter aber ist der Unterschied bei der Verwendung als Event-Handler.   
-- Innerhalb klassischer Methoden verweist `this` dann auf das Event-Target und nicht auf die Instanz der Klasse. Das führt häufig zu unerwarteten Fehlern. 
-- Bei Arrow-Functions dagegen verweist `this` weiterhin, wie zu erwarten, auf die Instanz. Daher ist diese Schreibweise in dem Fall zu bevorzugen.
-- Es gibt auch die Möglichkeit, eine klassische Methode so zu modifizieren, dass auch sie als Event-Handler die Instanz mit `this` referenziert. Hierzu existiert die Funktion `bind` des Funktionsobjektes. 
+### `this` binding
+One difference, however, lies in their behavior within classes. If an arrow function is declared as a method, it appears as a property in the console. More interesting, though, is the difference when used as an event handler:
+- In traditional methods, `this` refers to the event target rather than the class instance. This frequently leads to unexpected errors.
+- With arrow functions, on the other hand, `this` continues to refer to the instance, as expected. Therefore, this syntax is preferable in such cases.
+- It is also possible to modify a traditional method so that it, too, references the instance via `this` when used as an event handler; the function object's `bind` method is used for this purpose.
 
-- [x] Wenn Du dies besser verstehen möchtest, experimentiere etwas mit dem Code "FunctionObject" im Anhang.
+- [x] To understand this better, try experimenting with the "FunctionObject" code provided in the attachment.
 
-## Drag&Drop
-Eine wichtige Standardfunktionalität des DOM wurde in diesem Kurs bislang noch nicht behandelt. Insbesondere bei Desktopanwendungen ist es sehr üblich, Objekte direkt zu manipulieren, nicht also über Formularelemente, sondern beispielsweise per drag & drop. Die Verwendung ist recht einfach:
+## Drag & Drop
+One important standard feature of the DOM has not yet been covered in this course. Particularly in desktop applications, it is very common to manipulate objects directly—not via form elements, but rather through actions like drag-and-drop. Using this feature is quite straightforward:
 
-- `draggable` ist eine Eigenschaft, definiert in der Klasse HTMLElement. Erhält sie den Wert `true` verändert sich das Maus-Verhalten auf dem entsprechenden Element.
-- wird die Maustaste gedrückt, während sich der Mauscursor über dem Element befindet, wird ein Event vom Typ `dragstart` gefeuert.
-- das Event-Objekt ist vom Typ `DragEvent` und verfügt über eine Eigenschaft `dataTransfer`, die ein Objekt vom Typ `DataTransfer` referenziert.
-- die Methode `setData(key, value)` fügt `dataTransfer` Informationen hinzu. 
-- ein HTMLElement, auf dem dann der Drop stattfinden können soll, muss diesen zulassen. Dazu muss es auf ein `dragover`-Event hören und mit `event.preventDefault()` sein Standardverhalten unterbinden, welches die Ablehnung des Drops ist.
-- nun kann es auf ein `drop`-Event reagieren, wobei dem entsprechendem Handler das beim `drag` erzeugte und mit zusätzlichen Informationen versorgte Event übergeben wird.
-- mit `getData(key)` können die Informationen ausgelesen und verarbeitet werden, zum Beispiel um das Drop-Ziel zu verändern.
+- `draggable` is a property defined in the `HTMLElement` class. If set to `true`, the mouse behavior on the corresponding element changes.
+- When the mouse button is pressed while the cursor is over the element, a `dragstart` event is fired.
+- The event object is of type `DragEvent` and includes a `dataTransfer` property, which references an object of type `DataTransfer`.
+- The `setData(key, value)` method adds information to the `dataTransfer` object.
+- An `HTMLElement` intended to serve as a drop target must explicitly allow the drop. To do this, it must listen for the `dragover` event and use `event.preventDefault()` to suppress the default behavior, which is to reject the drop.
+- It can then respond to a `drop` event; the corresponding handler receives the event object that was created and populated with additional information during the drag operation.
+- The `getData(key)` method allows the information to be retrieved and processed—for example, to modify the drop target.
 
-- [x] Im Anhang befindet sich ein kleines Beispielprogramm "DragDrop" mit einer rudimentären Implementation des DOM-Drag&Drop-Mechanismus, mit dem noch viel mehr möglich ist. Schaue es dir an! 
+- [x] Attached is a small example program called "DragDrop" featuring a rudimentary implementation of the DOM drag-and-drop mechanism, a system capable of much more. Take a look!
 
 ## Garbage Collection
-Wenn eine Variable ihren Gültigkeitsbereich verlässt, wird der von ihr belegte Speicher freigegeben und steht wieder für andere Informationen zur Vefügung. Bei Variablen, die auf Objekte verweisen, wird aber nur der Verweis gelöscht, das referenzierte Objekt dagegen bleibt im Speicher, denn es könnten noch andere Variablen darauf verweisen. Diese würden dann ins Leere deuten und Fehler erzeugen. Werden die Objekte allerdings nie gelöscht, wird der Speicher immer mehr zugemüllt und es kommt irgendwann zu einem Programmversagen.
+When a variable goes out of scope, the memory it occupied is released and becomes available for other data. However, for variables that reference objects, only the reference itself is deleted; the referenced object remains in memory because other variables might still be pointing to it. If the object were removed, those other variables would point to nothing, causing errors. On the other hand, if objects are never deleted, memory becomes increasingly cluttered, eventually leading to a program failure.
 
-Bei einem JavaScript-Programm wird der Speicher daher von einem Algorithmus, dem sogenannten "Garbage Collector" überwacht. Dieser durchforstet in unregelmäßgen Zeitabständen den Speicher, findet Objekte die nicht mehr gebraucht werden und löscht diese. In den meisten Fällen geschieht das völlig unmerklich, bei Animationen allerdings kann dieser Vorgang zu sichtbaren Störungen führen, wenn ein Bild einmal etwas länger stehen bleibt als andere. Durch Wiederverwendung von Objekten kann der Effekt minimiert werden.
+In a JavaScript program, memory is monitored by an algorithm known as the "garbage collector." It scans memory at irregular intervals, identifies objects that are no longer needed, and deletes them. In most cases, this process occurs completely unnoticed; however, with animations, it can lead to visible glitches if a single frame lingers longer than the others. Reusing objects can help minimize this effect.
 
 ## Debugger in VSCode
-### Node-Programme
-In der Lektion zum Server wurde bereits kurz der interne Debugger von VSCode vorgestellt. Da bei Node-Programmen der Browser nicht beteiligt ist, kann dessen Debugger nicht genutzt werden um den Programmablauf zu prüfen. Beim Umgang mit dem Debugger von VSCode sind noch einige Informationen sehr nützlich. 
-Da VSCode gleichzeitige mehrere Projekte verwalten kann, braucht der Debugger beim Start die Information, welches Programm ausgeführt und verfolgt werden soll. Im einfachsten Fall, wenn der Debugger "No Configurations" anzeigt, startet er das Programm, das gerade im fokussierten Editor-Fenster angezeigt wird. Mit Hilfe des Menüsystems lassen sich aber auch gezielt Konfigurationen definieren, diese werden in einer Datei `launch.json` im Ordner `.vscode` gespeichert, die der Debugger automatisch dabei anlegt. 
+### Node Programs
+VSCode's built-in debugger was briefly introduced in the lesson on servers. Since the browser is not involved in Node programs, its debugger cannot be used to inspect program execution. There are a few additional details that are very useful when working with the VSCode debugger.
+Because VSCode can manage multiple projects simultaneously, the debugger needs to know which program to execute and monitor when it starts. In the simplest scenario—where the debugger displays "No Configurations"—it launches the program currently visible in the active editor window. However, you can also define specific configurations via the menu system; these are stored in a `launch.json` file within the `.vscode` folder, which the debugger automatically creates.
 
-- [x] Öffne den Ordner `X01_Appendix` mit VSCode, navigiere zur Debug-Ansicht und darin zu `Open launch.json` bzw. `Open Configurations`. Nun sollte dir die Datei `launch.json` angezeigt werden.
-- [x] Studiere den ersten Eintrag im Array `configurations`. Beachte, dass `${workspaceFolder}` ein Platzhalter ist, an dessen Statt der Pfad zu dem Verzeichnisses eingesetzt wird, dass Du mit VSCode geöffnet hattest. In unserem Fall also der Pfad zu `X01_Appendix`.
-- [x] Finde den Namen dieser ersten Konfiguration an anderer Stelle im Debug-View. Stelle dann sicher, dass diese Konfiguration genutzt wird, wenn Du den Debugger startest.
-- [x] Starte nun den Debugger z.B. mit F5 oder Klick auf den grünen Pfeil.
-- [x] Beobachte die Ausgabe im Debug-Terminal und im Editor-Fenster.
+- [x] Open the `X01_Appendix` folder in VS Code, navigate to the Debug view, and select `Open launch.json` (or `Open Configurations`). The `launch.json` file should now be displayed.
+- [x] Examine the first entry in the `configurations` array. Note that `${workspaceFolder}` is a placeholder that is replaced by the path to the directory you opened in VS Code—in this case, the path to `X01_Appendix`.
+- [x] Locate the name of this first configuration elsewhere in the Debug view. Then, ensure that this configuration is used when you start the debugger.
+- [x] Start the debugger (e.g., by pressing F5 or clicking the green arrow).
+- [x] Observe the output in the debug terminal and the editor window.
 
-Zeile 3 enthält die bekannte Anweisung `debugger` deswegen wurde hier der Programmfluss angehalten und dir wird das Control-Panel mit den Optionen angezeigt, die Du schon vom Browserdebugger kennst. Statt diese Anweisung in den Code zu schreiben, kann man natürlich auch, wie üblich, Breakpoints einfach durch Klick vor der Zeilennummer einsetzen.
+Line 3 contains the familiar `debugger` statement; consequently, program execution has paused here, and the control panel is displayed, showing options you already recognize from the browser debugger. Instead of writing this statement into the code, you can, of course, simply set breakpoints by clicking next to the line number, as is standard practice.
 
-- [x] Führe zwei mal einen "Step over" aus um die nächste Konsolenausgabe zu sehen.
-- [x] Erkläre, woher der Gruß kommt, der nun erscheint.
+- [x] Perform a "Step over" twice to see the next console output.
+- [x] Explain the source of the greeting that now appears.
 
-### Browser-Programme
-Aber auch bei Browser-Programmen muss man nicht auf den Komfort des VSCode-Debuggers verzichten. Über einen lokalen Server kann VSCode mit dem Browser kommunizieren und das laufende Programm kontrollieren. Hierfür ist noch ein wenig Einrichtung erforderlich. Das folgende Beispiel beschreibt dies für die Nutzung von Chrome.
+### Browser-based Programs
+You don't have to forgo the convenience of the VS Code debugger when working with browser-based programs, either. VS Code can communicate with the browser via a local server and control the running program. This requires a bit of setup. The following example describes how to do this using Chrome.
 
-- [x] Installiere die Extension "Debugger for Chrome" in VSCode.
-- [x] Betrachte den zweiten Eintrag der `configurations` in `launch.json`. Analog zu `programm` gibt es hier den Eintrag `url`. Hier ist der Pfad zu der auszuführenden HTML-Datei hinterlegt, bezogen auf das Wurzelverzeichnis eines lokalen Fileservers, dem Verzeichnis, dass Du mit VSCode geöffnet hattest.
-- [x] Starte den Fileserver im Wurzelverzeichnis mit `npx serve` oder, wenn Du "serve" bereits global installiert hattest, einfach mit `serve`.
-- [x] Aktiviere die Debug-Konfiguration "Launch DebugBrowser with Chrome" von `launch.json`.
-- [x] Starte den Debugger. Beachte, dass nun Chrome mit der Web-App gestartet wird.
-- [x] Erkläre, woher jetzt die Grußnachricht kommt. 
+- [x] Install the "Debugger for Chrome" extension in VS Code.
+- [x] Look at the second entry under `configurations` in `launch.json`. Similar to the `program` entry, there is a `url` entry here. This specifies the path to the HTML file to be executed, relative to the root directory of a local file server—specifically, the directory you opened in VS Code.
+- [x] Start the file server in the root directory using `npx serve` or, if you have already installed "serve" globally, simply by running `serve`.
+- [x] Activate the "Launch DebugBrowser with Chrome" debug configuration from `launch.json`.
+- [x] Start the debugger. Note that Chrome will now launch with the web app.
+- [x] Explain where the greeting message is coming from now.
 
-## Teamarbeit
-**Git** hat noch mehr Funktionen als die bisher genutzten, sehr wichtig für die Teamarbeit sind dabei "Branches" und "Forks". 
+## Teamwork
+**Git** offers additional features beyond those used so far; "branches" and "forks" are particularly important for teamwork.
 
 ### Branches
-Dabei können mehrere Versionen des gleichen Repositories gleichzeitig gespeichert werden, sie werden als Branches bezeichnet. Bislang hast Du nur mit dem `master`-Branch gearbeitet. Insbesondere, wenn mehrere Leute am oder mit dem Code arbeiten, ist es äußerst wünschenswert, einen Branch mit einem stabilen und getesteten Zustand zu halten (oft `master`), während es weitere Branches gibt, auf denen die Fortentwicklung und Experimente etc. stattfinden. Ist dann in einem Branch etwas entstanden, das in den `master` einfließen soll, so kann **git** diese Verschmelzung, im Englischen "merge" genannt, übernehmen. Nur wenn es Konflikte gibt, also in beiden zu verschmelzenden Branches die gleiche Datei verändert wurde, muss ein Mensch entscheiden, welcher Code erhalten bleiben soll.  
+Branches allow multiple versions of the same repository to be stored simultaneously. Up to this point, you have worked only with the `master` branch. Especially when multiple people are working on or with the code, it is highly desirable to maintain a branch representing a stable, tested state (often `master`), while using other branches for ongoing development, experiments, and so on. Once a branch contains changes intended for the `master` branch, **Git** can handle the process of combining them—known as a "merge." Human intervention is required only if conflicts arise—that is, if the same file has been modified in both branches being merged—to decide which version of the code should be kept.  
 
 ### Forks
-Mit diesem System ist auch die Open-Source-Entwicklung in einer Community möglich, ohne dass die Teammitglieder in einer festgelegten Struktur arbeiten und sich noch nicht einmal kennen müssen. Jedes kann sich auf Github einen Klon (**Fork**) eines öffentlichen Repositories auf seinen Github-Bereich erstellen lassen, und daran arbeiten. Entsteht dabei etwas, das für das Original nützlich sein könnte, kann man einen "Pull-Request" verschicken, in dem automatisch die Veränderungen enthalten sind. Die Entwickleris des Originals können diese begutachten und bei Bedarf in ihr Repository "mergen".
+This system enables community-based open-source development without requiring team members to work within a fixed structure—or even know one another. Anyone can create a clone (**fork**) of a public repository in their own GitHub space and work on it. If something useful for the original project emerges, a "pull request" containing the changes can be submitted. The original project's developers can then review these changes and "merge" them into their repository if appropriate.
 
-## Plattformen
-Die technische Basis, die für diese Modulreihe "Entwicklung interaktiver Anwendungen" herangezogen wird, entstammt der Webtechnologie. Das bedeutet aber nicht, dass deine Konzeption sich auf Internetseiten beschränken muss. Mit dem, was Du jetzt gelernt hast, kannst Du vollwertige native Apps und Desktop-Programme konzipieren und entwickeln. Hierzu verwendest Du Techniken, die deine Software auf eine erweiterte Plattform hieven, im Inneren arbeitet dabei weiter ein Browser und/oder Node, das Nutzeri bekommt davon aber nichts mit.
+## Platforms
+The technical foundation used for this "Development of Interactive Applications" module series is based on web technologies. However, this does not mean your concepts must be limited to websites. With what you have learned so far, you can design and develop fully-fledged native apps and desktop programs. To do this, you employ techniques that elevate your software to an extended platform; while a browser and/or Node continues to operate in the background, the user remains unaware of this.
 
 ### Electron
-Wird von GitHub selbst entwickelt und verwendet Node.js sowie Chromium, die Entwicklerversion des Chrome-Browsers. Der Funktionsumfang wird erweitert um Systemfunktionen wie Zugriffe auf das Dateisystem, so dass aus deiner Web-App eine vollwertige, native Desktopanwendung für Windows, Mac und Linux werden kann. 
+Developed by GitHub itself, it uses Node.js and Chromium—the developer version of the Chrome browser. Its capabilities are extended to include system functions such as file system access, allowing your web app to become a full-fledged native desktop application for Windows, Mac, and Linux.
 
-Du arbeitest übrigens schon eine Weile mit einer solchen Anwendung, den Visual Studio Code ist eine Electron-App!
+Incidentally, you have likely been using such an application for some time, as Visual Studio Code is an Electron app!
 
 ### Cordova/PhoneGap
-Cordova und PhoneGap sind zwei im Wesentlichen identische Produkte, die denselben Ursprung haben und von Apache beziehungsweise Adobe weiterentwickelt werden. Ihnen liegt das gleiche Prinzip zugrunde wie Electron, allerdings für mobile Android- und iOS-Geräte. So kann deine WebApp über die entsprechenden Stores vertrieben werden und im Betrieb auf GPS, Beschleunigungssensoren, Kamera etc. zugreifen.
+Cordova and PhoneGap are essentially identical products that share the same origins and are developed by Apache and Adobe, respectively. They are based on the same principle as Electron, but are designed for mobile Android and iOS devices. This allows your web app to be distributed via the relevant app stores and to access features such as GPS, accelerometers, and the camera during operation.
 
-Die Wikipedia mobile App ist eine PhoneGap-Anwendung!
+The Wikipedia mobile app is a PhoneGap application!
 
 ### Progressive Web Apps
-Seit 2015 schickt sich ein weiteres Modell an den App-Markt aufzumischen: Progressive Web Apps. Diese kommen zunächst wie eine gewöhnliche Web-App daher, installieren aber beim ersten Besuch einen "Service-Worker" auf dem Smartphone. Diese Software lädt gezielt Inhalte herunter und speichert sie auf dem Gerät, um die Funktionalität der App auch zu erhalten, wenn keine Internetverbindung besteht. Es wird zudem angeboten, eine Verknüpfung auf dem Home-Screen zu erstellen, sie kann im Vollbildmodus gestartet und Push-Nachrichten vom Server angezeigt werden, auch wenn die App gerade nicht aktiv ist. Dadurch wirkt die PWA wie eine vollwertige native App bei minimalem Mehraufwand gegenüber der reinen Web-Entwicklung. Der riesige Vorteil: ist erst einmal ein potenzielles Nutzeri über eine Suchmaschine auf dem Angebot gelandet, muss es dieses nicht erst wieder verlassen und in den Store geleitet werden um dort die Installation einer App und später den Start derselben in die Wege zu leiten, sondern die Nutzung der App hat bereits begonnen!
+Since 2015, another model has been poised to shake up the app market: Progressive Web Apps (PWAs). Initially, they appear just like ordinary web apps, but upon the first visit, they install a "service worker" on the smartphone. This software selectively downloads and stores content on the device, ensuring the app remains functional even without an internet connection. Users can also create a home screen shortcut; the app can launch in full-screen mode and display server-sent push notifications, even when the app is not currently active. As a result, the PWA functions like a full-fledged native app, requiring minimal extra effort compared to standard web development. The huge advantage: once a potential user arrives at the site via a search engine, they do not need to leave the page and head to an app store to install and launch the app—usage has effectively already begun!
 
-Der mobile Twitter Client ist eine Progressive Web App
+The mobile Twitter client is a Progressive Web App.
 
 # Abschluss
 <div align="center">
@@ -238,4 +238,4 @@ Der mobile Twitter Client ist eine Progressive Web App
 
 
 ## eiaSteroids
-Das Beispielprojekt hat nun auch diesen eigenen und eigenwilligen Namen bekommen. Schau es dir genau an, insbesondere die finale Dokumentation. Es ist beispielhaft für deine Abschlussarbeit und Du solltest dich daran orientieren! Hier geht's also zu [**eiaSteroids**](../X01_Appendix/eiaSteroids)
+The example project has now also been given this unique and distinctive name. Take a close look at it, especially the final documentation. It serves as a model for your final project, and you should use it as a guide! So, here is the link to [**eiaSteroids**](../X01_Appendix/eiaSteroids)

@@ -1,11 +1,11 @@
 ## L11 Advanced
-# L11.1 Modifikatoren & Accessoren
+# L11.1 Modifiers & Accessors
 
 ![](Material/Sims.png)
 
 <hr>  
 
-**Einschub**: Eine Lösung für die letzte Übung von Lektion 10 mit CustomEvents, die bereits in [Lektion03](../L02_Events/README.md#customevents) kurz angerissen wurden.  
+**Side note**: A solution for the final exercise of Lesson 10 using CustomEvents, which were already briefly touched upon in [Lesson 03](../L02_Events/README.md#customevents).
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_FMOQLXZU"><img src="../X01_Appendix/Img/L11_V1_Bild.jpg" width="25%"/></a>
   <a href="Material/draw.io/Asteroids_ActivityDiagram-Ufo.svg"><img src="Material/draw.io/Asteroids_ActivityDiagram-Ufo.svg" width="13%"></a>
@@ -16,38 +16,38 @@
 
 <hr>  
 
-Die objektorientierte Modellierung bietet noch einige zusätzliche Möglichkeiten, welche die Entwicklung und Wartung von Softwaresystemen vereinfachen und verbessern. Komplexere Software wird meist im Team entwickelt, verschiedene Teile, Module und Klassen werden von unterschiedlichen Leuten entworfen, implementiert und genutzt. Um Missverständnisse zwischen den Teammitgliedern zu vermeiden oder Fehler bei der Programmierung von vorneherein auszuschließen, ist ungemein hilfreich und praktisch, die folgenden fortgeschrittenen Mechanismen zu kennen und zu nutzen.  
+Object-oriented modeling offers several additional capabilities that simplify and improve the development and maintenance of software systems. Complex software is typically developed by teams, with various parts, modules, and classes designed, implemented, and utilized by different individuals. To avoid misunderstandings among team members or to rule out programming errors from the outset, it is extremely helpful and practical to be familiar with and utilize the following advanced mechanisms.  
 
-- [x] Entwirf für diese Lektion ein kleines Programm bestehend aus einer Superklasse, einer Subklasse davon, einem Hauptprogramm und einer HTML-Datei, welche deine Skripte lädt. Die Funktion ist zunächst irrelevant, es geht nur um Struktur.
+- [x] For this lesson, design a small program consisting of a superclass, a subclass of that superclass, a main program, and an HTML file that loads your scripts. The specific functionality is irrelevant at this stage; the focus is solely on the structure.
 
 ## `Abstract`
-### Abstrakte Klasse
-Von der Klasse `Moveable` bei Asteroids werden keine Objekte instanziert, nur von den Subklassen. `Moveable` ist somit eine völlig abstrakte Klasse, sie stellt wie "Hund" lediglich ein Konzept, eine Idee, dar (vergleiche Platons Ideenlehre). Mit dem reservierten Wort `abstract` kann eine Klasse als solche gekennzeichnet werden. Der Versuch, ein Objekt dieser Klasse zu instanzieren, wird nun bereits vom TypeScript-Compiler geahndet.  
+### Abstract class
+No objects are instantiated from the `Moveable` class in Asteroids—only from its subclasses. `Moveable` is thus a purely abstract class; like "dog," it represents merely a concept or an idea (compare Plato's theory of forms). A class can be designated as such using the reserved keyword `abstract`. Any attempt to instantiate an object of this class will now be flagged by the TypeScript compilerS.  
 
-- [x] Markiere deine Superklasse als abstrakt, in dem Du einfach `abstract` vor `class` schreibst. Versuche im Hauptprogramm ein Objekt der Klasse erzeugen zu lassen und beachte die Fehlermeldungen.
+- [x] Mark your superclass as abstract by simply writing `abstract` before `class`. Try to create an object of the class in the main program and observe the error messages.
 
-Objekte der Subklassen können dennoch weiter die Methoden der abstrakten Superklasse nutzen.
+Objects of the subclasses can nevertheless continue to use the methods of the abstract superclass.
 
-- [x] Überprüfe diese Aussage, indem Du in deiner Superklasse eine Methode implementierst und diese aus einem Objekt der Subklasse heraus aufrufen lässt.
+- [x] Verify this statement by implementing a method in your superclass and calling it from an object of the subclass.
 
-### Abstrakte Methode
-Es gibt aber auch Methoden, die in der abstrakten Superklasse nicht sinnvoll implementiert werden können, sondern nur in den Subklassen. `draw()` in `Moveable` ist hierfür ein gutes Beispiel. Dennoch muss die Superklasse `Moveable` die Methode `draw` aufweisen, damit das Hauptprogramm alle `Moveable`s einfach verwalten und deren `draw`-Methoden aufrufen kann.  
+### Abstract Method
+However, there are methods that cannot be meaningfully implemented in the abstract superclass itself, but only in the subclasses. `draw()` in `Moveable` is a good example of this. Nevertheless, the superclass `Moveable` must include the `draw` method so that the main program can easily manage all `Moveable` objects and call their `draw` methods.
 
-Solche Methoden abstrakter Klassen sollten ebenfalls mit `abstract` markiert werden. Dann muss dort kein Rumpf implementiert werden und es wird erzwungen, dass die Methode in der Subklasse definiert werden muss.
+Such methods in abstract classes should also be marked as `abstract`. This eliminates the need to implement a method body and enforces the requirement that the method be defined in the subclass.
 
-- [x] Markiere eine neue Methode deiner abstrakten Superklasse als abstrakt. Erhältst Du eine Fehlermeldung, wenn Du diese Methode in der Subklasse nicht definierst?
+- [x] Mark a new method in your abstract superclass as abstract. Do you receive an error message if you do not define this method in the subclass?
 
-> **Hinweis**: Du kannst abstrakte Klassen oder Methoden schon beim Entwurf im Klassendiagramm auszeichnen, hierfür werden die entsprechenden Klassen- und Methodennamen lediglich kursiv geschrieben. 
+> **Note**: You can indicate abstract classes or methods during the design phase in the class diagram; simply write the corresponding class and method names in italics.
 
 ## Static
-In die entgegengesetzte Richtung zielt das Prinzip der statischen Methoden und Eigenschaften von Klassen. Diese können nämlich genutzt werden, ohne dass eine Instanz der Klasse geschaffen werden muss. Die Klasse, oder ein Teil davon, wird also sehr konkret. Hierfür genügt es, das reservierte Wort `static` der Deklaration einer Methode oder Eigenschaft voran zu stellen.  
+The principle of static class methods and properties works in the opposite direction. They can be used without the need to create an instance of the class; in this way, the class—or a part of it—becomes very concrete. To achieve this, one simply needs to prefix the method or property declaration with the reserved word `static`.
 
-Bei Asteroids könnten statische Methoden in der Vektorklasse hilfreich sein. Folgende Zeile aus `isHit` beispielsweise ist recht unschön
+In the case of *Asteroids*, static methods within the vector class could prove useful. The following line from `isHit`, for example, is rather inelegant
 
 ```typescript 
 let difference: Vector = new Vector(_hotspot.x - this.position.x, _hotspot.y - this.position.y);
 ```
-Es wäre besser lesbar, wenn die Vektorklasse die Differenz zweier Vektoren berechnen und den resultierenden Vektor liefern könnte. Das ist einfach in der Vektorklasse zu implementieren
+It would be more readable if the vector class could calculate the difference between two vectors and return the resulting vector. This is easy to implement in the vector class
 
 ```typescript
 static getDifference(_v0: Vector, _v1: Vector): Vector
@@ -56,17 +56,17 @@ static getDifference(_v0: Vector, _v1: Vector): Vector
 }
 
 ```
-Nun steckt die Komplexität der Erzeugung eines neuen Vektors und der komponentenweisen Subtraktion in der Vektorklasse und die neue Klassenmethode `getDifference` kann einfach und intuitiv verwendet werden.
+The complexity of creating a new vector and performing component-wise subtraction is now encapsulated within the vector class, and the new class method `getDifference` can be used simply and intuitively.
 ```typescript
 let difference: Vector = Vector.getDifference(_hotspot, this.position);
 ```
 
-- [x] Definiere in deiner Superklasse eine statische Eigenschaft und eine statische Methode. Lasse das Hauptprogramm die Eigenschaft in der Konsole ausgeben und die Methode aufrufen. Nutze statt einer Objektreferenz nun einfach den Klassennamen hierfür.
+- [x] Define a static property and a static method in your superclass. Have the main program output the property to the console and call the method. Instead of using an object reference, simply use the class name for this purpose.
 
-> **Hinweis**: Im Klassendiagramm werden statische Methoden oder Eigenschaften durch Unterstreichung gekennzeichnet!
+> **Note**: In class diagrams, static methods or properties are indicated by underlining!
 
-## Gültigkeit
-Variablen, die innerhalb eines mit geschweiften Klammern abgegrenzten Code-Block mit `let` deklariert werden, sind nur innerhalb des entsprechenden Blocks gültig. Dabei können sie andere Variablen gleichen Namens, die ausserhalb des Blocks gültig sind "verdecken". Dies wird in folgendem simplen Beispiel sichtbar.
+## Validity
+Variables declared with `let` within a code block delimited by curly braces are valid only within that specific block. In doing so, they can "shadow" other variables of the same name that are valid outside the block. This is illustrated in the following simple example.
 
 ```typescript
 let x: string = "I'm valid outside";
@@ -76,50 +76,50 @@ let x: string = "I'm valid outside";
 }
 console.log(x);
 ```
-Erzeugt wird die Ausgabe
+The output is generated
 ```plaintext
 I'm valid inside
 I'm valid outside
 ```
-Es ist erkennbar, dass für die Dauer der Ausführung des Blocks zwei Variablen namens `x` existierten, denn der Inhalt der "äußeren" wurde nicht verändert. Die "innere" verlor dagegen nach Beendigung des Blocks ihre Gültigkeit. Die verließ ihren "Scope" und der von ihr belegte Speicher wird wieder freigegeben. Die "äußere" aber existiert weiterhin und ihr Inhalt wird ausgegeben.
+It is evident that two variables named `x` existed while the block was executing, as the content of the "outer" variable remained unchanged. In contrast, the "inner" variable ceased to be valid once the block finished executing; it left its "scope," and the memory it occupied was released. The "outer" variable, however, continued to exist, and its content was output.
 
-Solche Blöcke können Schleifenkörper oder if-Blocks abgrenzen, Funktions- oder Methodenrümpfe, Klassen, Objekte und Namespaces. Wie in obigem Beispiel ist es auch möglich, obgleich selten, einen Block zu definieren, ausschließlich um einen Gültigkeitsbereich abzugrenzen.
+Such blocks can define the boundaries of loop bodies, `if` blocks, function or method bodies, classes, objects, and namespaces. As shown in the example above, it is also possible—albeit rare—to define a block solely to establish a scope.
 
-- [x] Untersuche den Code "Scopes" im Anhang zu dieser Lektion und bringe ihn entweder in der Konsole oder im Browser zum Laufen. In diesem Code wird zehnmal die Variable x als `string` deklariert und mit unterschiedlichen Zeichenketten definiert. Die Werte bezeichnen den Gültigkeitsbereich.
-- [x] Erkläre die Ausgaben und die beiden Abweichungen.
+- [x] Examine the "Scopes" code provided in the appendix to this lesson and run it in either the console or the browser. In this code, the variable `x` is declared as a `string` ten times and assigned different string values. These values ​​indicate the scope.
+- [x] Explain the output and the two deviations.
 
-## Sichtbarkeit
-Es existieren also mehrere Gültigkeitsbereiche nebeneinander und ineinander verschachtelt. Insbesondere dann, wenn aus einem Bereich in einen anderen zugegriffen werden soll, so wie das Asteroid-Hauptprogramm beispielsweise auf die Eigenschaften oder Methoden der Moveables zugreift, kann schnell Verwirrung entstehen. Denn manche Informationen bieten die Klassen und Objekte tatsächlich für den Zugriff "von Außen" als Schnittstelle an, anderes dagegen brauchen sie lediglich für die interne Funktion. Hier kann ein Zugriff zu Fehlern führen
+## Visibility
+Multiple scopes exist side-by-side and nested within one another. Confusion can easily arise particularly when access is required from one scope to another, such as when the main Asteroid program accesses the properties or methods of "Moveable" objects. This is because classes and objects expose some information as an interface for external access, while other information is required solely for internal functionality; attempting to access the latter can lead to errors.
 
-Bei der objektorientierten Modellierung können durch Sichtbarkeitsmodifikatoren Eigenschaften und Methoden gegen den Zugriff geschützt werden. Das erhöht nicht nur die Sicherheit, sondern macht es bei der Entwicklung im Team für alle sehr viel leichter, die richtigen Zugriffe zu finden und auszuwählen. Diese Modifikatoren sind lediglich reservierte Worte, die bei der Deklaration der Methoden und Eigenschaften voran gestellt werden.
+In object oriented modeling, visibility modifiers can be used to protect properties and methods from unauthorized access. This not only enhances security but also makes it much easier for team members to identify and select the appropriate access points during development. These modifiers are simply reserved words placed before the declaration of methods and properties.
 
 ### `public`
-Der Zugriff ist völlig öffentlich. Dies ist auch die Standardsichtbarkeit, wenn kein Modifikator angegeben wird. Daher konnte Asteroids bisher funktionieren. Eine Analogie könnte ein Vorgarten sein, in den jedes hineinlaufen und mit den Dingen dort hantieren kann.
+Access is completely public. This is also the default visibility if no modifier is specified. That is why Asteroids was able to work as it did. An analogy would be a front yard that anyone can walk into and where anyone can handle the items found there.
 
-> **Hinweis**: Im Klassendiagramm wird `public` mit dem Zeichen `+` markiert
+> **Note**: In a class diagram, `public` is marked with the `+` symbol
 
 ### `private`
-Der Zugriff ist nur Objekten der gleichen Klasse erlaubt. In den meisten Fällen greift also das Objekt selbst auf seine eigenen Eigenschaften und Methoden zu. Eine Analogie könnte das Schlafzimmer der Eltern sein, auf dessen Interieur nur die Erwachsenen im Haus haben.
+Access is permitted only for objects of the same class. In most cases, therefore, the object accesses its own properties and methods. An analogy might be the parents' bedroom, where only the adults in the house have access to the interior.
 
-> **Hinweis**: Im Klassendiagramm wird `private` mit dem Zeichen `-` markiert
+> **Note**: In the class diagram, `private` is marked with the `-` symbol
 
 ### `protected`
-Der Zugriff ist nur Objekten der gleichen Klasse und deren Subklassen erlaubt. Eine Analogie ist der Rest des Hauses, den Eltern und Kinder nutzen können, aber anderen, die nicht zur Familie gehören, verschlossen bleibt.
+Access is permitted only for objects of the same class and their subclasses. An analogy is the rest of the house, which parents and children can use but which remains closed off to those outside the family.
 
-> **Hinweis**: Im Klassendiagramm wird `protected` mit dem Zeichen `#` markiert
+> **Note**: In the class diagram, `protected` is marked with the `#` symbol
 
 <div align="center">
   <a href="http://hdl.handle.net/10900.3/OER_WYOSLZMG"><img src="../X01_Appendix/Img/L11_V2_Bild.jpg" width="25%"/></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_WYOSLZMG"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L11 Advanced: Aktualisierung der Klassen</a>
+  <a href="http://hdl.handle.net/10900.3/OER_WYOSLZMG"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L11 Advanced: Updating the classes</a>
 </div>
 
 ### `readonly`
-Unterschiedliche Programmiersprachen können noch weitere Modifikatoren anbieten. Erwähnenswert ist für TypeScript noch `readonly`, das mit den vorangegangenen Modifikatoren kombiniert werden kann. Eine so gekennzeichnete Eigenschaft kann nur direkt bei der Deklaration oder im Konstruktor definiert, danach der Wert aber nicht mehr geändert werden. Es entspricht somit dem Schlüsselwort `const` für übliche Variablen.
+Different programming languages ​​may offer additional modifiers. Worth mentioning in the context of TypeScript is `readonly`, which can be combined with the previously mentioned modifiers. A property marked in this way can only be defined at the time of declaration or within the constructor; its value cannot be changed thereafter. It thus corresponds to the `const` keyword used for standard variables.
 
-## Zugriffsfunktionen 
+## Access functions 
 ### `set`
-Manchmal ist es wünschenswert, dass eine Eigenschaft eines Objektes verändert werden kann, so als wäre sie `public`, aber dass das Objekt selbst von der geplanten Änderung erfährt und noch eingreifen kann oder erforderliche Prozesse dabei auslöst. Beispielsweise könnte das Objekt überprüfen, ob der einzutragende Wert innerhalb bestimmter Grenzen liegt und die Übernahme verweigern, wenn dies nicht so ist. Hierzu könnte es also eine Methode anbieten und das eigentlich Attribut als `private` deklarieren, um nur selbst darauf Zugriff zu haben.
+Sometimes it is desirable for an object's property to be modifiable—as if it were `public`—while ensuring the object itself is aware of the intended change and can intervene or trigger necessary processes. For instance, the object could verify whether the value to be assigned falls within specific limits and reject the update if it does not. To achieve this, it could provide a method for the change while declaring the actual attribute `private`, thereby restricting direct access to itself.
 
 ```typescript
 private value: number;
@@ -129,7 +129,7 @@ setValue(_newValue: number): void {
     this.value = _newValue;
 }
 ```
-Soll nun also die Eigenschaft `value` des Objektes `instance` verändert werden, wird die Anweisung `instance.setValue(...)` genutzt. Da solche Anwendungsfälle häufig auftreten und die Schreibweise `instance.value = ...` für die Veränderung einer Eigenschaft schlicht einfacher und intuitiver erscheint ist, gibt es einen speziellen Methodentyp: den "Setter"
+If the `value` property of the `instance` object is to be modified, the statement `instance.setValue(...)` is used. Since such use cases occur frequently—and the syntax `instance.value = ...` for modifying a property simply appears easier and more intuitive—there is a special type of method: the "setter"
 
 ```typescript
 private valuePrivate: number;
@@ -140,12 +140,12 @@ set value(_newValue: number): void {
 }
 ```
 
-Nun wird beispielsweise bei der Anweisung `instance.value = 59;` automatisch diese Setter-Methode aufgerufen und das, was auf der rechten Seite des Zuweisungsoperators steht, hier `59`, als Parameter übergeben. Gleiches geschieht auch bei den kombinierten Zuweisungsoperatoren (siehe Anhang). Zu beachten ist, dass es nun gar keine Eigenschaft `value` in der Klasse mehr gibt, denn das würde einen Namenskonflikt mit dem Setter bedeuten. Daher wird intern im Beispiel das Attribut intern mit `valuePrivate` bezeichnet. Von "außen" betrachtet aber verfügt `instance` über eine Eigenschaft `value` die nun eine besondere Funktionalität aufweist und nicht unkontrolliert verändert werden kann. 
+Now, for instance, when the statement `instance.value = 59;` is executed, this setter method is automatically called, and the value on the right-hand side of the assignment operator—in this case, `59`—is passed as a parameter. The same applies to combined assignment operators (see appendix). Note that the class no longer contains a property named `value`, as this would cause a naming conflict with the setter. Therefore, in this example, the internal attribute is named `valuePrivate`. However, viewed from the "outside," `instance` possesses a property named `value` that now incorporates special functionality and cannot be modified in an uncontrolled manner.
 
-- [x] Die Vektorklasse verfügt bereits über eine Methode `set(...)`. Ist das ein "Setter"?
+- [x] The vector class already has a `set(...)` method. Is this a "setter"?
 
 ### `get`
-Das Pendant zu `set` ist natürlich `get`. Damit kann beispielsweise eine Eigenschaft gelesen werden, die gar nicht gespeichert ist, sondern erst berechnet wird, wenn jemand danach fragt. Ein Kandidat für einen sogenannten "Getter" könnte ein Attribut `length` der Vektorklasse sein. Die Länge eines Vektors lässt sich leicht mit dem Satz des Pythagoras berechnen, JavaScripts `Math`-Objekt hält hierfür die Methode `hypot` bereit. Da die Elemente des Vektors sich ständig ändern, wäre es unnötiger Aufwand, bei jeder Änderung die Länge zu berechnen und zu speichern. Mit 
+The counterpart to `set` is, of course, `get`. This allows, for example, the reading of a property that isn't stored but only calculated when requested. A candidate for such a "getter" could be the `length` attribute of the vector class. The length of a vector can be easily calculated using the Pythagorean theorem; JavaScript's `Math` object provides the `hypot` method for this purpose. Since the elements of the vector are constantly changing, it would be unnecessary overhead to calculate and store the length with every change. With
 
 ```typescript
 get length(): number {
@@ -153,9 +153,9 @@ get length(): number {
 }
 ```
 
-erscheint es von außen betrachtet aber so, als wäre diese Eigenschaft ständig vorhanden, denn sie kann einfach mit z.B. `let speed: number = velocity.length;` abgerufen werden. Die Anweisung verschleiert, dass es sich eigentlich um den Aufruf einer Methode handelt.
+however, viewed from the outside, it appears as though this property is always present, since it can simply be accessed via, for example, `let speed: number = velocity.length;`. This statement obscures the fact that it is actually a method call.
 
-> **Hinweis:** Zugriffsfunktionen werden im Klassendiagramm standardmäßig nicht markiert, sondern schlicht als Eigenschaft dargestellt.
+> **Note:** By default, accessor functions are not explicitly marked in the class diagram but are simply represented as properties.
 
 # L11.2 Asteroids reloaded
 
@@ -163,13 +163,13 @@ erscheint es von außen betrachtet aber so, als wäre diese Eigenschaft ständig
   <a href="http://hdl.handle.net/10900.3/OER_RDULYUHE"><img src="../X01_Appendix/Img/L11_V3_Bild.jpg" width="25%"/></a> 
   <a href="Material/draw.io/Asteroids_ClassDiagram.svg"><img src="Material/draw.io/Asteroids_ClassDiagram.svg" width="25%"></a>
   <br/>
-  <a href="http://hdl.handle.net/10900.3/OER_RDULYUHE"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L11 Advanced: Klassendiagramm</a>
+  <a href="http://hdl.handle.net/10900.3/OER_RDULYUHE"><img src="../X01_Appendix/Img/video.jpg" width="3%"/> L11 Advanced: Class diagram</a>
 </div>
 
-## Aufzählungstypen
-Häufig ist es erforderlich, eine Information mit einem Datentyp zu beschreiben, der nur eine enge und diskrete Auswahl an Werten beschreiben kann. Das simpelste Beispiel für einen solchen Datentyp ist `boolean`. Hier sind nur zwei Werte zulässig `true` und `false`. Der Versuch, einer Variablen dieses Typs beispielsweise ein `maybe` zuzuweisen, scheitert.
+## Enumeration types
+It is often necessary to describe a piece of information using a data type that allows for only a limited, discrete set of values. The simplest example of such a data type is `boolean`. Only two values ​​are permitted here: `true` and `false`. An attempt to assign a value such as `maybe` to a variable of this type, for instance, will fail.
 
-Du kannst selbst solche Aufzählungstypen mit dem reservierten Wort `enum` (Enumeration [engl]: Aufzählung) kreieren.
+You can create such enumeration types yourself using the reserved word `enum`.
 
 ```typescript
 enum TASK {
@@ -179,7 +179,7 @@ enum TASK {
     SLEEP
 }
 ```
-Der Typ im Beispiel könnte genutzt werden, um die Aufgaben eines Wachhundes zu bezeichnen. Ein Objekt vom Typ des Wachhundes könnte dann über eine Eigenschaft `task` verfügen, welche nur diese vier Werte annehmen kann.
+The type in the example could be used to represent the tasks of a guard dog. An object of the guard dog type could then have a `task` property that can only take on these four values.
 
 ```typescript
 class Watchdog extends Dog {
@@ -199,12 +199,12 @@ class Watchdog extends Dog {
 }
 ```
 
-Wird die Methode `update` des Wachhundes nun zyklisch abgearbeitet, können je nach aktuellem `task` unterschiedliche Aktivitäten bzw. Verhaltensmethoden aufgerufen werden. Der `switch` stellt bereits das hierfür erforderliche Konstrukt dar.
+If the watchdog's `update` method is now executed cyclically, different activities or behavioral methods can be invoked depending on the current `task`. The `switch` statement already provides the necessary construct for this.
 
-- [x] wie könnten die zugehörigen Aktivitäten aussehen? Erstelle grobe Aktivitätsdiagramme hierfür.
+- [x] What might the corresponding activities look like? Create rough activity diagrams for them.
 
-Ohne den speziellen Aufzählungstyp wäre `task` vielleicht einfach vom Typ `number`. Dann gäbe es die Aufgaben 0, 1, 2 und 3 und man müsste an anderer Stelle festhalten, welche Zahl welche Aufgabe bedeutet. Zudem wären dann auch Zahlen gültig, zu denen gar keine Aufgabe definiert ist. Da sind Fehler vorprogrammiert. `task` könnte aber auch vom Typ `string` sein und mit den Werten `"sleep"`, `"watch"` und so weiter besetzt werden. Dann wäre das Programm wieder lesbar, ist aber sehr fehleranfällig, denn falsche Schreibweisen wie `"petrol"`schleichen sich ein.
+Without the specific enumeration type, `task` might simply be of type `number`. In that case, you would have tasks 0, 1, 2, and 3, and would need to track elsewhere which number corresponds to which task. Furthermore, numbers for which no task is defined would also be valid a scenario practically inviting errors. Alternatively, `task` could be of type `string`, assigned values ​​like `"sleep"`, `"watch"`, and so on. While this makes the program readable again, it is highly error prone, as typos such as `"petrol"` can easily creep in.
 
-Mit Hilfe des Aufzählungstyps aber kann TypeScript schon beim Schreiben des Codes die richtigen Vorschläge machen, die zulässigen Werte zur Auswahl stellen und Fehler sofort erkennen.
+By using an enumeration type, however, TypeScript can offer the correct suggestions while you write the code, present the valid values ​​for selection, and detect errors immediately.
 
-> **Hinweis**: Laut UML-Standard wird eine Enumeration im Klassendiagramm durch die Markierung `<<enumeration>>` gekennzeichnet. Analog gilt das für Interfaces mit `<<interface>>`
+> **Note**: According to the UML standard, an enumeration is marked in a class diagram with the tag `<<enumeration>>`. The same applies to interfaces, which are marked with `<<interface>>`.
